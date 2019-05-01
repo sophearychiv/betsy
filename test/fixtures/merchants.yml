@@ -1,11 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-merch_1:
-  provider: github
-  email: merch_1@itsy.com
-  username: coolmerch1
+kim:
+  provider: google
+  email: kim@plaidshirtsarenice.com
+  username: minikim
 
-merch_2:
+sopheary:
+  provider: google
+  email: sopheary@coolshoes.net
+  username: teenysopheary
+
+stephanie:
   provider: github
-  email: merch_2@itsy.com
-  username: dopemerch2
+  email: stephanie@histephanie.net
+  username: picosteph
+
+kate:
+  provider: google
+  email: kate@katekatekate.net
+  username: eensykate
