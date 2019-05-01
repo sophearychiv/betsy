@@ -15,6 +15,10 @@ ActiveRecord::Schema.define(version: 2019_05_01_001254) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "merchants", force: :cascade do |t|
     t.string "provider"
     t.string "email"
@@ -47,4 +51,25 @@ ActiveRecord::Schema.define(version: 2019_05_01_001254) do
   end
 
   add_foreign_key "orderitems", "orders"
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.string "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.bigint "merchant_id"
+    t.string "name"
+    t.float "price"
+    t.string "description"
+    t.integer "stock"
+    t.string "photo_url"
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["merchant_id"], name: "index_products_on_merchant_id"
+  end
+
+  add_foreign_key "products", "merchants"
 end
