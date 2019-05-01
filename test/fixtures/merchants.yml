@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  provider: MyString
-  email: MyString
-  username: MyString
+merch_1:
+  provider: github
+  email: merch_1@itsy.com
+  username: coolmerch1
 
-two:
-  provider: MyString
-  email: MyString
-  username: MyString
+merch_2:
+  provider: github
+  email: merch_2@itsy.com
+  username: dopemerch2
