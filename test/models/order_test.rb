@@ -3,7 +3,8 @@ require "test_helper"
 describe Order do
   let(:order) { Order.new }
 
-  it "must be valid" do
-    value(order).must_be :valid?
+  describe "Validations" do
+    it "must be valid" do
+    end
   end
 end

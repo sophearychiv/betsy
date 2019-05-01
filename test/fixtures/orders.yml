@@ -1,23 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  address: MyString
-  name: MyString
-  status: MyString
+  address: 123 123St SE
+  name: Sophie
+  status: pending
   cc: 1
-  expiration_date: MyString
-  date: MyString
-  csv: MyString
-  integer: MyString
-  email: MyString
+  expiration_date: Date.today
+  csv: 234
+  email: sophie@ada.com
 
 two:
-  address: MyString
-  name: MyString
-  status: MyString
+  address: 456 123St SE
+  name: Sophie
+  status: pending
   cc: 1
-  expiration_date: MyString
-  date: MyString
-  csv: MyString
-  integer: MyString
-  email: MyString
+  expiration_date: Date.today
+  csv: 234
+  email: sophie@ada.com
