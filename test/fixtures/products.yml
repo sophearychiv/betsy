@@ -1,11 +1,27 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+product1:
+  name: teeny tiny pencil box
+  quantity: 1
+  price: 7.99
+  merchant: sopheary
+  photo: 'https://picsum.photos/200/200'
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+product2:
+  name: micro-micro-machine
+  quantity: 10
+  price: 3.99
+  merchant: kate
+  photo: 'https://picsum.photos/200/200'
+
+product3:
+  name: tiny taco plate
+  quantity: 3
+  price: 9.99
+  merchant: kim
+  image: 'https://picsum.photos/200/200'
+
+product4:
+  name: pocket train set
+  quantity: 3
+  price: 9.99
+  merchant: stephanie
+  image: 'https://picsum.photos/200/200'

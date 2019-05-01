@@ -1,11 +1,19 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+kim:
+  provider: google
+  email: kim@plaidshirtsarenice.com
+  username: minikim
 
-one:
-  provider: MyString
-  email: MyString
-  username: MyString
+sopheary:
+  provider: google
+  email: sopheary@coolshoes.net
+  username: teenysopheary
 
-two:
-  provider: MyString
-  email: MyString
-  username: MyString
+stephanie:
+  provider: github
+  email: stephanie@histephanie.net
+  username: picosteph
+
+kate:
+  provider: google
+  email: kate@katekatekate.net
+  username: eensykate
