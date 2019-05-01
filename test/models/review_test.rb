@@ -31,7 +31,7 @@ describe Review do
       end
     end
 
-    it "must reject a rating that is not and integer between 1 and 5" do
+    it "must reject a rating that is not an integer between 1 and 5" do
       ratings = [0, 6, -5, 10, 5.1]
 
       ratings.each do |rating|
