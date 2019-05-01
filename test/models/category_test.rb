@@ -6,4 +6,15 @@ describe Category do
   it "must be valid" do
     value(category).must_be :valid?
   end
+
+  describe "relations" do
+    it "has many products" do
+    end
+
+    it "belongs to many products" do
+    end
+  end
+
+  describe "validations" do
+  end
 end
