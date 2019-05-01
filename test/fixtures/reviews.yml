@@ -3,7 +3,9 @@
 review_one:
   rating: 1
   body: Much Amaze
+  product_id: two
 
 review_two:
   rating: 5
   body: So Wow
+  product_id: one
