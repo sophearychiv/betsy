@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2019_04_30_234310) do
-=======
 ActiveRecord::Schema.define(version: 2019_05_01_000638) do
->>>>>>> c5cf3f41df42d271fbd1df5e55116584d8493b5b
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,17 +24,12 @@ ActiveRecord::Schema.define(version: 2019_05_01_000638) do
   end
 
   create_table "orderitems", force: :cascade do |t|
-<<<<<<< HEAD
-    t.integer "order_id"
-=======
->>>>>>> c5cf3f41df42d271fbd1df5e55116584d8493b5b
     t.integer "product_id"
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
   create_table "products", force: :cascade do |t|
     t.bigint "merchant_id"
     t.string "name"
@@ -53,6 +44,4 @@ ActiveRecord::Schema.define(version: 2019_05_01_000638) do
   end
 
   add_foreign_key "products", "merchants"
-=======
->>>>>>> c5cf3f41df42d271fbd1df5e55116584d8493b5b
 end
