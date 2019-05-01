@@ -9,7 +9,6 @@ class MakeProductTable < ActiveRecord::Migration[5.2]
       t.string :photo_url
       t.boolean :active, default: true
       t.timestamps
-      t.index ["merch_id"], name: "index_products_on_merch_id"
     end
   end
 end
