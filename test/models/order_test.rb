@@ -71,7 +71,7 @@ describe Order do
       expect(order.orderitems).must_include order_item2
 
       order.orderitems.each do |orderitem|
-        expect(orderitem).must_be_an_instance_of Orderitem
+        expect(orderitem).must_be_instance_of Orderitem
       end
     end
   end
