@@ -19,4 +19,14 @@ describe Merchant do
     end  
     
   end
+
+  describe "validations" do
+    let(:new_merchant) {
+      Merchant.new
+    }
+    it "" do
+
+    
+    end
+  end
 end
