@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'orderitems/create'
+  get 'orderitems/edit'
+  get 'orderitems/update'
+  get 'orderitems/destroy'
   root "homepages#root"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :products, except: [:destroy]
