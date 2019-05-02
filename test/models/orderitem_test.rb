@@ -22,9 +22,28 @@ describe Orderitem do
 
   end 
 
-  describe "validations" do
+  describe "validations" do  
+    it "valid with quantity" do
+      
+      expect(@orderitem).must_be :valid?
 
+    end
 
+    it "invalid without quantity" do
+      @orderitem.quantity = nil
+
+      expect(@orderitem).wont_be :valid?
+    end
+
+    it "invalid when the quantity is less than zero" do
+      @orderitem.quantity = -1
+
+      expect(@orderitem).wont_be :valid?
+
+      @orderitem.quantity = 0
+
+      expect(@orderitem).wont_be :valid?
+    end
   end
 
 end
