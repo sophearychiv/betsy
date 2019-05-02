@@ -2,6 +2,7 @@ require "test_helper"
 
 describe Category do
   let(:category) { categories(:food) }
+  let(:product) { products(:product1) }
 
   it "must be valid" do
     value(category).must_be :valid?
