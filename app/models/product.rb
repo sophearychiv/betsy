@@ -25,4 +25,12 @@ class Product < ApplicationRecord
       return (ratings.to_i / self.reviews.length).round(2)
     end
   end
+
+  def subtract(quantity)
+    self.stock = self.stock - quantity
+  end
+
+  def in_stock?(quantity)
+    stock >= quantity
+  end
 end

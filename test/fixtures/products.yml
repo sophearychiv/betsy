@@ -1,7 +1,7 @@
 product1:
   name: teeny tiny pencil box
   stock: 1
-  price: 7.99
+  price: 799
   active: true
   merchant: sopheary
   photo_url: 'https://picsum.photos/200/200'
@@ -9,7 +9,7 @@ product1:
 product2:
   name: micro-micro-machine
   stock: 10
-  price: 3.99
+  price: 399
   active: true
   merchant: stephanie
   photo_url: 'https://picsum.photos/200/200'
@@ -17,7 +17,7 @@ product2:
 product3:
   name: tiny taco plate
   stock: 3
-  price: 9.99
+  price: 999
   active: true
   merchant: kate
   photo_url: 'https://picsum.photos/200/200'
@@ -25,7 +25,7 @@ product3:
 product4:
   name: pocket train set
   stock: 3
-  price: 9.99
+  price: 999
   active: false
   merchant: kim
   photo_url: 'https://picsum.photos/200/200'
