@@ -1,201 +1,23 @@
 {
   "MiniTest": {
     "coverage": {
-      "/Users/kate/ada-work/betsy/config/environment.rb": [
-        null,
-        1,
-        null,
-        null,
-        1
-      ],
-      "/Users/kate/ada-work/betsy/config/environments/test.rb": [
-        1,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        null,
-        null,
-        1,
-        1,
-        null,
-        null,
-        1,
-        null,
-        null,
-        1,
-        null,
-        null,
-        1,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/kate/ada-work/betsy/config/initializers/action_view.rb": [
-        1
-      ],
-      "/Users/kate/ada-work/betsy/config/initializers/application_controller_renderer.rb": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/kate/ada-work/betsy/config/initializers/assets.rb": [
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/kate/ada-work/betsy/config/initializers/backtrace_silencers.rb": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/kate/ada-work/betsy/config/initializers/content_security_policy.rb": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/kate/ada-work/betsy/config/initializers/cookies_serializer.rb": [
-        null,
-        null,
-        null,
-        null,
-        1
-      ],
-      "/Users/kate/ada-work/betsy/config/initializers/filter_parameter_logging.rb": [
-        null,
-        null,
-        null,
-        1
-      ],
-      "/Users/kate/ada-work/betsy/config/initializers/inflections.rb": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/kate/ada-work/betsy/config/initializers/mime_types.rb": [
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/kate/ada-work/betsy/config/initializers/wrap_parameters.rb": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        1,
-        2,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "/Users/kate/ada-work/betsy/config/routes.rb": [
-        1,
-        null,
-        null
-      ],
-      "/Users/kate/ada-work/betsy/app/helpers/application_helper.rb": [
+      "/Users/sophearychiv/Documents/ada/projects/betsy/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/kate/ada-work/betsy/app/models/category.rb": [
+      "/Users/sophearychiv/Documents/ada/projects/betsy/app/models/category.rb": [
         1,
         1,
         null,
         1,
         null
       ],
-      "/Users/kate/ada-work/betsy/app/models/application_record.rb": [
+      "/Users/sophearychiv/Documents/ada/projects/betsy/app/models/application_record.rb": [
         1,
         1,
         null
       ],
-      "/Users/kate/ada-work/betsy/test/models/merchant_test.rb": [
+      "/Users/sophearychiv/Documents/ada/projects/betsy/test/models/merchant_test.rb": [
         1,
         null,
         1,
@@ -219,14 +41,14 @@
         null,
         null
       ],
-      "/Users/kate/ada-work/betsy/app/models/merchant.rb": [
+      "/Users/sophearychiv/Documents/ada/projects/betsy/app/models/merchant.rb": [
         1,
         1,
         1,
         1,
         null
       ],
-      "/Users/kate/ada-work/betsy/test/models/order_test.rb": [
+      "/Users/sophearychiv/Documents/ada/projects/betsy/test/models/order_test.rb": [
         1,
         null,
         1,
@@ -289,7 +111,7 @@
         null,
         null
       ],
-      "/Users/kate/ada-work/betsy/app/models/order.rb": [
+      "/Users/sophearychiv/Documents/ada/projects/betsy/app/models/order.rb": [
         1,
         1,
         1,
@@ -300,7 +122,7 @@
         1,
         null
       ],
-      "/Users/kate/ada-work/betsy/test/models/orderitem_test.rb": [
+      "/Users/sophearychiv/Documents/ada/projects/betsy/test/models/orderitem_test.rb": [
         1,
         null,
         1,
@@ -326,13 +148,13 @@
         null,
         null
       ],
-      "/Users/kate/ada-work/betsy/app/models/orderitem.rb": [
+      "/Users/sophearychiv/Documents/ada/projects/betsy/app/models/orderitem.rb": [
         1,
         1,
         1,
         null
       ],
-      "/Users/kate/ada-work/betsy/test/models/product_test.rb": [
+      "/Users/sophearychiv/Documents/ada/projects/betsy/test/models/product_test.rb": [
         1,
         null,
         1,
@@ -410,7 +232,7 @@
         null,
         null
       ],
-      "/Users/kate/ada-work/betsy/app/models/product.rb": [
+      "/Users/sophearychiv/Documents/ada/projects/betsy/app/models/product.rb": [
         1,
         1,
         1,
@@ -439,7 +261,7 @@
         null,
         null
       ],
-      "/Users/kate/ada-work/betsy/test/models/review_test.rb": [
+      "/Users/sophearychiv/Documents/ada/projects/betsy/test/models/review_test.rb": [
         1,
         null,
         1,
@@ -493,7 +315,7 @@
         null,
         null
       ],
-      "/Users/kate/ada-work/betsy/app/models/review.rb": [
+      "/Users/sophearychiv/Documents/ada/projects/betsy/app/models/review.rb": [
         1,
         1,
         null,
@@ -503,6 +325,6 @@
         null
       ]
     },
-    "timestamp": 1556816646
+    "timestamp": 1556816998
   }
 }
