@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  has_many :orderitems
+  has_and_belongs_to_many :products
   validates :name, presence: true
   validates :email, presence: true
   validates :address, presence: true
