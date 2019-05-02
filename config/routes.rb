@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :products, except: [:destroy]
   patch "/products/:id/retire", to: "products#retire", as: "retire"
   
+  resources :orders, only: [:new, :create]
 end
