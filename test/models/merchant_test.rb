@@ -10,6 +10,7 @@ describe Merchant do
     it "must be valid" do
       value(@merch).must_be :valid?
     end
+
   
     it "has products" do
       expect( @merch.products ).must_respond_to :each
