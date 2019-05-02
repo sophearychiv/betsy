@@ -4,13 +4,13 @@ class Product < ApplicationRecord
   has_many :orderitems
   has_many :orders, through: :orderitems
 
-  validates :name, presence: true, uniqueness: { scope: :true, message: "Merchant's products must have unique names " }
-  validates :price_in_cents, presence: true, numericality: { greater_than: 0, message: "Price must be greater than 0"}
-  validates :quantity, presence: true, numericality: { greater_than_or_equal_to: 0, message: "Stock cannot go below 0"}
-  validates :category, presence: true
+  validates :name, presence: true, uniqueness: { scope: :merchant, message: "Merchant's products must have unique names " }
+  validates :price, presence: :true, numericality: { greater_than: 0, message: "Price must be greater than 0" }
+  validates :stock, presence: true, numericality: { greater_than_or_equal_to: 0, message: "Stock cannot go below 0" }
+  # validates :category, presence: true
 
   def self.active_products
-    return Product.where(active: true)
+    return Product.where(active: :true)
   end
 
   def average_rating
