@@ -10,22 +10,18 @@ class MerchantsController < ApplicationController
     @merchant = Merchant.new
   end
   
-  def create
-    @merchant = Merchant.new(merchant_params)
-
-    is_successful = @merchant.save
-    if is_successful
-      flash.now[:failure] = "Unable to create #{@merchant.category}"
-      @merchant.errors.messages.each do |field, messages|
-        flash.now[field] = messages
-      end
-      render(:new, status: :bad_request)
-    end
-  end
 
   def show
     @merchant = Merchant.find_by(id: params[:id])
-    render :not_found unless @merchant
+
+    if @merchant.save(merchant_params)
+      flash[:success] = "Successfully updated #{@merchant.username}."
+      redirect_to merchant_path(@merchant.id)
+    else
+      render :edit
+      flash.now[:error] = "Sorry. There was a problem finding that merchant."
+      render :edit, status: :not_found
+    end
   end
 
   def edit
@@ -44,6 +40,7 @@ class MerchantsController < ApplicationController
 
   def destroy
     @merchant.destroy
+    redirect_to merchants_path
   end
 
 
