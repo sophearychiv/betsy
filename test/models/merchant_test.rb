@@ -1,32 +1,34 @@
 require "test_helper"
 
 describe Merchant do
-  let(:merchant) { Merchant.new }
-  let(:kim) { merchants(:kim) }
- 
+  before do 
+    @merch =  merchants(:kim)
+  end
+
  
   describe "relations" do
     it "must be valid" do
-      value(merchant).must_be :valid?
+      value(@merch).must_be :valid?
     end
+
   
     it "has products" do
-      expect( kim.products ).must_respond_to :each
+      expect( @merch.products ).must_respond_to :each
 
-      kim.products.each do |product|
+      @merch.products.each do |product|
         expect( product ).must_be_instance_of Product
       end
     end  
     
   end
 
-  describe "validations" do
-    let(:new_merchant) {
-      Merchant.new
-    }
-    it "" do
+  # describe "validations" do
+  #   let(:new_merchant) {
+  #     Merchant.new
+  #   }
+  #   it "" do
 
     
-    end
-  end
+  #   end
+  # end
 end
