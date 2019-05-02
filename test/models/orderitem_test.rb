@@ -19,6 +19,12 @@ describe Orderitem do
       @orderitem.must_respond_to :product
       @orderitem.product.must_be_kind_of Product
     end
+
   end 
+
+  describe "validations" do
+
+
+  end
 
 end
