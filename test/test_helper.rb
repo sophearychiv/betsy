@@ -1,4 +1,8 @@
 ENV["RAILS_ENV"] = "test"
+require "simplecov"
+require 'simplecov-console'
+SimpleCov.formatter = SimpleCov::Formatter::Console
+SimpleCov.start
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
 require "minitest/rails"

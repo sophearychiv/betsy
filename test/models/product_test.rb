@@ -24,6 +24,18 @@ describe Product do
     expect(products(:product3).average_rating).must_equal 'Not yet rated'
   end
 
+  it "can list just the active products" do
+    expect(Product.active_products.count).must_equal 3
+    expect(Product.active_products).wont_include products(:product4)
+  end
+
+  it "can list all of the inactive products" do
+    Product.all.each do |product|
+      product.active = false
+      product.save
+    end
+  end
+
 describe 'Relationships' do
 
   it 'can have many reviews' do
@@ -39,7 +51,7 @@ describe 'Relationships' do
   it 'can have many orders' do
     orders = product.orders
 
-    expect(orders.length).must_be :>=, 
+    expect(orders.length).must_be :>=, 1
     orders.each do |order|
       expect(order).must_be_instance_of Order
     end
