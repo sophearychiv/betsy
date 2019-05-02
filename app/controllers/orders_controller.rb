@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
-  def create
+  def checkout
     order = Order.new(order_params)
     if order.save
       flash[:success] = "Your payment has been process! Thank you for your business!"
