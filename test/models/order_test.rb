@@ -58,4 +58,9 @@ describe Order do
       expect(order.errors.messages[:expiration_date]).must_equal ["can't be blank"]
     end
   end
+
+  describe "Relationships" do
+    it "can have 0 orderitems" do
+    end
+  end
 end
