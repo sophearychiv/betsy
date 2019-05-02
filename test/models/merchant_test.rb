@@ -1,32 +1,70 @@
 require "test_helper"
 
 describe Merchant do
-  let(:merchant) { Merchant.new }
-  let(:kim) { merchants(:kim) }
- 
+  before do 
+    @merch =  merchants(:kim)
+  end
+
  
   describe "relations" do
     it "must be valid" do
-      value(merchant).must_be :valid?
+      value(@merch).must_be :valid?
     end
+
   
     it "has products" do
-      expect( kim.products ).must_respond_to :each
+      expect(@merch.products).must_respond_to :each
 
-      kim.products.each do |product|
-        expect( product ).must_be_instance_of Product
+      @merch.products.each do |product|
+        expect(product).must_be_instance_of Product
       end
     end  
     
   end
 
   describe "validations" do
-    let(:new_merchant) {
-      Merchant.new
+    let(:new_merch) {
+      Merchant.new(
+        username: 'testuser',
+        email: 'testemail@itsy.com',
+        uid: 1010,
+        provider: 'github'
+      )
     }
-    it "" do
+    it "is a valid with unique email and username" do
+      
+      expect(@merch).must_be :valid?
 
-    
+    end
+
+    it "invalid without username" do
+      @merch.username = nil
+
+      expect(@merch).wont_be :valid?
+    end 
+
+    it "invalid with already used username" do
+      expect(new_merch).must_be :valid?
+
+      new_merch.username = @merch.username
+
+      expect(new_merch).wont_be :valid?
+
+    end
+
+    it "invalid without an email" do
+      new_merch.email = nil
+      
+      expect(new_merch).wont_be :valid?
+    end 
+
+    it "invalid with already used email" do
+      expect(new_merch).must_be :valid?
+  
+      new_merch.email = @merch.email
+
+      expect(new_merch).wont_be :valid?
+
     end
   end
 end
