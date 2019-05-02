@@ -2,7 +2,8 @@ require "test_helper"
 
 describe Category do
   let(:category) { categories(:food) }
-  let(:product) { products(:product1) }
+  let(:product1) { products(:product1) }
+  let(:product2) { products(:product2) }
 
   it "must be valid" do
     value(category).must_be :valid?
@@ -16,6 +17,13 @@ describe Category do
     end
 
     it "can have 1 or more products" do
+      category.products << product1
+      category.products << product2
+
+      expect(category.products.length).must_equal 2
+      expect(category.products).must_include product1
+      expect(category.products).must_include product2
+      expect(product1.categories).must_include category
     end
   end
 
