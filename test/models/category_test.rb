@@ -28,5 +28,11 @@ describe Category do
   end
 
   describe "validations" do
+    it "must have name" do
+      category = Category.new
+
+      expect(category.valid?).must_equal false
+      expect(category.errors.messages).must_include :name
+    end
   end
 end
