@@ -13,6 +13,14 @@ class MerchantsController < ApplicationController
   def create
     @merchant = Merchant.new(merchant_params)
 
+    is_successful = @merchant.save
+    if is_successful
+      flash.now[:failure] = "Unable to create #{@merchant.category}"
+      @merchant.errors.messages.each do |field, messages|
+        flash.now[field] = messages
+      end
+      render(:new, status: :bad_request)
+    end
   end
 
   def show
