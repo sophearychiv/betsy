@@ -33,7 +33,7 @@ CSV.foreach(PRODUCTS_FILE, :headers => true) do |row|
   product.stock = row['stock']
   product.description = row['description']
   active = row['active']
-  photo = row['photo']
+  photo_url = row['photo_url']
 
   successful = product.save
   if !successful

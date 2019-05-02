@@ -13,7 +13,7 @@ CSV.open("../db/merchant_seeds.csv", "w", :write_headers => true,
     end
   end
 CSV.open("../db/product_seeds.csv", "w", :write_headers => true,
-  :headers => ["name", "price", "merchant_id", "stock", "description", "active", "photo"]) do |csv|
+  :headers => ["name", "price", "merchant_id", "stock", "description", "active", "photo_url"]) do |csv|
     100.times do
         name = Faker::Commerce.product_name
         price = Faker::Commerce.price
@@ -21,7 +21,7 @@ CSV.open("../db/product_seeds.csv", "w", :write_headers => true,
         stock = rand(0..4)
         description = Faker::Movies::StarWars.wookiee_sentence
         active = true
-        photo = "lorempixel.com/200/200/animals"
-    csv << [name, price, merchant_id, stock, description, active, photo]
+        photo_url = "lorempixel.com/200/200/animals"
+    csv << [name, price, merchant_id, stock, description, active, photo_url]
     end
 end
