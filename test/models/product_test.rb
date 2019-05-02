@@ -40,7 +40,6 @@ describe 'Relationships' do
 
   it 'can have many reviews' do
     reviews = product.reviews
-
     expect(reviews.length).must_be :>=, 1
 
     reviews.each do |review|
