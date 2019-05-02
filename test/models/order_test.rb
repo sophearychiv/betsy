@@ -60,7 +60,19 @@ describe Order do
   end
 
   describe "Relationships" do
-    it "can have 0 orderitems" do
+    it "can have 1 or many orderitems" do
+      order_item1 = orderitems(:item1)
+      order_item2 = orderitems(:item2)
+
+      order.orderitems << order_item1
+      order.orderitems << order_item2
+
+      expect(order.orderitems).must_include order_item1
+      expect(order.orderitems).must_include order_item2
+
+      order.orderitems.each do |orderitem|
+        expect(orderitem).must_be_an_instance_of Orderitem
+      end
     end
   end
 end
