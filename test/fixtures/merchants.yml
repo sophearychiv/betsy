@@ -2,18 +2,22 @@ kim:
   provider: google
   email: kim@plaidshirtsarenice.com
   username: minikim
+  uid: 1134
 
 sopheary:
   provider: google
   email: sopheary@coolshoes.net
   username: teenysopheary
+  uid: 4353
 
 stephanie:
   provider: github
   email: stephanie@histephanie.net
   username: picosteph
+  uid: 9234
 
 kate:
   provider: google
   email: kate@katekatekate.net
   username: eensykate
+  uid: 2305
