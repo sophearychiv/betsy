@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'categories/new'
+  get 'categories/create'
   root "homepages#root"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :orderitems, except: [:index, :new, :show]
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
   # post "/orders/checkout", to: "orders#checkout"
   resources :sessions, only: [:new, :create]
   resources :merchants, except: [:new, :create]
-  resources :categories, only: [:new, :create, :show]
+  resources :categories, only: [:new, :create]
 
   get "/auth/github", as: "github_login"
   get "/auth/:provider/callback", to: "sessions#create", as: "auth_callback"
