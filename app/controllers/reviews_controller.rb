@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
 
     if @product
       @review = Review.new(review_params)
-      if @review.save
+      if @product.reviews << @review
         flash[:success] = "Thank you for your feedback"
         redirect_to product_path(params[:product_id])
       else
