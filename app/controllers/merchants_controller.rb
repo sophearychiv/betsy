@@ -28,12 +28,7 @@ class MerchantsController < ApplicationController
       render :edit
     end
   end
-
-  def destroy
-    @merchant.destroy
-    redirect_to merchants_path
-  end
-
+  
   private
 
   def merchant_params
