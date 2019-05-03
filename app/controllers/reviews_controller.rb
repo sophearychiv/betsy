@@ -5,9 +5,9 @@ class ReviewsController < ApplicationController
 
   def create
     @product = Product.find_by(id: params[:product_id])
+    @review = Review.new(review_params)
 
     if @product
-      @review = Review.new(review_params)
       if @product.reviews << @review
         flash[:success] = "Thank you for your feedback"
         redirect_to product_path(params[:product_id])
