@@ -29,7 +29,7 @@ describe CategoriesController do
       expect(session[:user_id]).must_equal @user.id
     end
 
-    it "must not create an category for a logged in user given invalid attributes" do
+    it "won't create a category for a logged in user given invalid attributes" do
       @user = perform_login
 
       category_hash = {
@@ -49,14 +49,14 @@ describe CategoriesController do
   end
 
   describe "Logged out user" do
-    it "won't get new page" do
+    it "will redirect when a logged out user tried to access the new category page" do
       get categories_new_path
 
       must_redirect_to root_path
       flash[:error].must_equal "An itsy problem occurred: You must login to view this page"
     end
 
-    it "won't create a new category for a logged out user" do
+    it "will redirect a logged out user and not allow them to create a category" do
       category_hash = {
         "category": {
           name: "Tiny pizzas",
