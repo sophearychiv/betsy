@@ -10,16 +10,14 @@ Rails.application.routes.draw do
   get "/products/merchant/:id", to: "products#by_merch", as:"merch"
   get "/products/category/:id", to: "products#by_cat", as:"cat"
 
-  resources :orders, only: [:new, :create]
+  resources :orders, only: [:new, :create, :show, :index]
   get "/orders/confirmation", as: "confirmation"
   # post "/orders/checkout", to: "orders#checkout"
   resources :sessions, only: [:new, :create]
   resources :merchants, except: [:new, :create]
 
-
   get "/auth/github", as: "github_login"
-  get '/auth/:provider/callback', to: "sessions#create", as: 'auth_callback'
+  get "/auth/:provider/callback", to: "sessions#create", as: "auth_callback"
 
-
-  delete '/logout', to: 'sessions#destroy', as: 'logout'
+  delete "/logout", to: "sessions#destroy", as: "logout"
 end
