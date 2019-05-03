@@ -2,6 +2,9 @@ require "test_helper"
 
 describe OrdersController do
   describe "index" do
+    before do
+      perform_login(merchants(:sopheary))
+    end
     it "should get index of all orders" do
       get orders_path
       must_respond_with :success
@@ -9,6 +12,9 @@ describe OrdersController do
   end
 
   describe "show" do
+    before do
+      perform_login(merchants(:sopheary))
+    end
     it "should be OK to show an order" do
       order = orders(:one)
 
