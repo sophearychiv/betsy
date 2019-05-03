@@ -62,7 +62,7 @@ describe ReviewsController do
       }.wont_change "Review.count"
 
       must_respond_with :bad_request
-      expect(flash[:error]).must_equal "An itsty problem occurred: Could not process feedback"
+      expect(flash[:error]).must_equal "An itsy problem occurred: Could not process feedback"
       expect(review.errors.messages).must_include [:rating]
     end
   end

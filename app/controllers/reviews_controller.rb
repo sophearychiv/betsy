@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
         flash[:success] = "Thank you for your feedback"
         redirect_to product_path(params[:product_id])
       else
-        flash[:error] = "An itsty problem occurred: Could not process feedback"
+        flash[:error] = "An itsy problem occurred: Could not process feedback"
         @review.errors.messages.each do |field, messages|
           flash.now[field] = messages
         end
