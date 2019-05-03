@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   patch "/products/:id/retire", to: "products#retire", as: "retire"
   get "/products/merchant/:id", to: "products#by_merch", as:"merch"
+  get "/products/category/:id", to: "products#by_cat", as:"cat"
 
   resources :orders, only: [:new, :create]
   get "/orders/confirmation", as: "confirmation"
