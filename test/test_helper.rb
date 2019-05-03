@@ -1,6 +1,6 @@
 ENV["RAILS_ENV"] = "test"
 require "simplecov"
-require 'simplecov-console'
+require "simplecov-console"
 SimpleCov.formatter = SimpleCov::Formatter::Console
 SimpleCov.start
 require File.expand_path("../../config/environment", __FILE__)
@@ -34,8 +34,8 @@ class ActiveSupport::TestCase
              provider: user.provider,
              uid: user.uid,
              info: {
-              nickname: user.username,
-              email: user.email,
+               nickname: user.username,
+               email: user.email,
              },
            }
   end
@@ -49,5 +49,7 @@ class ActiveSupport::TestCase
 
     must_respond_with :redirect
     must_redirect_to root_path
+
+    return user
   end
 end

@@ -1,23 +1,33 @@
 class CategoriesController < ApplicationController
+  before_action :require_login
+
   def new
     @category = Category.new
   end
 
   def create
-    if session[:user_id]
-      @category = Category.new(category_params)
-      if @category.save
-        flash[:success] = "Successfully created #{@category.name} category"
-        redirect_to merchant_path(session[:user_id])
-      else
-        flash[:error] = "An itsy problem occurred: Could not add category"
-        @review.errors.messages.each do |field, messages|
-          flash.now[field] = messages
-        end
-        render :create, status: :bad_request
-      end
+    @category = Category.new(category_params)
+    if @category.save
+      flash[:success] = "Successfully created #{@category.name} category"
+      redirect_to merchant_path(session[:user_id])
     else
-      flash[:error] = "An itsy problem occurred: You must be logged in for that"
+      flash[:error] = "An itsy problem occurred: Could not add category"
+      @category.errors.messages.each do |field, messages|
+        flash.now[field] = messages
+      end
+      render :new, status: :bad_request
+    end
+  end
+
+  private
+
+  def current_user
+    @current_user ||= Merchant.find(session[:user_id]) if session[:user_id]
+  end
+
+  def require_login
+    if current_user.nil?
+      flash[:error] = "An itsy problem occurred: You must login to view this page"
       redirect_to root_path
     end
   end
