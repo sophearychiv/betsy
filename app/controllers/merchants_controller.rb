@@ -1,7 +1,4 @@
-require "test_helper"
-
 class MerchantsController < ApplicationController
-
   def index
     @merchants = Merchants.all
   end
@@ -9,7 +6,6 @@ class MerchantsController < ApplicationController
   def new
     @merchant = Merchant.new
   end
-  
 
   def show
     @merchant = Merchant.find_by(id: params[:id])
