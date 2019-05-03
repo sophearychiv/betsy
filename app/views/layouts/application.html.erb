@@ -12,7 +12,17 @@
   <body>
     <nav>
       <h1>Itsy</h1>
-      <h4><%= link_to("Login with GitHub", github_login_path) %><h4>
+      <section>
+         <% if session[:user_id] %>
+            <li>
+              <%= link_to " Logout ", logout_path, method: :delete%>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to "Login With Github", github_login_path%>
+            </li>
+          <% end %>
+      </section>
     </nav>
 
     <%= yield %>
