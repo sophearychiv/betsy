@@ -1,7 +1,28 @@
 require "test_helper"
 
 describe MerchantsController do
-  # it "must be a real test" do
-  #   flunk "Need real tests"
-  # end
+  let(:merchant_info) {
+    {
+      merchant:
+      {
+        username: 'test',
+        email: 'itsytest@itsy.com',
+        uid: 2391,
+        provider: 'github'
+      }
+    }
+  }
+
+  let (:merchant) {
+    merchants(:stephanie)
+  }
+
+  describe "index" do
+    it "should get to the index" do
+
+      get merchants_path
+
+      must_respond_with :success
+    end
+  end
 end

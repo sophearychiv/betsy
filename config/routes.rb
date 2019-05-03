@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   
   resources :orders, only: [:new, :create]
   resources :sessions, only: [:new, :create]
+  resources :merchants, except: [:new, :create]
 
 
   get "/auth/github", as: "github_login"
