@@ -7,8 +7,8 @@ COMING SOON!
 
   <h5>Shop by Merchant</h5>
   <ul>
-  <% Merchant.all.each do |merchant|%>
-     <li><%= link_to "#{merchant.username}", bymerchant_path(merchant.id) %></li>
-  <%end%>
+  <% Merchant.all.where(@products_by_merch.length > 1).each do |merchant|%>
+     <li><%= link_to "#{merchant.username}", merch_path(merchant.id) %></li>
+    <% end %>
   </ul>
 </nav>
