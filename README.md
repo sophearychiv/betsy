@@ -1,5 +1,7 @@
 # bEtsy
 
+Dee is doing a weird test right now :)
+
 ## At a Glance
 
 - Group, [stage 3](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md) project

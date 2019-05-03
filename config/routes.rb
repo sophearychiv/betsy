@@ -9,4 +9,13 @@ Rails.application.routes.draw do
   resources :orders, only: [:new, :create]
   get "/orders/confirmation", as: "confirmation"
   # post "/orders/checkout", to: "orders#checkout"
+  resources :sessions, only: [:new, :create]
+  resources :merchants, except: [:new, :create]
+
+
+  get "/auth/github", as: "github_login"
+  get '/auth/:provider/callback', to: "sessions#create", as: 'auth_callback'
+
+
+  delete '/logout', to: 'sessions#destroy', as: 'logout'
 end
