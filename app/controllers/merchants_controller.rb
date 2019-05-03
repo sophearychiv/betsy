@@ -1,6 +1,6 @@
 class MerchantsController < ApplicationController
   def index
-    @merchants = Merchants.all
+    @merchants = Merchant.all
   end
 
   def new
@@ -9,15 +9,6 @@ class MerchantsController < ApplicationController
 
   def show
     @merchant = Merchant.find_by(id: params[:id])
-
-    if @merchant.save(merchant_params)
-      flash[:success] = "Successfully updated #{@merchant.username}."
-      redirect_to merchant_path(@merchant.id)
-    else
-      render :edit
-      flash.now[:error] = "Sorry. There was a problem finding that merchant."
-      render :edit, status: :not_found
-    end
   end
 
   def edit
@@ -39,16 +30,14 @@ class MerchantsController < ApplicationController
     redirect_to merchants_path
   end
 
+  private
 
-  private 
-  
-   def merchant_params
-     return params.require(:merchant).permit(
-       :username,
-       :email,
-       :provider,
-       :uid,
-     )
-   end
-
+  def merchant_params
+    return params.require(:merchant).permit(
+             :username,
+             :email,
+             :provider,
+             :uid,
+           )
+  end
 end
