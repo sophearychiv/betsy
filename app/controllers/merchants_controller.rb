@@ -1,7 +1,5 @@
-require "test_helper"
-
 class MerchantsController < ApplicationController
-
+  
   def index
     @merchants = Merchants.all
   end
