@@ -1,0 +1,18 @@
+<h2><%=@merchant.username%></h2>
+<p><%= @merchant.created_at.strftime("Joined the Itsyverse in %B %Y")%></p>
+
+
+<% if @merchant.id == session[:user_id] %>
+  <ul>
+    <li>
+      Add an Itsy Product
+    </li>
+    <li>
+      Add an Itsy Category
+    </li>
+    <li>
+      Order Summary
+    </li>
+  </ul>   
+
+<% end %>
