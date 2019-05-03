@@ -1,0 +1,14 @@
+
+<nav class="col-sm">
+  <h5><%= link_to "All Products", products_path%></h5>
+  <h5>Shop by Category</h5>
+
+COMING SOON!
+
+  <h5>Shop by Merchant</h5>
+  <ul>
+  <% Merchant.all.each do |merchant|%>
+     <li><%= link_to "#{merchant.username}", bymerchant_path(merchant.id) %></li>
+  <%end%>
+  </ul>
+</nav>
