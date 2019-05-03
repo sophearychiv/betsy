@@ -5,10 +5,10 @@
 <% if @merchant.id == session[:user_id] %>
   <ul>
     <li>
-      Add an Itsy Product
+      <%= link_to "Add an Itsy Product", new_product_path %>
     </li>
     <li>
-      Add an Itsy Category
+       Add an Itsy Category
     </li>
     <li>
       Order Summary
