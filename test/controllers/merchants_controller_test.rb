@@ -17,11 +17,18 @@ describe MerchantsController do
     merchants(:stephanie)
   }
 
-  describe "index" do
+  describe "index action" do
     it "should get to the index" do
 
       get merchants_path
 
+      must_respond_with :success
+    end
+  end
+
+  describe "show action" do
+    it "responds with success for existing merchant" do
+      get merchant_path(merchant.id)
       must_respond_with :success
     end
   end
