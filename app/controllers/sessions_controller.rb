@@ -17,15 +17,13 @@ class SessionsController < ApplicationController
       return redirect_to root_path
     end
     
-    session[:user_id] = user.id
-    
+    session[:user_id] = merchant.id
     redirect_to root_path
   end
 
   def destroy
     session[:user_id] = nil
-    flash[:status] = :success
-    flash[:message] = "Successfully logged out"
+    flash[:success] = "Successfully logged out"
     redirect_to root_path
   end
 end
