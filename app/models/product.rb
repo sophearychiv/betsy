@@ -33,4 +33,8 @@ class Product < ApplicationRecord
   def in_stock?(quantity)
     stock >= quantity
   end
+
+  def self.merchant_list(id)
+    self.active_products.select {|prod| prod.merchant.id == id}
+  end
 end

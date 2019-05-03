@@ -11,6 +11,16 @@ before_action :find_product, only: [:show, :edit, :update, :retire]
     end
   end
 
+  def by_merch
+    id = params[:id].to_i
+    @merchant_on = Merchant.find_by(id:id)
+    if @merchant_on
+      @products_by_merch = Product.merchant_list(id)
+    else
+      render :notfound, status: :not_found
+    end
+  end
+
   def retire
   @product.active = false
     if @product.save
