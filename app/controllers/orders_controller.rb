@@ -3,16 +3,15 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
-  def checkout
-    order = Order.new(order_params)
-    if order.save
+  def create
+    @order = Order.new(order_params)
+    if @order.save
       flash[:success] = "Your payment has been process! Thank you for your business!"
-      redirect_to order_path(order.id)
+      redirect_to confirmation_path
     else
-      order.errors.messages.each do |field, message|
-        flash.now[field] = messages
+      @order.errors.messages.each do |field, message|
+        flash.now[field] = message
       end
-
       render :new, status: :bad_request
     end
   end
