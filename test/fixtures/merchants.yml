@@ -1,11 +1,11 @@
 kim:
-  provider: google
+  provider: github
   email: kim@plaidshirtsarenice.com
   username: minikim
   uid: 1134
 
 sopheary:
-  provider: google
+  provider: github
   email: sopheary@coolshoes.net
   username: teenysopheary
   uid: 4353
@@ -17,7 +17,7 @@ stephanie:
   uid: 9234
 
 kate:
-  provider: google
+  provider: github
   email: kate@katekatekate.net
   username: eensykate
   uid: 2305
