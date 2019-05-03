@@ -17,6 +17,7 @@ describe MerchantsController do
     merchants(:stephanie)
   }
 
+
   describe "index action" do
     it "should get to the index" do
 
@@ -30,6 +31,12 @@ describe MerchantsController do
     it "responds with success for existing merchant" do
       get merchant_path(merchant.id)
       must_respond_with :success
+    end
+
+    it "responds with not found for invalid merchant" do
+      get merchant_path(-1)
+
+      must_respond_with 404
     end
   end
 end
