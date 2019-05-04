@@ -1,4 +1,9 @@
 class OrderitemsController < ApplicationController
+  # def new
+  #   @orderitem = Orderitem.new
+
+  # end
+
   def create
     @product = Product.find_by(id: params[:product_id])
 
