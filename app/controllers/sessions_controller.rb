@@ -8,17 +8,17 @@ class SessionsController < ApplicationController
       flash[:success] = "Welcome #{merchant.username}"
     else
       merchant = Merchant.build_from_github(auth_hash)
-    end
-
-    if merchant.save
-      flash[:success] = "Logged in as #{merchant.username}"
-    else
-      flash[:error] = "Could not log in with account #{merchant.errors.messages}"
-      return redirect_to root_path
+    
+      if merchant.save
+        flash[:success] = "Logged in as #{merchant.username}"
+      else
+        flash[:error] = "Could not log in with account #{merchant.errors.messages}"
+        return redirect_to root_path
+      end
     end
 
     session[:user_id] = merchant.id
-    redirect_to root_path
+    return redirect_to root_path
   end
 
   def destroy
