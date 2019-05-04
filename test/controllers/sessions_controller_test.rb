@@ -9,7 +9,9 @@ describe SessionsController do
       perform_login(merchant)
 
       expect(session[:user_id]).must_equal merchant.id
+      expect(flash[:success]).must_equal "Logged in as #{merchant.username}"
     end
+
 
     it "can log in a new user" do
       merch_count = Merchant.count

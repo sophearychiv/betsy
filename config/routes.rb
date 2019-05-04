@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create]
   resources :merchants, except: [:new, :create]
   resources :categories, only: [:new, :create]
+  get '/merchants/:id/dashboard', to: 'merchants#dashboard', as: 'dashboard'
+
 
   get "/auth/github", as: "github_login"
   get "/auth/:provider/callback", to: "sessions#create", as: "auth_callback"

@@ -38,6 +38,8 @@
             </li>
           <li class="nav-item app-header__nav_item">
               <%= link_to "Log out", logout_path, method: "delete", id: "session", class: "btn btn-primary"  %>
+            <li>
+              <%= link_to "Your Dashboard", dashboard_path(session[:user_id]) %>
             </li>
         <% else %>
           <li class="nav-item app-header__nav_item">
