@@ -1,21 +1,16 @@
-<article class="main-content container-fluid">
-  <div class="row">
-    <%= render partial: "shop_nav", local: true %>
-    <section class="col-sm-9">
-      <div class="card-columns">
+<article class="main-content">
+  <div class="card-columns">
         <% product_list.each do |product|%>
-          <div class="card">
+          <div class="card bg-light">
             <%= image_tag("https://robohash.org/" + product.name, alt: product.name, class: "card-img-top") %>
             <div class="card-body">
               <h5 class="card-title"><%= link_to "#{product.name}", product_path(product.id) %></h5>
               <div class="card-text">
                 Sold by: <%= link_to "#{product.merchant.username}", merch_path(product.merchant.id)%><br>
-                <%= "#{product.price}" %><br>
+                $<%= "#{product.price}" %><br>
+              </div>
               </div>
             </div>
-          </div>
-        <% end %>
-      </div>
-    </section>
+        <%end%>
   </div>
 </article>
