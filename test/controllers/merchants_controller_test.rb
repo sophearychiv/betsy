@@ -20,7 +20,7 @@ describe MerchantsController do
 
   describe "index action" do
     it "should get to the index" do
-
+      
       get merchants_path
 
       must_respond_with :success
