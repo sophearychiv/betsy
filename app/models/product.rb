@@ -14,14 +14,14 @@ class Product < ApplicationRecord
     return Product.where(active: :true)
   end
 
-  def self.sell_items(order_items)
+  def self.sell_items(orderitems)
     orderitems.each do |item|
-      item.product.inventory -= item.stock
+      item.product.stock -= item.stock
       item.product.save
     end
   end
 
-  def self.in_stock?(order_items)
+  def self.in_stock?(orderitems)
     orderitems.each do |item|
       if item.product.inventory < item.quantity
         return false
