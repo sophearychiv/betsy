@@ -1,9 +1,15 @@
 class Order < ApplicationRecord
   has_many :orderitems
-  validates :name, presence: true
-  validates :email, presence: true
-  validates :address, presence: true
-  validates :cc, presence: true
-  validates :csv, presence: true
-  validates :expiration_date, presence: true
+  # validates :name, presence: true, allow_nil: true, if: :status_nil?
+  validates :name, presence: true, allow_nil: false, unless: :status_nil?
+  # validates :email, presence: true, allow_nil: true, if: :status_nil?
+  validates :email, presence: true, allow_nil: false, unless: :status_nil?
+  validates :address, presence: true, allow_nil: false, unless: :status_nil?
+  validates :cc, presence: true, allow_nil: false, unless: :status_nil?
+  validates :csv, presence: true, allow_nil: false, unless: :status_nil?
+  validates :expiration_date, presence: true, allow_nil: false, unless: :status_nil?
+
+  def status_nil?
+    return true if self.status == nil
+  end
 end
