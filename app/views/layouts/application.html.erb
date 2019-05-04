@@ -18,7 +18,7 @@
               <%= link_to " Logout ", logout_path, method: :delete%>
             </li>
             <li>
-                 <%= link_to "Your Dashboard", dashboard_path(session[:user_id]) %>
+              <%= link_to "Your Dashboard", dashboard_path(session[:user_id]) %>
             </li>
           <% else %>
             <li>
