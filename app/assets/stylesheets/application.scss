@@ -1,17 +1,170 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- */
-/* Custom bootstrap variables must be set or imported *before* bootstrap. */
+
 @import "bootstrap";
 /* Import scss content */
 @import "**/*";
+
+@import url('https://fonts.googleapis.com/css?family=Lilita+One|Itim');
+
+html{
+  height:100%;
+}
+
+body {
+  background-image: url("doodles.png");
+  font-family: 'Itim', sans-serif;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1088px;
+}
+
+strong {
+  color: #15cba6;
+  font-weight: bold;
+}
+
+footer {
+  color: #099a97;
+  text-align: center;
+}
+
+main {
+  background: #9fe6bdb4;
+  min-height: 500px;
+  padding: 2rem;
+  margin-top: -5px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+li {
+  list-style: none;
+}
+
+.header {
+  background: #9fe6bdb4;
+  font-family: 'Lilita One', sans-serif;
+  padding: .2rem 2rem 1rem 2rem;
+  margin-top: 10px;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.logo {
+  display: block;
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 600;
+  font-size: 6em;
+  letter-spacing: .3em;
+  transform: rotate(-7deg);
+}
+
+.logo a:visited {
+  color: #780694;
+  transition: .8s;
+}
+
+.logo a:hover {
+  color: #5d0474;
+  font-size: 5rem;
+  letter-spacing: .8rem;
+  transition: .8s;
+}
+
+
+.motto {
+  text-align: center;
+  font-size: .8rem;
+  color: rgb(117, 6, 90);
+  letter-spacing: .2em;
+  font-family: 'Itim', sans-serif;
+}
+
+.navigation ul {
+  padding-inline-start: 0px;
+  margin-bottom: 0;
+}
+
+.nav-app-header {
+  display: flex;
+  justify-content: flex-front;
+  flex-direction: row;
+  font-family: 'Itim', sans-serif;
+}
+
+.app-header__nav_item {
+  display: inline-block;
+  padding-left: 10px;
+}
+
+a:visited {
+  color: #292F36;
+
+}
+a:link {
+  color: #292F36;
+}
+
+a:hover {
+  color: #15cba6;
+  text-decoration: none;
+}
+
+#session {
+  background-color: #FFFFFF;
+}
+
+#session:hover {
+  color: #099a97;
+  border: #099a97 solid 1px;
+}
+
+.btn-primary {
+  background-color: #099a97;
+  border: 1px #292F36 solid;
+}
+
+.btn-primary:hover {
+  color: #099a97;
+  background-color: #099a97;
+  border: 1px #099a97 solid;
+}
+
+.btn-primary:visited {
+  background-color: #099a97;
+  border: 1px #292F36 solid;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    text-align: center;
+    min-width: 10em;
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    font-weight: bolder;
+    white-space: nowrap;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown:hover .dropdown-content li {
+  display: block;
+  width: 100%;
+}
+
+.dropdown .dropdown-content:hover li:hover {
+  background-color: #ddd;
+  width: 100%;
+}
+
+.pull-right
+{
+  position: relative;
+  margin-left: auto;
+}
