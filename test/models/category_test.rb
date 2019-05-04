@@ -6,7 +6,7 @@ describe Category do
   let(:product2) { products(:product2) }
 
   it "must be valid" do
-    value(category).must_be :valid?
+    expect(category.valid?).must_equal true
   end
 
   describe "relations" do
@@ -28,11 +28,20 @@ describe Category do
   end
 
   describe "validations" do
-    it "must have name" do
+    it "must have a name" do
       category = Category.new
 
       expect(category.valid?).must_equal false
       expect(category.errors.messages).must_include :name
+      expect(category.errors.messages[:name]).must_equal ["can't be blank"]
+    end
+
+    it "must have a unique name" do
+      new_category = Category.new(name: "Itsy Bitsy Food")
+
+      expect(new_category.valid?).must_equal false
+      expect(new_category.errors.messages).must_include :name
+      expect(new_category.errors.messages[:name]).must_equal ["has already been taken"]
     end
   end
 end
