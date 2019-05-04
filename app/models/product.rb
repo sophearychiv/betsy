@@ -14,24 +14,35 @@ class Product < ApplicationRecord
     return Product.where(active: :true)
   end
 
+  def self.sell_items(orderitems)
+    orderitems.each do |item|
+      item.product.stock -= item.stock
+      item.product.save
+    end
+  end
+
+  def self.in_stock?(orderitems)
+    orderitems.each do |item|
+      if item.product.inventory < item.quantity
+        return false
+      end
+    end
+    return true
+  end
+
   def average_rating
-    ratings = 0
-    self.reviews.each do |review|
-      ratings += review.rating if review.rating
-    end
-    if ratings == 0
-      return "Not yet rated"
+    sum = 0
+    count = self.reviews.count
+
+    if count == 0
+      return 0
     else
-      return (ratings.to_i / self.reviews.length).round(2)
+      self.reviews.each do |review|
+        sum += review.rating
+      end
+
+      return (sum * 1.0 / count).round(2)
     end
-  end
-
-  def subtract(quantity)
-    self.stock = self.stock - quantity
-  end
-
-  def in_stock?(quantity)
-    stock >= quantity
   end
 
   def self.merchant_list(id)
