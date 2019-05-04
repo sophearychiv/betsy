@@ -1,18 +1,22 @@
 class ProductsController < ApplicationController
-before_action :find_product, only: [:show, :edit, :update, :retire]
+  before_action :find_product, only: [:show, :edit, :update, :status, :retire]
+  before_action :find_merchant, only: [:new, :edit, :create]
 
   def index
     @products = Product.active_products
   end
 
   def show
+      @orderitem = Orderitem.new
+      @review = Review.new
+      @reviews = @product.reviews
     if @product.active == false || @product.nil?
       render :notfound, status: :not_found
     end
   end
 
   def by_merch
-    id = params[:id].to_i
+    id = params[:id]
     @merchant_on = Merchant.find_by(id:id)
     if @merchant_on
       @products_by_merch = Product.merchant_list(id)
@@ -94,6 +98,6 @@ private
   end
 
   def product_params
-    params.require(:product).permit(:name, :price, :description, :photo_url, :status, :merchant_id, :stock)
+    params.require(:product).permit(:name, :price, :description, :photo_url, :active, :merchant_id, :stock)
   end
 end

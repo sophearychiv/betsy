@@ -22,32 +22,23 @@
             <% Merchant.all.each do |merchant| %>
               <li><%= link_to "#{merchant.username}", merch_path(merchant.id) %></li>
             <% end %>
-          </div>
+            </div>
         </div>
-      <div class="dropdown">
-        <%# NEED TO FIX THIS DROPDOWN FUNCTION FOR CATEGORIES, MAKING TESTS FAILS...%>
-        </div>
-      </div>
       <div class="pull-right">
-      <li class="nav-item app-header__nav_item">
+        <li class="nav-item app-header__nav_item">
         <%= link_to "Cart", orders_path, class: "nav-link" %>
         </li>
         <% if !session[:user_id].nil? %>
           <li class="nav-item app-header__nav_item">
-          <%= link_to "My Account", merchant_path(session[:user_id]), id: "session", class: "btn btn-primary" %>
-            </li>
+          <%= link_to "My Dashboard", dashboard_path(session[:user_id]), id: "session", class: "btn btn-primary" %></li>
           <li class="nav-item app-header__nav_item">
-              <%= link_to "Log out", logout_path, method: "delete", id: "session", class: "btn btn-primary"  %>
-            <li>
-              <%= link_to "Your Dashboard", dashboard_path(session[:user_id]) %>
-            </li>
+              <%= link_to "Log out", logout_path, method: "delete", id: "session", class: "btn btn-primary"  %></li>
         <% else %>
           <li class="nav-item app-header__nav_item">
             <%= link_to "Login with Github", "/auth/github", id: "session", class: "btn btn-primary"  %>
           </li>
         <% end %>
-        </div>
-      </li>
+      </div>
     </ul>
   </nav>
 </header>
@@ -56,23 +47,23 @@
       <div class="alert alert-<%= flash[:status].to_s == 'failure' ? 'warning' : flash[:status] %>">
         <span><%= flash[:status].to_s == "failure" ? "A problem occurred: " : "" %><%= flash[:result_text] %></span>
         <% if flash[:messages] %>
-        <ul>
+          <ul>
           <% flash[:messages].each do |name, problems| %>
-          <% problems.each do |problem| %>
-          <li><%= name %>: <%= problem %></li>
+            <% problems.each do |problem| %>
+              <li><%= name %>: <%= problem %></li>
+            <% end %>
           <% end %>
-          <% end %>
-        </ul>
+          </ul>
         <% end %>
       </div>
     </section>
     <% end %>
-  <main>
-    <%= yield %>
-  </main>
-  </div>
+    <main>
+      <%= yield %>
+    </main>
   </body>
+  </div>
   <footer>
-     <%= link_to "Homepage", root_path %>   |
+     <%= link_to "Homepage", root_path %>
   </footer>
 </html>
