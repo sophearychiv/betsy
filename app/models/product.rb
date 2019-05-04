@@ -20,14 +20,15 @@ class Product < ApplicationRecord
   #     item.product.save
   #   end
   # end
-  # def self.in_stock?(orderitems)
-  #   orderitems.each do |item|
-  #     if item.product.stock < item.quantity
-  #       return false
-  #     end
-  #   end
-  #   return true
-  # end
+
+  def self.in_stock?(orderitems)
+    orderitems.each do |item|
+      if item.product.stock < item.quantity
+        return false
+      end
+    end
+    return true
+  end
 
   def average_rating
     sum = 0
