@@ -1,4 +1,8 @@
 class OrdersController < ApplicationController
+  def index
+    @orders = Order.all
+  end
+
   def new
     @order = Order.new
   end
@@ -6,7 +10,6 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
-      flash[:success] = "Your payment has been process! Thank you for your business!"
       redirect_to confirmation_path
     else
       @order.errors.messages.each do |field, message|
@@ -17,6 +20,11 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @order = Order.find_by(id: params[:id])
+    if @order.nil?
+      flash[:error] = "Unknown order"
+      redirect_to orders_path
+    end
   end
 
   private
