@@ -22,6 +22,14 @@ class Merchant < ApplicationRecord
   end
 
   def total_revenue
-    orderitems.inject(0) { |revenue, orderitem| revenue + (orderitem.quantity * orderitem.product.price) }
+    return self.orderitems.sum { |orderitem| orderitem.product.price }
+  end
+
+  def completed_orders_items
+    return self.orderitems.where(status: 'complete')
+  end
+
+  def completed_orders_sum 
+    self.completed_orders_items.sum {|orderitem| orderitem.product.price}
   end
 end
