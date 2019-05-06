@@ -6,8 +6,6 @@ describe OrderitemsController do
   let(:product_four) { products(:product4) }
   let(:item1) { orderitems(:item1) }
   let(:item4) { orderitems(:item4) }
-  let(:orderitem_hash) { { quantity: 1 } }
-  let(:orderitem_hash2) { { quantity: 2 } }
 
   describe "logged in user" do
     before do
@@ -15,6 +13,9 @@ describe OrderitemsController do
     end
 
     describe "create" do
+      let(:orderitem_hash) { { "orderitem": { quantity: 1 } } }
+      let(:orderitem_hash2) { { "orderitem": { quantity: 2 } } }
+
       it "can create a new order item given a valid product" do
         expect {
           post product_orderitems_path(product.id), params: orderitem_hash
@@ -77,7 +78,9 @@ describe OrderitemsController do
 
       it "will redirect and flash an error if given an invalid quantity" do
         new_orderitem_hash = {
-          quantity: -1,
+          "orderitem": {
+            quantity: -1,
+          },
         }
 
         expect {
@@ -92,7 +95,11 @@ describe OrderitemsController do
     end
 
     describe "update" do
+      let(:orderitem_hash) { { quantity: 1 } }
+      let(:orderitem_hash2) { { quantity: 2 } }
+
       it "should update an item given a valid orderitem" do
+        puts orderitem_hash2
         expect {
           patch orderitem_path(item4.id), params: orderitem_hash2
         }.wont_change "Orderitem.count"
@@ -121,7 +128,9 @@ describe OrderitemsController do
 
       it "will flash an error message if given an invalid quantity" do
         new_orderitem_hash = {
-          quantity: -1,
+          "orderitem": {
+            quantity: -1,
+          },
         }
 
         expect {
@@ -151,12 +160,41 @@ describe OrderitemsController do
     end
 
     describe "destroy" do
+      let(:orderitem_hash) { { "orderitem": { quantity: 1 } } }
+
       it "will destroy an existing orderitem" do
         orderitem = create_cart
 
         expect {
           delete orderitem_path(orderitem.id)
         }.must_change "Orderitem.count", -1
+      end
+
+      it "will redirect to products path if orderitem does not exist and there is no existing order" do
+        invalid_orderitem_id = -1
+
+        expect {
+          delete orderitem_path(invalid_orderitem_id)
+        }.wont_change "Orderitem.count"
+
+        must_respond_with :redirect
+        must_redirect_to products_path
+        expect(flash[:status]).must_equal :warning
+        expect(flash[:result_text]).must_equal "An itsy problem occurred: Could not find item"
+      end
+
+      it "will redirect to the product path if orderitem does not exist and there's an existing order" do
+        orderitem = create_cart
+        invalid_orderitem_id = -1
+
+        expect {
+          delete orderitem_path(invalid_orderitem_id)
+        }.wont_change "Orderitem.count"
+
+        must_respond_with :redirect
+        must_redirect_to order_path(session[:order_id])
+        expect(flash[:status]).must_equal :warning
+        expect(flash[:result_text]).must_equal "An itsy problem occurred: Could not find item"
       end
     end
   end

@@ -1,13 +1,14 @@
 class OrderitemsController < ApplicationController
   def create
+    # raise
     @product = Product.find_by(id: params[:product_id])
 
     if @product
-      @orderitem = Orderitem.new(quantity: params[:quantity].to_i)
+      @orderitem = Orderitem.new(orderitem_params)
       # needs to be updated when the product logic for in_stock? is updated
       # currently this isn't changing the stock count, which is good,
       # but is misleading as far as readability
-      @product.stock -= params[:quantity].to_i
+      @product.stock -= params[:orderitem][:quantity].to_i
 
       if !@product.valid?
         flash[:status] = :warning
@@ -83,12 +84,16 @@ class OrderitemsController < ApplicationController
     if orderitem.nil?
       flash[:status] = :warning
       flash[:result_text] = "An itsy problem occurred: Could not find item"
+      if !session[:order_id]
+        redirect_to products_path
+        return
+      end
     else
       orderitem.destroy
       flash[:status] = :success
       flash[:result_text] = "Succesfully deleted item!"
-      redirect_to order_path(session[:order_id])
     end
+    redirect_to order_path(session[:order_id])
   end
 
   private

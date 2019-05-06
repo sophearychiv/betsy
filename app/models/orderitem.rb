@@ -4,14 +4,14 @@ class Orderitem < ApplicationRecord
 
   validates :quantity, presence: true, numericality: { greater_than: 0 }
 
-  def self.in_stock?(orderitem)
-    product = orderitem.product
-    if product.stock < orderitem.quantity
-      orderitem.quantity = product.stock
-      orderitem.save
+  def adjust_quantity
+    product = self.product
+    if product.stock < self.quantity
+      self.quantity = product.stock
+      self.save
       return product.stock
     else
-      return orderitem.quantity
+      return self.quantity
     end
   end
 end

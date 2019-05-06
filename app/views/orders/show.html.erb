@@ -17,9 +17,9 @@
                 <td><%= item.product.name %></td>
                 <td><%= item.product.price %></td>
                 <% sub_total += item.product.price%>
-                 <td><%= form_with url: orderitem_path(item.id), method: :patch do |f|%>
+                 <td><%= form_with model: @orderitem, url: orderitem_path(item.id), method: :patch do |f|%>
                     <strong><%= f.label :quantity%></strong>
-                    <% quantity = Orderitem.in_stock?(item)%>
+                    <% quantity = item.adjust_quantity%>
                     <% if item.product.stock < 1 %>
                         <strong>Out of Stock</strong>
                     <% else %>
