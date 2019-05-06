@@ -17,12 +17,12 @@ class ProductsController < ApplicationController
 
   def by_merch
     id = params[:id]
-    @merchant_on = Merchant.find_by(id:id)
-    if @merchant_on
+    # @merchant = Merchant.find_by(id:id)
+    # if @merchant
       @products_by_merch = Product.merchant_list(id)
-    else
-      render :notfound, status: :not_found
-    end
+    # else
+    #   render :notfound, status: :not_found
+    # end
   end
 
   def retire
