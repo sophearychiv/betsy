@@ -75,7 +75,7 @@ describe OrderitemsController do
     end
 
     describe "update" do
-      it "should update an item given a valid product" do
+      it "should update an item given a valid orderitem" do
         expect {
           patch orderitem_path(item1.id), params: orderitem_hash2
         }.wont_change "Orderitem.count"
@@ -87,6 +87,34 @@ describe OrderitemsController do
         expect(item1.quantity).must_equal 2
         expect(flash[:status]).must_equal :success
         expect(flash[:result_text]).must_equal "Successfully updated item: teeny tiny pencil box"
+      end
+
+      it "will redirect and flash an error message given an invalid orderitem" do
+        invalid_orderitem_id = -1
+
+        expect {
+          patch orderitem_path(invalid_orderitem_id), params: orderitem_hash2
+        }.wont_change "Orderitem.count"
+
+        must_respond_with :redirect
+        must_redirect_to root_path
+        expect(flash[:status]).must_equal :warning
+        expect(flash[:result_text]).must_equal "An itsy problem occurred: Could not find item"
+      end
+
+      it "will flash an error message if given an invalid quantity" do
+        new_orderitem_hash = {
+          quantity: -1,
+        }
+
+        expect {
+          patch orderitem_path(item1.id), params: new_orderitem_hash
+        }.wont_change "Orderitem.count"
+
+        must_respond_with :redirect
+        must_redirect_to order_path(item1.order.id)
+        expect(flash[:status]).must_equal :warning
+        expect(flash[:result_text]).must_equal "An itsy problem occurred: Could not update item"
       end
     end
 

@@ -51,6 +51,7 @@ class OrderitemsController < ApplicationController
     if !@orderitem
       flash[:status] = :warning
       flash[:result_text] = "An itsy problem occurred: Could not find item"
+      redirect_to root_path
     else
       # talk to team... shouldn't be checking stock at this point in the proccess...
       # @product = @orderitem.product
