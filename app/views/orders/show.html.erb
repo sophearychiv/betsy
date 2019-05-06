@@ -19,7 +19,13 @@
                 <% sub_total += item.product.price%>
                  <td><%= form_with url: orderitem_path(item.id), method: :patch do |f|%>
                     <strong><%= f.label :quantity%></strong>
-                    <%= f.number_field :quantity, :value => item.quantity  %><br>
+                    <% if item.product.stock > item.quantity %>
+                        <% max_select = item.product.stock  %>
+                    <% else %>
+                        <% max_select = item.quantity %>
+                    <% end %>
+                    <%= f.select :quantity, options_for_select(1..max_select, selected: item.quantity)  %><br>
+                    <%# <%= f.number_field :quantity, :value => item.quantity  %>
                     <%= f.submit "Update Quantity", class: "btn btn-primary to-cart", method: :patch %>
                     <% end %>
                 </td> 
