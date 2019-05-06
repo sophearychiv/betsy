@@ -3,7 +3,9 @@ require "test_helper"
 describe OrderitemsController do
   let(:product) { products(:product1) }
   let(:product_two) { products(:product2) }
+  let(:item1) { orderitems(:item1) }
   let(:orderitem_hash) { { quantity: 1 } }
+  let(:orderitem_hash2) { { quantity: 2 } }
 
   describe "logged in user" do
     before do
@@ -17,7 +19,7 @@ describe OrderitemsController do
         }.must_change "Orderitem.count", 1
 
         must_respond_with :redirect
-        must_redirect_to orders_path
+        must_redirect_to product_path(product.id)
         expect(flash[:status]).must_equal :success
         expect(flash[:result_text]).must_equal "Succesfully added an itsy item to your cart"
       end
@@ -35,21 +37,18 @@ describe OrderitemsController do
         expect(flash[:result_text]).must_equal "An itsy problem occurred: can't find product"
       end
 
-      it "will flash an error and redirect if not enough stock is available" do
-        stock = product.stock
-        orderitem_hash = {
-          quantity: 2,
-        }
+      # it "will flash an error and redirect if not enough stock is available" do
+      #   stock = product.stock
 
-        expect {
-          post product_orderitems_path(product.id), params: orderitem_hash
-        }.wont_change "Orderitem.count"
+      #   expect {
+      #     post product_orderitems_path(product.id), params: orderitem_hash2
+      #   }.wont_change "Orderitem.count"
 
-        flash[:status] = :warning
-        flash[:result_text] = "An itsy problem occurred: not enough stock available"
-        must_redirect_to product_path(product.id)
-        expect(product.stock).must_equal stock
-      end
+      #   flash[:status] = :warning
+      #   flash[:result_text] = "An itsy problem occurred: not enough stock available"
+      #   must_redirect_to product_path(product.id)
+      #   expect(product.stock).must_equal stock
+      # end
 
       it "must create a new order if one doesn't already exist" do
         expect {
@@ -75,13 +74,19 @@ describe OrderitemsController do
       end
     end
 
-    describe "edit" do
-      it "can edit an existing order item" do
-      end
-    end
-
     describe "update" do
-      it "should get update" do
+      it "should update an item given a valid product" do
+        expect {
+          patch orderitem_path(item1.id), params: orderitem_hash2
+        }.wont_change "Orderitem.count"
+
+        item1.reload
+
+        must_respond_with :redirect
+        must_redirect_to order_path(item1.order.id)
+        expect(item1.quantity).must_equal 2
+        expect(flash[:status]).must_equal :success
+        expect(flash[:result_text]).must_equal "Successfully updated item: teeny tiny pencil box"
       end
     end
 
