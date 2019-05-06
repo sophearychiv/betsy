@@ -1,5 +1,7 @@
 class Merchant < ApplicationRecord
   has_many :products
+  has_many :orderitems, through: :products
+
 
   validates :username, uniqueness: true, presence: true
   validates :email, uniqueness: true, presence: true
@@ -19,5 +21,21 @@ class Merchant < ApplicationRecord
                         username: auth_hash["info"]["name"])
   end
 
+  def total_revenue
+    return self.orderitems.sum {|orderitem| orderitem.product.price}
+  end
 
+  def paid_orders_sum
+    sum = 0
+    self.orderitems.each do |orderitem|
+      if orderitem.order.status == "paid"
+        sum += orderitem.total_price
+      end
+    end
+    return sum
+  end
+
+  def completed_orders_sum 
+   
+  end
 end
