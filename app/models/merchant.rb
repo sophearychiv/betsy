@@ -1,5 +1,7 @@
 class Merchant < ApplicationRecord
   has_many :products
+  has_many :orderitems, through: :products
+
 
   validates :username, uniqueness: true, presence: true
   validates :email, uniqueness: true, presence: true
@@ -17,5 +19,9 @@ class Merchant < ApplicationRecord
                         provider: "github",
                         email: auth_hash["info"]["email"],
                         username: auth_hash["info"]["name"])
+  end
+
+  def total_revenue
+    orderitems.inject(0) { |revenue, orderitem| revenue + (orderitem.quantity * orderitem.product.price) }
   end
 end

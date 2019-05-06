@@ -66,5 +66,15 @@ describe Merchant do
       expect(new_merch).wont_be :valid?
 
     end
+
+    describe "total  revenue" do
+      before do 
+        @merch = merchants(:sopheary)
+      end
+
+      it "returns total revenue for that user" do
+        expect(@merch.total_revenue).must_equal 1598
+      end
+    end
   end
 end
