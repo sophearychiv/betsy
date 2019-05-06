@@ -26,7 +26,16 @@
         </div>
       <div class="pull-right">
         <li class="nav-item app-header__nav_item">
-        <%= link_to "Cart", orders_path, class: "nav-link" %>
+          <% if !session[:order_id]%>
+            <%= link_to "Cart", empty_cart_path %>
+          <% else %>
+            <% orderitems = Order.find_by(id: session[:order_id]).orderitems%>
+            <% if !orderitems.empty?%>
+              <%= link_to "Cart", order_path(session[:order_id]), class: "nav-link" %>
+            <% else %>
+                <%= link_to "Cart", empty_cart_path %>
+            <% end %>
+          <% end %>
         </li>
         <% if !session[:user_id].nil? %>
           <li class="nav-item app-header__nav_item">

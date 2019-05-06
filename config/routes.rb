@@ -14,8 +14,9 @@ Rails.application.routes.draw do
   get "/products/merchant/:id", to: "products#by_merch", as: "merch"
   get "/products/category/:id", to: "products#by_cat", as: "cat"
 
-  resources :orders, only: [:new, :create, :show, :index]
-  get "/orders/confirmation", as: "confirmation"
+  get "/orders/confirmation", to: "orders#confirmation", as: "confirmation"
+  resources :orders
+  get "/empty_cart", to: "orders#empty_cart", as: "empty_cart"
   # post "/orders/checkout", to: "orders#checkout"
   resources :sessions, only: [:new, :create]
   resources :merchants, except: [:new, :create]
