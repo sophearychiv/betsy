@@ -1,4 +1,6 @@
 class MerchantsController < ApplicationController
+  before_action :find_merchant, only: [:show, :dashboard]
+
   def index
     @merchants = Merchant.all
   end
@@ -8,14 +10,9 @@ class MerchantsController < ApplicationController
   # end
 
   def show
-    @merchant = Merchant.find_by(id: params[:id])
-    unless @merchant
-      head :not_found
-    end
   end
 
   def dashboard
-    @merchant = Merchant.find_by(id: params[:id])
   end
 
   # def edit
@@ -34,12 +31,17 @@ class MerchantsController < ApplicationController
   
   private
 
-  def merchant_params
-    return params.require(:merchant).permit(
-             :username,
-             :email,
-             :provider,
-             :uid,
-           )
+  def find_merchant
+    @merchant = Merchant.find_by(id: params[:id])
+    head :not_found unless @merchant
   end
+
+  # def merchant_params
+  #   return params.require(:merchant).permit(
+  #            :username,
+  #            :email,
+  #            :provider,
+  #            :uid,
+  #          )
+  # end
 end
