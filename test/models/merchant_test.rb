@@ -3,9 +3,9 @@ require "test_helper"
 describe Merchant do
   before do 
     @merch =  merchants(:kim)
+    @merch2 = merchants(:stephanie)
   end
 
- 
   describe "relations" do
     it "must be valid" do
       value(@merch).must_be :valid?
@@ -67,13 +67,30 @@ describe Merchant do
 
     end
 
-    describe "total  revenue" do
+  end
+
+  describe "custom methods" do
+    describe "total revenue" do
       before do 
         @merch = merchants(:sopheary)
       end
 
       it "returns total revenue for that user" do
         expect(@merch.total_revenue).must_equal 1598
+      end
+    end
+
+    describe "paid orders sum" do
+      before do
+        order1 = orderitems(:item5)
+      end
+
+      it "returns correct number of orders for current merchant" do  
+        @merch2.orderitems.length.must_equal 3
+      end  
+
+      it "returns the correct sum for paid orders for current merchant" do
+        expect(@merch2.paid_orders_sum).must_equal 1197
       end
     end
   end

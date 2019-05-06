@@ -22,14 +22,20 @@ class Merchant < ApplicationRecord
   end
 
   def total_revenue
-    return self.orderitems.sum { |orderitem| orderitem.product.price }
+    return self.orderitems.sum {|orderitem| orderitem.product.price}
   end
 
-  def completed_orders_items
-    return self.orderitems.where(status: 'complete')
+  def paid_orders_sum
+    sum = 0
+    self.orderitems.each do |orderitem|
+      if orderitem.order.status == "paid"
+        sum += orderitem.total_price
+      end
+    end
+    return sum
   end
 
   def completed_orders_sum 
-    self.completed_orders_items.sum {|orderitem| orderitem.product.price}
+ 
   end
 end
