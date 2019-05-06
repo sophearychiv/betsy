@@ -52,4 +52,16 @@ class ActiveSupport::TestCase
 
     return user
   end
+
+  def create_cart(product = nil)
+    product ||= products(:product4)
+
+    expect {
+      post product_orderitems_path(product.id), params: orderitem_hash
+    }.must_change "Orderitem.count", 1
+
+    orderitem = Orderitem.find_by(product: product)
+
+    return orderitem
+  end
 end
