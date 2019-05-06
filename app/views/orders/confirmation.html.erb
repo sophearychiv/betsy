@@ -1,1 +1,30 @@
-<p>Your payment has been processed!</p>
+
+<% if @temp_orderitems.length == 0 %>
+            
+<% else %>
+
+    <h3>Your payment has been processed!</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Product Name</th>
+            <th scope="col">Item Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Item Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <% @temp_orderitems.each do |item| %>
+                <tr>
+                    <td><%= item[:product_name] %></td>
+                    <td><%= item[:product_price] %></td>
+                    <td><%= item[:quantity] %></td> 
+                    <td><%= item[:item_total] %></td>
+                </tr>
+            <% end %>
+                
+        </tbody>
+    </table>
+<% end %>
