@@ -36,6 +36,6 @@ class Merchant < ApplicationRecord
   end
 
   def completed_orders_sum 
- 
+   
   end
 end
