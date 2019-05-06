@@ -4,6 +4,7 @@ describe OrderitemsController do
   let(:product) { products(:product1) }
   let(:product_two) { products(:product2) }
   let(:item1) { orderitems(:item1) }
+  let(:item4) { orderitems(:item4) }
   let(:orderitem_hash) { { quantity: 1 } }
   let(:orderitem_hash2) { { quantity: 2 } }
 
@@ -37,18 +38,18 @@ describe OrderitemsController do
         expect(flash[:result_text]).must_equal "An itsy problem occurred: can't find product"
       end
 
-      # it "will flash an error and redirect if not enough stock is available" do
-      #   stock = product.stock
+      it "will flash an error and redirect if not enough stock is available" do
+        stock = product.stock
 
-      #   expect {
-      #     post product_orderitems_path(product.id), params: orderitem_hash2
-      #   }.wont_change "Orderitem.count"
+        expect {
+          post product_orderitems_path(product.id), params: orderitem_hash2
+        }.wont_change "Orderitem.count"
 
-      #   flash[:status] = :warning
-      #   flash[:result_text] = "An itsy problem occurred: not enough stock available"
-      #   must_redirect_to product_path(product.id)
-      #   expect(product.stock).must_equal stock
-      # end
+        flash[:status] = :warning
+        flash[:result_text] = "An itsy problem occurred: not enough stock available"
+        must_redirect_to product_path(product.id)
+        expect(product.stock).must_equal stock
+      end
 
       it "must create a new order if one doesn't already exist" do
         expect {
@@ -77,16 +78,16 @@ describe OrderitemsController do
     describe "update" do
       it "should update an item given a valid orderitem" do
         expect {
-          patch orderitem_path(item1.id), params: orderitem_hash2
+          patch orderitem_path(item4.id), params: orderitem_hash2
         }.wont_change "Orderitem.count"
 
-        item1.reload
+        item4.reload
 
         must_respond_with :redirect
-        must_redirect_to order_path(item1.order.id)
-        expect(item1.quantity).must_equal 2
+        must_redirect_to order_path(item4.order.id)
+        expect(item4.quantity).must_equal 2
         expect(flash[:status]).must_equal :success
-        expect(flash[:result_text]).must_equal "Successfully updated item: teeny tiny pencil box"
+        expect(flash[:result_text]).must_equal "Successfully updated item: #{item4.product.name}"
       end
 
       it "will redirect and flash an error message given an invalid orderitem" do
@@ -115,6 +116,21 @@ describe OrderitemsController do
         must_redirect_to order_path(item1.order.id)
         expect(flash[:status]).must_equal :warning
         expect(flash[:result_text]).must_equal "An itsy problem occurred: Could not update item"
+      end
+
+      it "will flash an error message if not enough stock available" do
+        new_orderitem_hash = {
+          quantity: 15,
+        }
+
+        expect {
+          patch orderitem_path(item1.id), params: new_orderitem_hash
+        }.wont_change "Orderitem.count"
+
+        must_respond_with :redirect
+        must_redirect_to order_path(item1.order.id)
+        expect(flash[:status]).must_equal :warning
+        expect(flash[:result_text]).must_equal "An itsy problem occurred: not enough available stock"
       end
     end
 

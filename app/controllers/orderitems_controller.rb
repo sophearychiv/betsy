@@ -7,17 +7,15 @@ class OrderitemsController < ApplicationController
       # needs to be updated when the product logic for in_stock? is updated
       # currently this isn't changing the stock count, which is good,
       # but is misleading as far as readability
-
-      # talk to team, shouldn't be checking stock at this point in the process...
-      # @product.stock -= params[:quantity].to_i
+      @product.stock -= params[:quantity].to_i
 
       # # makes sure the stock is available
-      # if !@product.valid?
-      #   flash[:status] = :warning
-      #   flash[:result_text] = "An itsy problem occurred: not enough available stock"
-      #   redirect_to product_path(@product.id)
-      #   return
-      # end
+      if !@product.valid?
+        flash[:status] = :warning
+        flash[:result_text] = "An itsy problem occurred: not enough available stock"
+        redirect_to product_path(@product.id)
+        return
+      end
 
       if !session[:order_id]
         @order = Order.create
@@ -54,16 +52,16 @@ class OrderitemsController < ApplicationController
       redirect_to root_path
     else
       # talk to team... shouldn't be checking stock at this point in the proccess...
-      # @product = @orderitem.product
+      @product = @orderitem.product
       # # can be positive or negative depending on orderitem quantity change being made
-      # @product.stock += quantity_difference
+      @product.stock -= params[:quantity].to_i
 
-      # if !@product.valid?
-      #   flash[:status] = :warning
-      #   flash[:result_text] = "An itsy problem occurred: not enough available stock"
-      #   redirect_to order_path(session[:order_id])
-      #   return
-      # end
+      if !@product.valid?
+        flash[:status] = :warning
+        flash[:result_text] = "An itsy problem occurred: not enough available stock"
+        redirect_to order_path(@orderitem.order.id)
+        return
+      end
 
       @orderitem.quantity = params[:quantity].to_i
       if @orderitem.save
