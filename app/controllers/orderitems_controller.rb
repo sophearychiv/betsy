@@ -9,7 +9,6 @@ class OrderitemsController < ApplicationController
       # but is misleading as far as readability
       @product.stock -= params[:quantity].to_i
 
-      # # makes sure the stock is available
       if !@product.valid?
         flash[:status] = :warning
         flash[:result_text] = "An itsy problem occurred: not enough available stock"
@@ -31,15 +30,15 @@ class OrderitemsController < ApplicationController
         redirect_to product_path(@product.id)
       else
         flash[:status] = :warning
-        flash[:result_text] = "An itsy problem occurred: could not add item to cart"
+        flash[:result_text] = "An itsy problem occurred: Could not add item to cart"
         @orderitem.errors.messages.each do |field, messages|
           flash.now[field] = messages
         end
-        redirect_to products_path
+        redirect_to product_path(@product.id)
       end
     else
       flash[:status] = :warning
-      flash[:result_text] = "An itsy problem occurred: can't find product"
+      flash[:result_text] = "An itsy problem occurred: Can't find product"
       redirect_to products_path
     end
   end
