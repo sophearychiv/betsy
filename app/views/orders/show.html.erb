@@ -19,14 +19,14 @@
                 <% sub_total += item.product.price%>
                  <td><%= form_with url: orderitem_path(item.id), method: :patch do |f|%>
                     <strong><%= f.label :quantity%></strong>
-                    <% if item.product.stock > item.quantity %>
-                        <% max_select = item.product.stock  %>
+                    <% quantity = Orderitem.in_stock?(item)%>
+                    <% if item.product.stock < 1 %>
+                        <strong>Out of Stock</strong>
                     <% else %>
-                        <% max_select = item.quantity %>
-                    <% end %>
-                    <%= f.select :quantity, options_for_select(1..max_select, selected: item.quantity)  %><br>
+                    <%= f.select :quantity, options_for_select(1..item.product.stock, selected: item.quantity)  %><br>
                     <%= f.submit "Update Quantity", class: "btn btn-primary to-cart", method: :patch %>
                     <% end %>
+                <% end %>
                 </td> 
                 <td><%= link_to "Remove Item", orderitem_path(item.id), :data => {:confirm => 'Are you sure you want to delete the item?'}, method: :delete %></td>
             </tr>

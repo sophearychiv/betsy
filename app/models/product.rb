@@ -46,10 +46,10 @@ class Product < ApplicationRecord
   end
 
   def self.merchant_list(id)
-    self.active_products.select {|prod| prod.merchant.id == id}
+    self.active_products.select { |prod| prod.merchant.id == id }
   end
 
   def self.category_list(id)
-    self.active_products.select {|prod| prod.category.id == id}
+    self.active_products.select { |prod| prod.category.id == id }
   end
 end
