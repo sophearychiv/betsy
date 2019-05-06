@@ -3,6 +3,7 @@ require "test_helper"
 describe OrderitemsController do
   let(:product) { products(:product1) }
   let(:product_two) { products(:product2) }
+  let(:product_four) { products(:product4) }
   let(:item1) { orderitems(:item1) }
   let(:item4) { orderitems(:item4) }
   let(:orderitem_hash) { { quantity: 1 } }
@@ -35,7 +36,7 @@ describe OrderitemsController do
         must_respond_with :redirect
         must_redirect_to products_path
         expect(flash[:status]).must_equal :warning
-        expect(flash[:result_text]).must_equal "An itsy problem occurred: can't find product"
+        expect(flash[:result_text]).must_equal "An itsy problem occurred: Can't find product"
       end
 
       it "will flash an error and redirect if not enough stock is available" do
@@ -72,6 +73,21 @@ describe OrderitemsController do
 
         expect(order.orderitems.length).must_equal 2
         expect(session[:order_id]).must_equal order.id
+      end
+
+      it "will redirect and flash an error if given an invalid quantity" do
+        new_orderitem_hash = {
+          quantity: -1,
+        }
+
+        expect {
+          post product_orderitems_path(product_two.id), params: new_orderitem_hash
+        }.wont_change "Orderitem.count"
+
+        must_respond_with :redirect
+        must_redirect_to product_path(product_two.id)
+        expect(flash[:status]).must_equal :warning
+        expect(flash[:result_text]).must_equal "An itsy problem occurred: Could not add item to cart"
       end
     end
 
@@ -135,7 +151,12 @@ describe OrderitemsController do
     end
 
     describe "destroy" do
-      it "should get destroy" do
+      it "will destroy an existing orderitem" do
+        orderitem = create_cart
+
+        expect {
+          delete orderitem_path(orderitem.id)
+        }.must_change "Orderitem.count", -1
       end
     end
   end
