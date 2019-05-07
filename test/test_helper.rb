@@ -1,8 +1,8 @@
 ENV["RAILS_ENV"] = "test"
 require "simplecov"
 require "simplecov-console"
-SimpleCov.formatter = SimpleCov::Formatter::Console
-SimpleCov.start
+# SimpleCov.formatter = SimpleCov::Formatter::Console
+SimpleCov.start "rails"
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
 require "minitest/rails"
@@ -55,6 +55,12 @@ class ActiveSupport::TestCase
 
   def create_cart(product = nil)
     product ||= products(:product4)
+
+    orderitem_hash = {
+      orderitem: {
+        quantity: 1,
+      },
+    }
 
     expect {
       post product_orderitems_path(product.id), params: orderitem_hash

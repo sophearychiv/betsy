@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_order, only: [:edit, :update, :show, :confirmation]
+  before_action :find_order, only: [:edit, :update, :show, :confirmation, :destroy]
 
   def index
     @orders = Order.all
@@ -14,11 +14,10 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order.update(status: "pending")
-
     if @order.nil?
       redirect_to products_path
     else
+      @order.update(status: "pending")
       is_successful = @order.update(order_params)
       if is_successful
         redirect_to confirmation_path
@@ -32,17 +31,17 @@ class OrdersController < ApplicationController
     end
   end
 
-  def create
-    @order = Order.new(order_params)
-    if @order.save
-      redirect_to confirmation_path
-    else
-      @order.errors.messages.each do |field, message|
-        flash.now[field] = message
-      end
-      render :edit, status: :bad_request
-    end
-  end
+  # def create
+  #   @order = Order.create(order_params)
+  #   # if @order.save
+  #   #   redirect_to confirmation_path
+  #   # else
+  #   #   @order.errors.messages.each do |field, message|
+  #   #     flash.now[field] = message
+  #   #   end
+  #   #   render :edit, status: :bad_request
+  #   # end
+  # end
 
   def show
     if @order.nil?
@@ -82,11 +81,16 @@ class OrdersController < ApplicationController
   def destroy
     if @order.nil?
       flash[:status] = :error
-      flash[:text_result] = "Order does not exist."
+      flash[:result_text] = "Order does not exist."
     else
-      flash[:status] = :success
-      flash[:text_result] = "Order has been canceled!"
+      @order.orderitems.each do |item|
+        item.destroy
+      end
+
       @order.destroy
+
+      flash[:status] = :success
+      flash[:result_text] = "Order has been canceled!"
     end
 
     redirect_to root_path
