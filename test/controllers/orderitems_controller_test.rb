@@ -160,7 +160,7 @@ describe OrderitemsController do
     end
 
     describe "destroy" do
-      let(:orderitem_hash) { { "orderitem": { quantity: 1 } } }
+      # let(:orderitem_hash) { { "orderitem": { quantity: 1 } } }
 
       it "will destroy an existing orderitem" do
         orderitem = create_cart
