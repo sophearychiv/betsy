@@ -1,18 +1,12 @@
 <%= render partial: "header" %>
 
-<h2><%=@merchant.username%></h2>
-
 <div>
   <h3>Listed Products</h3>
    <table>
         <thead>
           <tr>
-            <th> </th>
             <th>Name</th>
-            <th>Description</th>
             <th>Price</th>
-            <th>Stock</th>
-            <th>Rating</th>
           </tr>
         </thead>
         <tbody>
@@ -20,9 +14,7 @@
           <tr>
             <td><img src="<%=product.photo_url%>" alt="Image of <%=product.name%>"></td>
             <td><%= link_to product.name, product_path(product.id) %></td>
-            <td><%= product.description %></td>
             <td><%= product.price %></td>
-            <td><%= product.stock %></td>
           </tr>
           <% end %>
         </tbody>

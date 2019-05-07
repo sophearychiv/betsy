@@ -56,7 +56,7 @@ describe SessionsController do
 
       perform_login(merchant)
  
-      delete logout_path(merchant)
+      get logout_path(merchant)
       must_redirect_to root_path
     end
   end

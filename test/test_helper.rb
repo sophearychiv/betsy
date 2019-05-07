@@ -34,7 +34,7 @@ class ActiveSupport::TestCase
              provider: user.provider,
              uid: user.uid,
              info: {
-               nickname: user.username,
+               name: user.username,
                email: user.email,
              },
            }

@@ -1,17 +1,15 @@
 <article class="main-content container-fluid">
   <div class="row">
-    <section class="col-sm-8">
+    <section class="col-sm-8 product-show">
       <h2><%= @product.name %></h2>
       <p>
         <%= image_tag("https://img.omdfarm.co.uk//images/1/5af9d353b2b83.jpg") %>
       </p>
       <p><%= @product.description%></p>
       <p><h4><strong>Price: <%= @product.price %></strong></h4></p>
-      <p><strong>Seller:<%= link_to @product.merchant.username, merch_path(@product.merchant.id) %><strong></p>
-    </div>
       <% if @product.stock < 1 %>
-      <strong>Out of Stock</strong>
-      <% else %>
+        <strong>Out of Stock</strong>
+        <% else %>
         <div>
           <%= form_with model: @orderitem, url: product_orderitems_path(@product.id) do |f|%>
           <%#= form_with model: @orderitem, url: product_orderitems_path(@product.id), method: :post do |f|%>
