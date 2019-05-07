@@ -53,15 +53,6 @@ class OrdersController < ApplicationController
         orig_quantity = item.quantity
         new_quantity = item.adjust_quantity
         no_stock = true if new_quantity == 0
-        # if no_stock
-        #   flash.now[:status] = :warning
-        #   if !flash.now[:result_text]
-        #     flash.now[:result_text] = "Some items were removed from your cart due to no availability: #{item.product.name}"
-        #   else
-        #     flash.now[:result_text] = ", #{item.product.name}"
-        #   end
-        #   item.destroy
-        # end
         if orig_quantity != new_quantity
           flash.now[:status] = :warning
           if !flash.now[:result_text]
