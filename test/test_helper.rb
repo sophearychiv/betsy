@@ -3,6 +3,12 @@ require "simplecov"
 require "simplecov-console"
 # SimpleCov.formatter = SimpleCov::Formatter::Console
 SimpleCov.start "rails"
+SimpleCov.start do
+  add_filter "app/mailers/application_mailer.rb"
+  add_filter "app/jobs/application_job.rb"
+  add_filter "app/channels/application_cable/connection.rb"
+  add_filter "app/channels/application_cable/channel.rb"
+end
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
 require "minitest/rails"
