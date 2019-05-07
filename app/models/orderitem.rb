@@ -6,6 +6,9 @@ class Orderitem < ApplicationRecord
 
   def adjust_quantity
     product = self.product
+    # if product.stock == 0
+    #   self.destroy
+    #   return product.stock
     if product.stock < self.quantity
       self.quantity = product.stock
       self.save
