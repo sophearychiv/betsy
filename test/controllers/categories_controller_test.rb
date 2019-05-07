@@ -25,7 +25,8 @@ describe CategoriesController do
 
       must_respond_with :redirect
       must_redirect_to merchant_path(@user.id)
-      expect(flash[:success]).must_equal "Successfully created #{category_hash[:category][:name]} category"
+      expect(flash[:status]).must_equal :success
+      expect(flash[:result_text]).must_equal "Successfully created #{category_hash[:category][:name]} category"
       expect(session[:user_id]).must_equal @user.id
     end
 
@@ -43,7 +44,8 @@ describe CategoriesController do
       }.wont_change "Category.count"
 
       must_respond_with :bad_request
-      expect(flash[:error]).must_equal "An itsy problem occurred: Could not add category"
+      expect(flash[:status]).must_equal :warning
+      expect(flash[:result_text]).must_equal "An itsy problem occurred: Could not add category"
       expect(session[:user_id]).must_equal @user.id
     end
   end
@@ -53,7 +55,8 @@ describe CategoriesController do
       get categories_new_path
 
       must_redirect_to root_path
-      flash[:error].must_equal "An itsy problem occurred: You must login to view this page"
+      expect(flash[:status]).must_equal :warning
+      expect(flash[:result_text]).must_equal "An itsy problem occurred: You must login to view this page"
     end
 
     it "will redirect a logged out user and not allow them to create a category" do
@@ -69,7 +72,8 @@ describe CategoriesController do
 
       must_respond_with :redirect
       must_redirect_to root_path
-      expect(flash[:error]).must_equal "An itsy problem occurred: You must login to view this page"
+      expect(flash[:status]).must_equal :warning
+      expect(flash[:result_text]).must_equal "An itsy problem occurred: You must login to view this page"
       expect(session[:user_id]).must_equal nil
     end
   end

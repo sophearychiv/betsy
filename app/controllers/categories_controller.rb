@@ -43,7 +43,8 @@ class CategoriesController < ApplicationController
 
   def require_login
     if current_user.nil?
-      flash[:error] = "An itsy problem occurred: You must login to view this page"
+      flash[:status] = :warning
+      flash[:result_text] = "An itsy problem occurred: You must login to view this page"
       redirect_to root_path
     end
   end
