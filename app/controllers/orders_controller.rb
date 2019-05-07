@@ -36,6 +36,21 @@ class OrdersController < ApplicationController
       flash[:status] = :error
       flash[:result_text] = "Order not found!"
       redirect_to orders_path
+    elsif @order.orderitems
+      @order.orderitems.each do |item|
+        orig_quantity = item.quantity
+        new_quantity = item.adjust_quantity
+        no_stock = true if new_quantity == 0
+        if orig_quantity != new_quantity
+          flash.now[:status] = :warning
+          if !flash.now[:result_text]
+            flash.now[:result_text] = "Some item quantities in your cart have changed due to availability: #{item.product.name}"
+          else
+            flash.now[:result_text] << ", #{item.product.name}"
+          end
+          item.destroy if no_stock
+        end
+      end
     end
   end
 
