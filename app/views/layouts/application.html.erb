@@ -20,7 +20,7 @@
           <span><%= link_to "Shop By Merchant", merchants_path, class: "nav-link" %></span>
           <div class="dropdown-content">
             <% Merchant.all.each do |merchant| %>
-              <li><%= link_to "#{merchant.username}", merch_path(merchant.id) %></li>
+              <li><%= link_to "#{merchant.username}", merchant_path(merchant.id) %></li>
             <% end %>
             </div>
         </div>
@@ -41,7 +41,7 @@
           <li class="nav-item app-header__nav_item">
           <%= link_to "My Dashboard", dashboard_path(session[:user_id]), id: "session", class: "btn btn-primary" %></li>
           <li class="nav-item app-header__nav_item">
-              <%= link_to "Log out", logout_path, method: "delete", id: "session", class: "btn btn-primary"  %></li>
+              <%= link_to "Log out", logout_path, method: "get", id: "session", class: "btn btn-primary"  %></li>
         <% else %>
           <li class="nav-item app-header__nav_item">
             <%= link_to "Login with Github", "/auth/github", id: "session", class: "btn btn-primary"  %>

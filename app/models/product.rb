@@ -14,12 +14,12 @@ class Product < ApplicationRecord
     return Product.where(active: :true)
   end
 
-  # def self.sold(orderitems)
-  #   orderitems.each do |item|
-  #     item.product.stock -= item.stock
-  #     item.product.save
-  #   end
-  # end
+  def self.sold(orderitems)
+    orderitems.each do |item|
+      item.product.stock -= item.stock
+      item.product.save
+    end
+  end
 
   def self.in_stock?(orderitems)
     orderitems.each do |item|
@@ -45,11 +45,12 @@ class Product < ApplicationRecord
     end
   end
 
-  def self.merchant_list(id)
-    self.active_products.select {|prod| prod.merchant.id == id}
-  end
+  # def self.merchant_list(id)
+  #   self.active_products.select {|prod| prod.merchant.id == id}
+  # end
 
-  def self.category_list(id)
-    self.active_products.select {|prod| prod.category.id == id}
-  end
+#   def self.category_list(id)
+#     self.active_products.select {|prod| prod.category.id == id}
+#   end
+# end
 end

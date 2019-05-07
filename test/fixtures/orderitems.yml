@@ -20,6 +20,12 @@ item4:
   product: product2
   quantity: 1
 
+item5:
+  order: four
+  product: product2
+  quantity: 3
+
+
 order5:
   order_id: 2
   product_id: 1
@@ -29,3 +35,4 @@ order6:
   order_id: 2
   product_id: 1
   quantity: 1
+

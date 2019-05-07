@@ -6,24 +6,24 @@ class ProductsController < ApplicationController
     @products = Product.active_products
   end
 
-  def show
-      @orderitem = Orderitem.new
-      @review = Review.new
-      @reviews = @product.reviews
-    if @product.active == false || @product.nil?
-      render :notfound, status: :not_found
-    end
-  end
+  # def show
+  #     @orderitem = Orderitem.new
+  #     @review = Review.new
+  #     @reviews = @product.reviews
+  #   if @product.active == false || @product.nil?
+  #     render :notfound, status: :not_found
+  #   end
+  # end
 
-  def by_merch
-    id = params[:id]
-    # @merchant = Merchant.find_by(id:id)
-    # if @merchant
-      @products_by_merch = Product.merchant_list(id)
-    # else
-    #   render :notfound, status: :not_found
-    # end
-  end
+  # def by_merch
+  #   id = params[:id]
+  #   @merchant = Merchant.find_by(id:id)
+  #   if @merchant
+  #     @products_by_merch = Product.merchant_list(id)
+  #   else
+  #     render :notfound, status: :not_found
+  #   end
+  # end
 
   def retire
   @product.active = false
