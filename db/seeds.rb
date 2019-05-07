@@ -2,7 +2,23 @@ require "csv"
 MERCHANTS_FILE = Rails.root.join("db", "", "merchant_seeds.csv")
 puts "Loading raw merchant data from #{MERCHANTS_FILE}"
 
+category_failures = []
+
+categories = ["Bitty Bevs", "Tiny Treats", "Pint-Sized Plants", "Puny Pets", "Teeny Tech", "Bitsy Bags", "Little Library"]
+categories.each do |category|
+  category_new = Category.new(name: category)
+
+  successful = category_new.save
+  if !successful
+    category_failures << category_new
+    puts "Failed to save category: #{category.inspect}"
+  else
+    puts "Created category: #{category.inspect}"
+  end
+end
+
 merchant_failures = []
+
 CSV.foreach(MERCHANTS_FILE, :headers => true) do |row|
   merchant = Merchant.new
   merchant.provider = row["provider"]
