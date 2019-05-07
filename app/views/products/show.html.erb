@@ -11,7 +11,7 @@
         <strong>Out of Stock</strong>
         <% else %>
         <div>
-          <%= form_with url: product_orderitems_path(@product.id) do |f|%>
+          <%= form_with model: @orderitem, url: product_orderitems_path(@product.id) do |f|%>
           <%#= form_with model: @orderitem, url: product_orderitems_path(@product.id), method: :post do |f|%>
             <strong><%= f.label :quantity%></strong>
             <%= f.select :quantity, (1..@product.stock)  %><br>

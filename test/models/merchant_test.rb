@@ -93,5 +93,11 @@ describe Merchant do
         expect(@merch2.paid_orders_sum).must_equal 1197
       end
     end
+
+    describe "complete orders sum" do
+
+
+
+    end
   end
 end
