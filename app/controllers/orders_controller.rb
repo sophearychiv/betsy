@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :find_order, only: [:edit, :update, :show, :confirmation]
+
   def index
     @orders = Order.all
   end
@@ -9,11 +11,9 @@ class OrdersController < ApplicationController
   # end
 
   def edit
-    @order = Order.find_by(id: session[:order_id])
   end
 
   def update
-    @order = Order.find_by(id: session[:order_id])
     @order.update(status: "pending")
 
     if @order.nil?
@@ -40,13 +40,14 @@ class OrdersController < ApplicationController
       @order.errors.messages.each do |field, message|
         flash.now[field] = message
       end
+      render :edit, status: :bad_request
     end
   end
 
   def show
-    @order = Order.find_by(id: session[:order_id])
     if @order.nil?
-      flash[:error] = "Unknown order"
+      flash[:status] = :error
+      flash[:result_text] = "Order not found!"
       redirect_to orders_path
     end
   end
@@ -56,7 +57,6 @@ class OrdersController < ApplicationController
   # end
 
   def confirmation
-    @order = Order.find_by(id: session[:order_id])
     if @order.nil?
       redirect_to root_path
     else
@@ -80,7 +80,6 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    @order = Order.find_by(id: session[:order_id])
     if @order.nil?
       flash[:status] = :error
       flash[:text_result] = "Order does not exist."
@@ -94,6 +93,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def find_order
+    @order = Order.find_by(id: session[:order_id])
+  end
 
   def order_params
     return params.require(:order).permit(:address, :name, :status, :cc, :expiration_date, :email, :csv)
