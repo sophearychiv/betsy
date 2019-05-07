@@ -18,6 +18,7 @@ describe OrdersController do
 
   describe "edit" do
     it "should get the edit" do
+      post product_orderitems_path(product.id), params: orderitem_hash
       get edit_order_path(order.id)
       must_respond_with :success
     end
@@ -144,7 +145,7 @@ describe OrdersController do
   end
 
   describe "confirmation" do
-    it "can get confirmation after purchasing" do
+    it "can get confirmation after the purchase" do
       product = products(:product1)
       expect {
         post product_orderitems_path(product.id), params: orderitem_hash
@@ -195,6 +196,33 @@ describe OrdersController do
 
       order.reload
       expect(order.status).must_equal "paid"
+    end
+
+    it "clears the orderitems in the cart" do
+      product = products(:product1)
+
+      expect {
+        post product_orderitems_path(product.id), params: orderitem_hash
+      }.must_change "Orderitem.count", 1
+      input_order = {
+        order: {
+          address: "12345 St SE bothell, wa",
+          name: "Sophie",
+          cc: 123,
+          expiration_date: Date.today,
+          csv: 123,
+          email: "sophie@ada.com",
+        },
+      }
+      order = Order.last
+      expect {
+        patch order_path(order.id), params: input_order
+      }.wont_change "Order.count"
+
+      get confirmation_path
+      order.reload
+
+      expect(order.orderitems.count).must_equal 0
     end
   end
 

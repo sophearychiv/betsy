@@ -1,3 +1,12 @@
+<% if @order.errors.any? %>
+  <ul class="errors">
+    <% @order.errors.each do |column, message| %>
+      <li>
+        <strong><%= column.capitalize %></strong> <%= message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
 <h1>Checkout</h1>
 
