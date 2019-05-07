@@ -17,9 +17,17 @@
                 <td><%= item.product.name %></td>
                 <td><%= item.product.price %></td>
                 <% sub_total += item.product.price%>
-                 <td><%= item.quantity %></td> 
-                 <%# <td><%= select_tag item.quantity, options_for_select((1..item.product.stock).map {|num| [num, item.id]})%>
-                <td><%= item.quantity * item.product.price %></td>
+                 <td><%= form_with model: @orderitem, url: orderitem_path(item.id), method: :patch do |f|%>
+                    <strong><%= f.label :quantity%></strong>
+                    <% quantity = item.adjust_quantity%>
+                    <% if item.product.stock < 1 %>
+                        <strong>Out of Stock</strong>
+                    <% else %>
+                    <%= f.select :quantity, options_for_select(1..item.product.stock, selected: item.quantity)  %><br>
+                    <%= f.submit "Update Quantity", class: "btn btn-primary to-cart", method: :patch %>
+                    <% end %>
+                <% end %>
+                </td> 
                 <td><%= link_to "Remove Item", orderitem_path(item.id), :data => {:confirm => 'Are you sure you want to delete the item?'}, method: :delete %></td>
             </tr>
         <% end %>
