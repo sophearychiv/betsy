@@ -35,7 +35,13 @@ class Merchant < ApplicationRecord
     return sum
   end
 
-  def completed_orders_sum 
-   
-  end
+  # def completed_orders_sum 
+  #   sum = 0
+  #   self.orderitems.each do |orderitem|
+  #     if orderitem.order.status == "complete"
+  #       sum += orderitem.total_price
+  #     end
+  #   end
+  #   return sum
+  # end
 end

@@ -95,9 +95,9 @@ describe Merchant do
     end
 
     describe "complete orders sum" do
+      it "returns the correct sum for complete orders for current merchant" do
 
-
-
+      end
     end
   end
 end
