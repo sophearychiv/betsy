@@ -25,6 +25,16 @@
             <% end %>
             </div>
         </div>
+
+        <div class="dropdown">
+          <span><%= link_to "Shop By Category", categories_path, class: "nav-link" %></span>
+          <div class="dropdown-content">
+            <% Category.all.each do |category| %>
+              <li><%= link_to "#{category.name}", category_path(category.id) %></li>
+            <% end %>
+            </div>
+        </div>
+
       <div class="pull-right">
         <li class="nav-item app-header__nav_item">
           <% if !session[:order_id]%>
