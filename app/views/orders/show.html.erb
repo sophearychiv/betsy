@@ -19,7 +19,6 @@
                 <% sub_total += item.product.price%>
                  <td><%= form_with model: @orderitem, url: orderitem_path(item.id), method: :patch do |f|%>
                     <strong><%= f.label :quantity%></strong>
-                    <% quantity = item.adjust_quantity%>
                     <% if item.product.stock < 1 %>
                         <strong>Out of Stock</strong>
                     <% else %>
@@ -28,11 +27,13 @@
                     <% end %>
                 <% end %>
                 </td> 
+                <td>item total</td>
                 <td><%= link_to "Remove Item", orderitem_path(item.id), :data => {:confirm => 'Are you sure you want to delete the item?'}, method: :delete %></td>
             </tr>
         <% end %>
     </tbody>
     </table>
+    <%# raise %>
 
     <section>
         <p>Subtotal: <%= sub_total %></p>
