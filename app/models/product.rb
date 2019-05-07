@@ -45,16 +45,6 @@ class Product < ApplicationRecord
     end
   end
 
-<<<<<<< HEAD
-  # def self.merchant_list(id)
-  #   self.active_products.select {|prod| prod.merchant.id == id}
-  # end
-
-  #   def self.category_list(id)
-  #     self.active_products.select {|prod| prod.category.id == id}
-  #   end
-  # end
-=======
   def self.merchant_list(id)
     self.active_products.select { |prod| prod.merchant.id == id }
   end
@@ -62,5 +52,4 @@ class Product < ApplicationRecord
   def self.category_list(id)
     self.active_products.select { |prod| prod.category.id == id }
   end
->>>>>>> master
 end
