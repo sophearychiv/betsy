@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 
   patch "/products/:id/retire", to: "products#retire", as: "retire"
   get "/products/merchant/:id", to: "products#by_merch", as: "merch"
-  get "/products/category/:id", to: "products#by_cat", as: "cat"
 
   get "/orders/confirmation", to: "orders#confirmation", as: "confirmation"
   resources :orders
@@ -20,7 +19,7 @@ Rails.application.routes.draw do
   # post "/orders/checkout", to: "orders#checkout"
   resources :sessions, only: [:new, :create]
   resources :merchants, except: [:new, :create]
-  resources :categories, only: [:index, :new, :create]
+  resources :categories, only: [:index, :show, :new, :create]
   get "/merchants/:id/dashboard", to: "merchants#dashboard", as: "dashboard"
 
   # get "/auth/github", as: "github_login"
