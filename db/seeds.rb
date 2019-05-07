@@ -1,13 +1,13 @@
-require 'csv'
-MERCHANTS_FILE = Rails.root.join('db', '', 'merchant_seeds.csv')
+require "csv"
+MERCHANTS_FILE = Rails.root.join("db", "", "merchant_seeds.csv")
 puts "Loading raw merchant data from #{MERCHANTS_FILE}"
 
 merchant_failures = []
 CSV.foreach(MERCHANTS_FILE, :headers => true) do |row|
   merchant = Merchant.new
-  merchant.provider = row['provider']
-  merchant.email = row['email']
-  merchant.username = row['username']
+  merchant.provider = row["provider"]
+  merchant.email = row["email"]
+  merchant.username = row["username"]
 
   successful = merchant.save
   if !successful
@@ -21,19 +21,19 @@ end
 puts "Added #{Merchant.count} merchant records"
 puts "#{merchant_failures.length} merchant failed to save"
 
-PRODUCTS_FILE = Rails.root.join('db', '', 'product_seeds.csv')
+PRODUCTS_FILE = Rails.root.join("db", "", "product_seeds.csv")
 puts "Loading raw product data from #{PRODUCTS_FILE}"
 
 product_failures = []
 CSV.foreach(PRODUCTS_FILE, :headers => true) do |row|
   product = Product.new
-  product.name = row['name']
-  product.price = row['price']
-  product.merchant_id = row['merchant_id']
-  product.stock = row['stock']
-  product.description = row['description']
-  active = row['active']
-  photo_url = row['photo_url']
+  product.name = row["name"]
+  product.price = row["price"]
+  product.merchant_id = row["merchant_id"]
+  product.stock = row["stock"]
+  product.description = row["description"]
+  product.active = row["active"]
+  product.photo_url = row["photo_url"]
 
   successful = product.save
   if !successful

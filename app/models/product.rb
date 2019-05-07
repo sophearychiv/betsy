@@ -6,7 +6,7 @@ class Product < ApplicationRecord
   has_many :orders, through: :orderitems
 
   validates :name, presence: true, uniqueness: { scope: :merchant, message: "Merchant's products must have unique names " }
-  validates :price, presence: :true, numericality: { greater_than: 0, message: "Price must be greater than 0" }
+  validates :price, presence: true, numericality: { greater_than: 0, message: "Price must be greater than 0" }
   validates :stock, presence: true, numericality: { greater_than_or_equal_to: 0, message: "Stock cannot go below 0" }
   # validates :category, presence: true
 
@@ -49,8 +49,8 @@ class Product < ApplicationRecord
   #   self.active_products.select {|prod| prod.merchant.id == id}
   # end
 
-#   def self.category_list(id)
-#     self.active_products.select {|prod| prod.category.id == id}
-#   end
-# end
+  #   def self.category_list(id)
+  #     self.active_products.select {|prod| prod.category.id == id}
+  #   end
+  # end
 end
