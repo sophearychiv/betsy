@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   # post "/orders/checkout", to: "orders#checkout"
   resources :sessions, only: [:new, :create]
   resources :merchants, except: [:new, :create]
-  resources :categories, only: [:new, :create]
+  resources :categories, only: [:index, :new, :create]
   get "/merchants/:id/dashboard", to: "merchants#dashboard", as: "dashboard"
 
   # get "/auth/github", as: "github_login"
