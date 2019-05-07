@@ -1,1 +1,41 @@
-<%= render partial: "header" %>
+<section id="tabs">
+<div class="container">
+<h1 class="section-title">Merchant Dashboard</h1>
+<ul class="nav nav-tabs mb-3" id="merchant-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" href="#stats-tab" data-toggle="tab">Statistics</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link"  href="#orders-tab" data-toggle="tab">View Orders</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#products-tab" data-toggle="tab">Manage Products</a>
+  </li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="stats-tab">This is where content for statistics would go.</div>
+  <div class="tab-pane fade" id="orders-tab">And here is where the orders information (a list? with clicky links for details?) will go.</div>
+  <div class="tab-pane fade" id="products-tab">
+   <table class="table table-striped">
+        <thead class="thead-light">
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>In Stock</th>
+            <th>Manage</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @merchant.products.each do |product| %>
+          <tr>
+            <td><%= link_to product.name, product_path(product.id) %></td>
+            <td><%= product.price %></td>
+            <td><%= product.stock %>
+            <td>Options</td>
+          </tr>
+          <% end %>
+        </tbody>
+    </table>
+</div>
+</div>
+</section>
