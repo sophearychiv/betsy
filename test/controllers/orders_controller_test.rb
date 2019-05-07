@@ -9,6 +9,23 @@ describe OrdersController do
 
   let(:product) { products(:product1) }
 
+  let(:input_order) {
+    {
+      order: {
+        address: "12345 St SE bothell, wa",
+        name: "Sophie",
+        cc: 123,
+        expiration_date: Date.today,
+        csv: 123,
+        email: "sophie@ada.com",
+      },
+    }
+  }
+
+  before do
+    post product_orderitems_path(product.id), params: orderitem_hash
+  end
+
   describe "index" do
     it "should get index of all orders" do
       get orders_path
@@ -18,7 +35,6 @@ describe OrdersController do
 
   describe "edit" do
     it "should get the edit" do
-      post product_orderitems_path(product.id), params: orderitem_hash
       get edit_order_path(order.id)
       must_respond_with :success
     end
@@ -36,7 +52,7 @@ describe OrdersController do
           email: "sophie@ada.com",
         },
       }
-      post product_orderitems_path(product.id), params: orderitem_hash
+      # post product_orderitems_path(product.id), params: orderitem_hash
       order = Order.last
       expect {
         patch order_path(order.id), params: input_order
@@ -56,7 +72,7 @@ describe OrdersController do
           email: "sophie@ada.com",
         },
       }
-      post product_orderitems_path(product.id), params: orderitem_hash
+      # post product_orderitems_path(product.id), params: orderitem_hash
       order = Order.last
       expect {
         patch order_path(order.id), params: input_order
@@ -79,7 +95,7 @@ describe OrdersController do
           email: "sophie@ada.com",
         },
       }
-      post product_orderitems_path(product.id), params: orderitem_hash
+      # post product_orderitems_path(product.id), params: orderitem_hash
       expect {
         patch order_path(order.id), params: input_order
       }.wont_change "Order.count"
@@ -90,6 +106,7 @@ describe OrdersController do
 
   describe "create" do
     it "can create an order when an orderitem is added to the cart" do
+      product
       expect {
         post product_orderitems_path(product.id), params: orderitem_hash
       }.must_change "Order.count", 1
@@ -110,8 +127,9 @@ describe OrdersController do
         },
       }
 
+      order = Order.last
       expect {
-        post orders_path, params: input_order
+        patch order_path(order.id), params: input_order
       }.wont_change "Order.count"
 
       must_respond_with :bad_request
@@ -119,14 +137,14 @@ describe OrdersController do
   end
 
   describe "show" do
-    let(:orderitem_hash) { { quantity: 1 } }
+    # let(:orderitem_hash) { { quantity: 1 } }
 
     it "should be OK to show an order" do
       # Do some controller action to add an item to a cart
-      product = products(:product1)
-      expect {
-        post product_orderitems_path(product.id), params: orderitem_hash
-      }.must_change "Orderitem.count", 1
+      # product = products(:product1)
+      # expect {
+      #   post product_orderitems_path(product.id), params: orderitem_hash
+      # }.must_change "Orderitem.count", 1
       order = Order.last
 
       get order_path(order.id)
@@ -146,10 +164,10 @@ describe OrdersController do
 
   describe "confirmation" do
     it "can get confirmation after the purchase" do
-      product = products(:product1)
-      expect {
-        post product_orderitems_path(product.id), params: orderitem_hash
-      }.must_change "Orderitem.count", 1
+      # product = products(:product1)
+      # expect {
+      #   post product_orderitems_path(product.id), params: orderitem_hash
+      # }.must_change "Orderitem.count", 1
 
       input_order = {
         order: {
@@ -172,11 +190,11 @@ describe OrdersController do
     end
 
     it "changes the order's status to 'paid' " do
-      product = products(:product1)
+      # product = products(:product1)
 
-      expect {
-        post product_orderitems_path(product.id), params: orderitem_hash
-      }.must_change "Orderitem.count", 1
+      # expect {
+      #   post product_orderitems_path(product.id), params: orderitem_hash
+      # }.must_change "Orderitem.count", 1
       input_order = {
         order: {
           address: "12345 St SE bothell, wa",
@@ -199,11 +217,11 @@ describe OrdersController do
     end
 
     it "clears the orderitems in the cart" do
-      product = products(:product1)
+      # product = products(:product1)
 
-      expect {
-        post product_orderitems_path(product.id), params: orderitem_hash
-      }.must_change "Orderitem.count", 1
+      # expect {
+      #   post product_orderitems_path(product.id), params: orderitem_hash
+      # }.must_change "Orderitem.count", 1
       input_order = {
         order: {
           address: "12345 St SE bothell, wa",
