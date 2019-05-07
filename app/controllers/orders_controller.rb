@@ -31,18 +31,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  # def create
-  #   @order = Order.create(order_params)
-  #   # if @order.save
-  #   #   redirect_to confirmation_path
-  #   # else
-  #   #   @order.errors.messages.each do |field, message|
-  #   #     flash.now[field] = message
-  #   #   end
-  #   #   render :edit, status: :bad_request
-  #   # end
-  # end
-
   def show
     if @order.nil?
       flash[:status] = :error

@@ -130,28 +130,6 @@ describe OrdersController do
     end
   end
 
-  # describe "create" do
-  #   it "can create an order when an orderitem is added to the cart" do
-  #     expect {
-  #       create_cart
-  #     }.must_change "Order.count", 1
-  #     # order = Order.last
-  #     # expect(order.valid?).must_equal true
-  #     must_respond_with :redirect
-  #   end
-
-  #   it "should respond with a bad request when the input is invalid" do
-  #     create_cart
-
-  #     order = Order.last
-  #     expect {
-  #       patch order_path(order.id), params: invalid_input_order
-  #     }.wont_change "Order.count"
-
-  #     must_respond_with :bad_request
-  #   end
-  # end
-
   describe "show" do
     it "should be OK to show an order" do
       create_cart
@@ -210,6 +188,16 @@ describe OrdersController do
       order.reload
 
       expect(order.orderitems.count).must_equal 0
+    end
+
+    it "redirects to root path if the order is not found" do
+      order_id = Order.last.id + 1
+      expect {
+        patch order_path(order_id), params: input_order
+      }.wont_change "Order.count"
+
+      get confirmation_path
+      must_respond_with :redirect
     end
   end
 
