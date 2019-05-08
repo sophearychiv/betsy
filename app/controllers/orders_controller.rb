@@ -1,11 +1,8 @@
 class OrdersController < ApplicationController
-  before_action :find_order, only: [:edit, :update, :show, :confirmation, :destroy]
+  before_action :find_order, only: [:edit, :update, :show, :review, :confirmation, :destroy]
 
   def index
     @orders = Order.all
-  end
-
-  def edit
   end
 
   def update
@@ -15,7 +12,7 @@ class OrdersController < ApplicationController
       @order.update(status: Order::PENDING)
       is_successful = @order.update(order_params)
       if is_successful
-        redirect_to confirmation_path
+        redirect_to review_order_path(@order.id)
       else
         @order.errors.messages.each do |field, message|
           flash.now[field] = message
@@ -50,9 +47,8 @@ class OrdersController < ApplicationController
     end
   end
 
-  # def review
-  #   @order = Order.find_by(id: session[:order_id])
-  # end
+  def review
+  end
 
   def confirmation
     if @order.nil?
@@ -71,28 +67,25 @@ class OrdersController < ApplicationController
         }
 
         @temp_orderitems << hash
-
-        item.destroy
       end
     end
   end
 
-  def destroy
+  def cancel
+    @order = Order.find_by(id: params[:id])
+
     if @order.nil?
       flash[:status] = :error
       flash[:result_text] = "Order does not exist."
+      redirect_to root_path
     else
-      @order.orderitems.each do |item|
-        item.destroy
-      end
-
-      @order.destroy
-
+      is_succesfull = @order.update(status: Order::CANCELLED)
+      session[:order_id] = nil
       flash[:status] = :success
-      flash[:result_text] = "Order has been canceled!"
-    end
+      flash[:result_text] = "Your order has been cancelled."
 
-    redirect_to root_path
+      redirect_to root_path
+    end
   end
 
   private
