@@ -1,6 +1,41 @@
 require "test_helper"
 
 describe OrdersController do
+  let(:order) {
+    order = orders(:one)
+  }
+
+  let(:orderitem_hash) { { quantity: 1 } }
+
+  let(:product) { products(:product1) }
+
+  let(:input_order) {
+    {
+      order: {
+        address: "12345 St SE bothell, wa",
+        name: "Sophie",
+        cc: 123,
+        expiration_date: Date.today,
+        csv: 123,
+        email: "sophie@ada.com",
+      },
+    }
+  }
+
+  let(:invalid_input_order) {
+    {
+      order: {
+        address: nil,
+        name: nil,
+        status: "pending",
+        cc: 123,
+        expiration_date: Date.today,
+        csv: 123,
+        email: "sophie@ada.com",
+      },
+    }
+  }
+
   describe "index" do
     it "should get index of all orders" do
       get orders_path
@@ -8,73 +43,217 @@ describe OrdersController do
     end
   end
 
-  # describe "show" do
-  #   it "should be OK to show an order" do
-  #     order = orders(:one)
+  describe "edit" do
+    it "should get the edit" do
+      create_cart
+      order = Order.last
+      get edit_order_path(order.id)
+      must_respond_with :success
+    end
+  end
 
-  #     get order_path(order.id)
+  describe "update" do
+    it "can update the order" do
+      input_order = {
+        order: {
+          address: "12345 St SE bothell, wa",
+          name: "Sophie",
+          cc: 123,
+          expiration_date: Date.today,
+          csv: 123,
+          email: "sophie@ada.com",
+        },
+      }
 
-  #     must_respond_with :success
-  #   end
+      create_cart
+      order = Order.last
+      expect {
+        patch order_path(order.id), params: input_order
+      }.wont_change "Order.count"
+      must_respond_with :redirect
+    end
 
-  #   it "should give a flash notice when trying to access an invalid order" do
-  #     order_id = Order.last.id + 1
+    it "changes the order's status to 'pending' " do
+      input_order = {
+        order: {
+          address: "12345 St SE bothell, wa",
+          name: "Sophie",
+          cc: 123,
+          expiration_date: Date.today,
+          csv: 123,
+          email: "sophie@ada.com",
+        },
+      }
 
-  #     get order_path(order_id)
+      create_cart
 
-  #     must_respond_with :redirect
-  #     expect(flash[:error]).must_equal "Unknown order"
-  #   end
-  # end
+      order = Order.last
+      expect {
+        patch order_path(order.id), params: input_order
+      }.wont_change "Order.count"
 
-  describe "create" do
-    # it "will save a new order and redirect if given valid inputs" do
-    #   input_order = {
-    #     order: {
-    #       address: "12345 St SE bothell, wa",
-    #       name: "Sophie",
-    #       status: "complete",
-    #       cc: 123,
-    #       expiration_date: Date.today,
-    #       csv: 123,
-    #       email: "sophie@ada.com",
-    #     },
-    #   }
+      order.reload
+      must_respond_with :redirect
+      expect(order.status).must_equal "pending"
+    end
 
-    #   expect {
-    #     post orders_path, params: input_order
-    #   }.must_change "Order.count", 1
+    it "should respond with a bad request if the input is invalid" do
+      input_order = {
+        order: {
+          address: nil,
+          name: nil,
+          status: "complete",
+          cc: 123,
+          expiration_date: Date.today,
+          csv: 123,
+          email: "sophie@ada.com",
+        },
+      }
 
-    #   new_order = Order.find_by(id: Order.last.id)
-    #   expect(new_order).wont_be_nil
-    #   expect(new_order.address).must_equal input_order[:order][:address]
-    #   expect(new_order.name).must_equal input_order[:order][:name]
-    #   expect(new_order.status).must_equal input_order[:order][:status]
-    #   expect(new_order.cc).must_equal input_order[:order][:cc]
-    #   expect(new_order.expiration_date).must_equal input_order[:order][:expiration_date]
-    #   expect(new_order.csv).must_equal input_order[:order][:csv]
-    #   expect(new_order.email).must_equal input_order[:order][:email]
-    # end
+      create_cart
 
-    # it "will give a 400 error with invalid params" do
-    #   input_order = {
-    #     order: {
-    #       address: "12345 St SE bothell, wa",
-    #       name: "Sophie",
-    #       status: "complete",
-    #       cc: 123,
-    #       expiration_date: Date.today,
-    #       csv: 123,
-    #       email: nil,
-    #     },
-    #   }
+      expect {
+        patch order_path(order.id), params: input_order
+      }.wont_change "Order.count"
 
-    #   expect {
-    #     post orders_path, params: input_order
-    #   }.wont_change "Order.count"
+      must_respond_with :bad_request
+    end
 
-    #   expect(flash[:email]).must_equal ["can't be blank"]
-    #   must_respond_with :bad_request
-    # end
+    it "should redirect to products_path if the order is not found" do
+      order_id = Order.last.id + 1
+
+      expect {
+        patch order_path(order_id), params: input_order
+      }.wont_change "Order.count"
+
+      must_respond_with :redirect
+    end
+  end
+
+  describe "show" do
+    it "should be OK to show an order" do
+      create_cart
+
+      order = Order.last
+
+      get order_path(order.id)
+      must_respond_with :success
+    end
+
+    it "should give a flash notice when trying to access an invalid order" do
+      order_id = -1
+
+      get order_path(order_id)
+
+      must_respond_with :redirect
+      expect(flash[:status]).must_equal :error
+      expect(flash[:result_text]).must_equal "Order not found!"
+    end
+
+    it "should flash a message to the user if item quantity has changed in their cart" do
+      orderitem = create_cart
+      orderitem.quantity = 2
+      orderitem.save
+      orderitem.reload
+      orderitem.product.stock = 1
+      orderitem.product.save
+      orderitem.product.reload
+
+      get order_path(session[:order_id])
+
+      expect(flash.now[:status]).must_equal :warning
+      expect(flash.now[:result_text]).must_equal "Some item quantities in your cart have changed due to availability: #{orderitem.product.name}"
+    end
+  end
+
+  describe "confirmation" do
+    it "can get confirmation after the purchase" do
+      create_cart
+      order = Order.last
+      expect {
+        patch order_path(order.id), params: input_order
+      }
+
+      get confirmation_path
+
+      must_respond_with :success
+    end
+
+    it "changes the order's status to 'paid' " do
+      create_cart
+      order = Order.last
+      expect {
+        patch order_path(order.id), params: input_order
+      }.wont_change "Order.count"
+
+      get confirmation_path
+
+      order.reload
+      expect(order.status).must_equal "paid"
+    end
+
+    it "clears the orderitems in the cart" do
+      create_cart
+      order = Order.last
+      expect {
+        patch order_path(order.id), params: input_order
+      }.wont_change "Order.count"
+
+      get confirmation_path
+      order.reload
+
+      expect(order.orderitems.count).must_equal 0
+    end
+
+    it "redirects to root path if the order is not found" do
+      order_id = Order.last.id + 1
+      expect {
+        patch order_path(order_id), params: input_order
+      }.wont_change "Order.count"
+
+      get confirmation_path
+      must_respond_with :redirect
+    end
+  end
+
+  describe "destroy" do
+    it "can delete the order" do
+      create_cart
+
+      order = Order.last
+
+      expect {
+        delete order_path(order.id)
+      }.must_change "Order.count", -1
+
+      must_respond_with :redirect
+      must_redirect_to root_path
+      expect(flash[:status]).must_equal :success
+      expect(flash[:result_text]).must_equal "Order has been canceled!"
+    end
+
+    it "can delete the orderitems in the order" do
+      create_cart
+      order = Order.last
+      orderitem = order.orderitems.first
+      orderitem_id = orderitem.id
+      expect {
+        delete order_path(order.id)
+      }.must_change "Order.count", -1
+
+      must_respond_with :redirect
+      expect(Orderitem.find_by(id: orderitem_id)).must_be_nil
+    end
+
+    it "gives flash notice when the order is not found" do
+      order_id = Order.last.id + 1
+      expect {
+        delete order_path(order_id)
+      }.wont_change "Order.count"
+
+      must_respond_with :redirect
+      expect(flash[:status]).must_equal :error
+      expect(flash[:result_text]).must_equal "Order does not exist."
+    end
   end
 end

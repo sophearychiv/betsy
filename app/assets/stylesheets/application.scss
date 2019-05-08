@@ -2,10 +2,34 @@
 @import "bootstrap";
 /* Import scss content */
 @import "**/*";
-@import url('https://fonts.googleapis.com/css?family=Lilita+One|Itim');
+@import url('https://fonts.googleapis.com/css?family=Lilita+One|Itim|Fredonka+One');
 
 html{
   height:100%;
+}
+
+:root {
+  --blue: #cceedd;
+  --indigo: #8855ff;
+  --purple: #cc66ee;
+  --pink: #ffaaaa;
+  --red: #dc3545;
+  --orange: #ff8754;
+  --yellow: #ffc107;
+  --green: #aacc44;
+  --teal: #88ccaa;
+  --cyan: #cceedd;
+  --white: #fff;
+  --gray: #99aabb;
+  --gray-dark: #343a40;
+  --primary: #88ccaa;
+  --secondary: #8855ff;
+  --success: #aacc44;
+  --info: #88ccaa;
+  --warning: #ffc107;
+  --danger: #ff8754;
+  --light: #cceedd;
+  --dark: #343a40;
 }
 
 body {
@@ -119,18 +143,18 @@ a:hover {
 }
 
 .btn-primary {
-  background-color: #099a97;
+  color: var(--primary)
   border: 1px #292F36 solid;
 }
 
 .btn-primary:hover {
-  color: #099a97;
+  color: var(--primary)
   background-color: #099a97;
   border: 1px #099a97 solid;
 }
 
 .btn-primary:visited {
-  background-color: #099a97;
+  color: var(--primary)
   border: 1px #292F36 solid;
 }
 
@@ -162,8 +186,7 @@ a:hover {
   width: 100%;
 }
 
-.pull-right
-{
+.pull-right {
   position: relative;
   margin-left: auto;
 }
