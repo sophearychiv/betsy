@@ -9,6 +9,11 @@ class Order < ApplicationRecord
   validates :csv, presence: true, allow_nil: false, unless: :status_nil?
   validates :expiration_date, presence: true, allow_nil: false, unless: :status_nil?
 
+  PENDING = "pending"
+  PAID = "paid"
+  COMPLETE = "complete"
+  CANCELLED = "cancelled"
+
   def status_nil?
     return true if self.status == nil
   end

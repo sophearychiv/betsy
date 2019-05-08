@@ -5,11 +5,6 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
-  # def new
-  #   @order = Order.new
-
-  # end
-
   def edit
   end
 
@@ -17,7 +12,7 @@ class OrdersController < ApplicationController
     if @order.nil?
       redirect_to products_path
     else
-      @order.update(status: "pending")
+      @order.update(status: Order::PENDING)
       is_successful = @order.update(order_params)
       if is_successful
         redirect_to confirmation_path
@@ -63,7 +58,7 @@ class OrdersController < ApplicationController
     if @order.nil?
       redirect_to root_path
     else
-      @order.update(status: "paid")
+      @order.update(status: Order::PAID)
       session[:order_id] = nil
       @temp_orderitems = []
       @order.orderitems.each do |item|
