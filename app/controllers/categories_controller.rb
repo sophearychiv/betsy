@@ -11,7 +11,7 @@ class CategoriesController < ApplicationController
     if !@category
       flash[:status] = :warning
       flash[:result_text] = "A problem occurred: Media not found"
-      redirect_to root_path
+      redirect_to root_path, status: :bad_request
     end
   end
 
