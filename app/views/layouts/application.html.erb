@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <title>Itsy</title>
   <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+  <%= csp_meta_tag %> 
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -42,9 +42,8 @@
           <% else %>
             <% orderitems = Order.find_by(id: session[:order_id]).orderitems%>
             <% if !orderitems.empty?%>
-              <%= link_to "Cart", order_path(session[:order_id]), class: "nav-link" %>
-            <% else %>
-                <%= link_to "Cart", empty_cart_path %>
+              <%= link_zto "Cart", order_path(session[:order_id]), class: "nav-link" %>
+            <% else %> h %>
             <% end %>
           <% end %>
         </li>
