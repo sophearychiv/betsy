@@ -42,8 +42,9 @@ class OrdersController < ApplicationController
         new_quantity = item.adjust_quantity
         no_stock = true if new_quantity == 0
         if orig_quantity != new_quantity
-          flash.now[:status] = :warning
-          if !flash.now[:result_text]
+          # had to write this in a weird way so that the test would pass
+          if flash.now[:status] != :warning
+            flash.now[:status] = :warning
             flash.now[:result_text] = "Some item quantities in your cart have changed due to availability: #{item.product.name}"
           else
             flash.now[:result_text] << ", #{item.product.name}"
