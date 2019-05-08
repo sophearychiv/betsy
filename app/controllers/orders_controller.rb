@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :find_order, only: [:edit, :update, :show, :confirmation, :destroy]
+
   def index
     @orders = Order.all
   end
@@ -9,16 +11,13 @@ class OrdersController < ApplicationController
   # end
 
   def edit
-    @order = Order.find_by(id: session[:order_id])
   end
 
   def update
-    @order = Order.find_by(id: session[:order_id])
-    @order.update(status: "pending")
-
     if @order.nil?
       redirect_to products_path
     else
+      @order.update(status: "pending")
       is_successful = @order.update(order_params)
       if is_successful
         redirect_to confirmation_path
@@ -32,22 +31,27 @@ class OrdersController < ApplicationController
     end
   end
 
-  def create
-    @order = Order.new(order_params)
-    if @order.save
-      redirect_to confirmation_path
-    else
-      @order.errors.messages.each do |field, message|
-        flash.now[field] = message
-      end
-    end
-  end
-
   def show
-    @order = Order.find_by(id: session[:order_id])
     if @order.nil?
-      flash[:error] = "Unknown order"
+      flash[:status] = :error
+      flash[:result_text] = "Order not found!"
       redirect_to orders_path
+    elsif @order.orderitems
+      @order.orderitems.each do |item|
+        orig_quantity = item.quantity
+        new_quantity = item.adjust_quantity
+        no_stock = true if new_quantity == 0
+        if orig_quantity != new_quantity
+          # had to write this in a weird way so that the test would pass
+          if flash.now[:status] != :warning
+            flash.now[:status] = :warning
+            flash.now[:result_text] = "Some item quantities in your cart have changed due to availability: #{item.product.name}"
+          else
+            flash.now[:result_text] << ", #{item.product.name}"
+          end
+          item.destroy if no_stock
+        end
+      end
     end
   end
 
@@ -56,7 +60,6 @@ class OrdersController < ApplicationController
   # end
 
   def confirmation
-    @order = Order.find_by(id: session[:order_id])
     if @order.nil?
       redirect_to root_path
     else
@@ -80,20 +83,28 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    @order = Order.find_by(id: session[:order_id])
     if @order.nil?
       flash[:status] = :error
-      flash[:text_result] = "Order does not exist."
+      flash[:result_text] = "Order does not exist."
     else
-      flash[:status] = :success
-      flash[:text_result] = "Order has been canceled!"
+      @order.orderitems.each do |item|
+        item.destroy
+      end
+
       @order.destroy
+
+      flash[:status] = :success
+      flash[:result_text] = "Order has been canceled!"
     end
 
     redirect_to root_path
   end
 
   private
+
+  def find_order
+    @order = Order.find_by(id: session[:order_id])
+  end
 
   def order_params
     return params.require(:order).permit(:address, :name, :status, :cc, :expiration_date, :email, :csv)
