@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
   @product.active = false
     if @product.save
        flash[:success] = "#{@product.name} has been retired."
-       redirect_to products_path
+       redirect_to dashboard_path
     end
   end
 
@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-
+  
   end
 
   def create
