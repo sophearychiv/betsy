@@ -9,11 +9,11 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
-<div class="container">
+<div class="test">
   <body>
   <header class="header">
   <h1 class="logo"><%= link_to "Itsy", root_path %></h1>
-    <h3 class="motto">Itsy Bitsy Things For A Big Crowded World</h3>
+    <%# <h3 class="motto">Itsy Bitsy Things For A Big Crowded World</h3> %>
   <nav class="navigation">
     <ul class="nav-app-header">
       <li><%= link_to "Shop All Products", products_path, class: "nav-link" %></li>
@@ -45,14 +45,14 @@
               <%= link_to "Log out", logout_path, method: "get", id: "session", class: "btn btn-primary"  %></li>
         <% else %>
           <li class="nav-item app-header__nav_item">
-            <%= link_to "Login with Github", "/auth/github", id: "session", class: "btn btn-primary"  %>
+            <%= link_to "Login", "/auth/github", id: "session", class: "btn btn-primary"  %>
           </li>
         <% end %>
       </div>
     </ul>
   </nav>
 </header>
-    <% if flash[:result_text] or flash[:messages] %>
+    <% if flash[:result_text] || flash[:messages] %>
     <section class="alert__container">
       <div class="alert alert-<%= flash[:status].to_s == 'failure' ? 'warning' : flash[:status] %>">
         <span><%= flash[:status].to_s == "failure" ? "A problem occurred: " : "" %><%= flash[:result_text] %></span>
@@ -68,7 +68,7 @@
       </div>
     </section>
     <% end %>
-    <main>
+    <main class= "main-container">
       <%= yield %>
     </main>
   </body>

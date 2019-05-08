@@ -9,12 +9,12 @@ html{
 }
 
 body {
-  background-image: url("doodles.png");
-  font-family: 'Itim', sans-serif;
+  // background-image: url("doodles.png");
+  // font-family: 'Itim', sans-serif;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  max-width: 1088px;
+  // max-width: 1088px;
 }
 
 strong {
@@ -28,10 +28,10 @@ footer {
 }
 
 main {
-  background: #9fe6bdb4;
-  min-height: 500px;
-  padding: 2rem;
-  margin-top: -5px;
+  // background: #9fe6bdb4;
+  min-height: 1500px;
+  // padding: 2rem;
+  // margin-top: -5px;
   border-radius: 0px 0px 10px 10px;
 }
 
@@ -40,34 +40,40 @@ li {
 }
 
 .header {
-  background: #9fe6bdb4;
-  font-family: 'Lilita One', sans-serif;
-  padding: .2rem 2rem 1rem 2rem;
-  margin-top: 10px;
-  border-radius: 10px 10px 0px 0px;
+  width: 100%;
+  // min-width: 990px;
+  position: fixed;
+  padding-bottom: 15px;
+  left: 1px;
+  right: 2px;
+  background-color: white;
+  border-bottom: solid;
+  border-bottom-color: #c9c9c9; 
+  border-width: thin;
 }
 
 .logo {
-  display: block;
-  width: 350px;
-  margin-left: auto;
-  margin-right: auto;
-  font-weight: 600;
-  font-size: 6em;
-  letter-spacing: .3em;
-  transform: rotate(-7deg);
+  display: inline-block; 
+  display: inline;
+  // width: 350px;
+  // margin-left: auto;
+  // margin-right: auto;
+  // font-weight: 600;
+  // font-size: 6em;
+  // letter-spacing: .3em;
+  // transform: rotate(-7deg);
 }
 
 .logo a:visited {
   color: #780694;
-  transition: .8s;
+  // transition: .8s;
 }
 
 .logo a:hover {
   color: #5d0474;
-  font-size: 5rem;
-  letter-spacing: .8rem;
-  transition: .8s;
+  // font-size: 5rem;
+  // letter-spacing: .8rem;
+  // transition: .8s;
 }
 
 
@@ -80,20 +86,36 @@ li {
 }
 
 .navigation ul {
-  padding-inline-start: 0px;
+  padding-inline-start: 5px;
   margin-bottom: 0;
+  align-items: center;
 }
 
 .nav-app-header {
   display: flex;
-  justify-content: flex-front;
   flex-direction: row;
   font-family: 'Itim', sans-serif;
+  margin-left: 110px;
+  margin-right: 110px;
+  padding-bottom: 20px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  padding: 0.5rem 1rem;
 }
 
 .app-header__nav_item {
   display: inline-block;
   padding-left: 10px;
+  
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  // padding-top: 120px;
 }
 
 a:visited {
@@ -140,15 +162,15 @@ a:hover {
 }
 
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #fff;
-    text-align: center;
-    min-width: 10em;
-    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    font-weight: bolder;
-    white-space: nowrap;
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  text-align: center;
+  min-width: 10em;
+  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  font-weight: bolder;
+  white-space: nowrap;
 }
 
 .dropdown:hover .dropdown-content,
@@ -166,4 +188,5 @@ a:hover {
 {
   position: relative;
   margin-left: auto;
+  padding-bottom: 10px;
 }

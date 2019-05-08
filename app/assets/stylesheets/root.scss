@@ -1,0 +1,95 @@
+section {
+  padding-bottom: 0px;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 96%;               
+  background-color: gainsboro;
+  height: 1px;
+}
+
+/* Carousel */
+
+.carousel { 
+  display: block !important;
+  z-index: -1;  
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.container {
+  /*   width: 500px; */
+  /*   height: 700px; */
+  display: flex;  
+  flex-direction: row;  
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Featured Section */
+
+#featured-section {
+  display: flex;
+  flex-direction: row;  
+}
+
+.featured-products {
+  display: flex;
+  justify-content: space-evenly;
+  padding-right: 7rem;
+  padding-left: 7rem;
+  padding-bottom: 4rem;
+}
+
+.container img {
+  margin-right: 10px;
+  margin-left: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.container p {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.featured-merchant {
+  margin: -20px;
+  font-size: 10pt;
+}
+
+/* Slogan Box */
+.slogan-box {
+  background-color: #e2f5ea ;
+  display: flex;
+  justify-content: space-evenly;
+  padding-right: 7rem;
+  padding-left: 7rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.slogan-box img {
+  object-fit: cover;
+  max-width: 400px;
+  max-height: 400px;
+}
+
+h2.whats-itsy {
+  text-decoration: underline;
+}
+
+
+div.about-itsy {
+  display: flex;
+  flex-direction: column;
+  padding-left: 3rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
