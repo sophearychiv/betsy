@@ -27,7 +27,6 @@ describe OrdersController do
       order: {
         address: nil,
         name: nil,
-        status: "pending",
         cc: 123,
         expiration_date: Date.today,
         csv: 123,
@@ -94,7 +93,7 @@ describe OrdersController do
 
       order.reload
       must_respond_with :redirect
-      expect(order.status).must_equal "pending"
+      expect(order.status).must_equal Order::PENDING
     end
 
     it "should respond with a bad request if the input is invalid" do
@@ -102,7 +101,6 @@ describe OrdersController do
         order: {
           address: nil,
           name: nil,
-          status: "complete",
           cc: 123,
           expiration_date: Date.today,
           csv: 123,
@@ -189,7 +187,7 @@ describe OrdersController do
       get confirmation_path
 
       order.reload
-      expect(order.status).must_equal "paid"
+      expect(order.status).must_equal Order::PAID
     end
 
     it "clears the orderitems in the cart" do
