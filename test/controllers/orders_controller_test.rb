@@ -149,6 +149,21 @@ describe OrdersController do
       expect(flash[:status]).must_equal :error
       expect(flash[:result_text]).must_equal "Order not found!"
     end
+
+    it "should flash a message to the user if item quantity has changed in their cart" do
+      orderitem = create_cart
+      orderitem.quantity = 2
+      orderitem.save
+      orderitem.reload
+      orderitem.product.stock = 1
+      orderitem.product.save
+      orderitem.product.reload
+
+      get order_path(session[:order_id])
+
+      expect(flash.now[:status]).must_equal :warning
+      expect(flash.now[:result_text]).must_equal "Some item quantities in your cart have changed due to availability: #{orderitem.product.name}"
+    end
   end
 
   describe "confirmation" do
