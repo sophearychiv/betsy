@@ -1,7 +1,7 @@
 require "test_helper"
 
 describe CategoriesController do
-  describe "Loggin in user" do
+  describe "Logged in user" do
     before do
       @user = perform_login
     end
@@ -17,7 +17,7 @@ describe CategoriesController do
     describe "show" do
       let(:category) { categories(:food) }
       it "can get the category show page for a valid category" do
-        get categories_path(category.id)
+        get category_path(category.id)
 
         must_respond_with :success
       end
@@ -25,10 +25,10 @@ describe CategoriesController do
       it "will redirect and give flash messages for an invalid category" do
         invalid_cat_id = -1
 
-        get categories_path(invalid_cat_id)
+        get category_path(invalid_cat_id)
 
-        # must_respond_with :redirect
-        # must_redirect_to root_path
+        must_respond_with :redirect
+        must_redirect_to root_path
         expect(flash[:status]).must_equal :warning
         expect(flash[:result_text]).must_equal "A problem occurred: Media not found"
       end
@@ -88,6 +88,26 @@ describe CategoriesController do
         get categories_path
 
         must_respond_with :success
+      end
+    end
+
+    describe "show" do
+      let(:category) { categories(:food) }
+      it "can get the category show page for a valid category" do
+        get category_path(category.id)
+
+        must_respond_with :success
+      end
+
+      it "will redirect and give flash messages for an invalid category" do
+        invalid_cat_id = -1
+
+        get category_path(invalid_cat_id)
+
+        must_respond_with :redirect
+        must_redirect_to root_path
+        expect(flash[:status]).must_equal :warning
+        expect(flash[:result_text]).must_equal "A problem occurred: Media not found"
       end
     end
 
