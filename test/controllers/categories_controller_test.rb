@@ -112,7 +112,7 @@ describe CategoriesController do
     end
 
     describe "new" do
-      it "will redirect when a logged out user tried to access the new category page" do
+      it "will redirect when a logged out user tries to access the new category page" do
         get categories_new_path
 
         must_redirect_to root_path
