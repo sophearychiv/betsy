@@ -147,4 +147,15 @@ describe Order do
       expect(order.status_nil?).must_equal true
     end
   end
+
+  describe "sub_total" do
+    it "gets the sub total" do
+      product = products(:product1)
+      expected_sub_total = (product.price * 0.09) + product.price
+      order = Order.create(status: nil)
+      orderitem = Orderitem.create(order_id: order.id, product_id: product.id, quantity: 1)
+      order << orderitem
+      expect(order.sub_total).must_equal expected_sub_total
+    end
+  end
 end
