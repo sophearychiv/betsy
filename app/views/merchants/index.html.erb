@@ -1,11 +1,9 @@
 <section>
-  <h1 class="all-merchants-head">Itsy Merchants</h1>
-  <div class="merch-list-container">
-    <% @merchants.each do |merchant| %>
-      <ul class="list-type4"">
-        <li class="category-link">
-          <%=link_to merchant.username, merchant_path(merchant.id) %></li>
-      </ul>
-    <% end %>
-  </div>
+  <h2>itsy Merchants</h2>
+
+  <% @merchants.each do |merchant| %>
+      <li>
+        <%=link_to merchant.username, merchant_path(merchant.id) %></li>
+    </ul>
+  <% end %>
 </section>
