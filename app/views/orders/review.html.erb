@@ -45,9 +45,9 @@
     </tbody>
     </table>
 
-    <%= link_to "Cancel this order", cancel_order_path(@order.id), method: :patch%>
+    <%= link_to "Cancel this order", cancel_order_path(@order.id), method: :patch, class: "btn btn-primary"%>
                 <%# <td><%= link_to "Cancel this order", order_path(@order.id, order: {status: Order::CANCELLED}), :data => {:confirm => 'Are you sure you want to cancel this order?'}, method: :patch %>
-    <%= link_to "Confirm this order", confirmation_path %>
+    <%= link_to "Confirm this order", confirmation_path, class: "btn btn-primary" %>
 
     <section>
         <p>Subtotal: <%= @order.sub_total %></p>
