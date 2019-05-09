@@ -5,43 +5,26 @@ class MerchantsController < ApplicationController
     @merchants = Merchant.all
   end
 
-  # def new
-  #   @merchant = Merchant.new
-  # end
-
   def show
   end
 
   def dashboard
+    @merchant = Merchant.find_by(id: session[:user_id])
+    @orderitems = @merchant.items_by_status("all")
+    @pendingitems = Merchant.items_by_orderid(@orderitems["pending"])
+    @paiditems = Merchant.items_by_orderid(@orderitems["paid"])
+    @completeitems = Merchant.items_by_orderid(@orderitems["complete"])
+    @cancelleditems = Merchant.items_by_orderid(@orderitems["cancelled"])
+    @products = @merchant.products
+    @activeproducts = @products.order(:name).where(active: true).where("stock > ?", 0)
+    @soldout = @products.order(:name).where(active: true).where(stock: 0)
+    @inactive = @products.order(:name).where(active: false)
   end
 
-  # def edit
-  #   @merchant = Merchant.find(params[:id])
-  # end
-
-  # def update
-  #   @merchant = Merchant.find(params[:id])
-
-  #   if @merchant.save(merchant_params)
-  #     redirect_to merchant_path(@merchant)
-  #   else
-  #     render :edit
-  #   end
-  # end
-  
   private
 
   def find_merchant
     @merchant = Merchant.find_by(id: params[:id])
     head :not_found unless @merchant
   end
-
-  # def merchant_params
-  #   return params.require(:merchant).permit(
-  #            :username,
-  #            :email,
-  #            :provider,
-  #            :uid,
-  #          )
-  # end
 end

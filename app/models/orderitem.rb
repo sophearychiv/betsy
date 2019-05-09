@@ -3,6 +3,9 @@ class Orderitem < ApplicationRecord
   belongs_to :product
 
   validates :quantity, presence: true, numericality: { greater_than: 0 }
+  def self.status
+    return self.order.status
+  end
 
   def adjust_quantity
     product = self.product
