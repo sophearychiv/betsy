@@ -18,6 +18,16 @@ class ProductsController < ApplicationController
     end
   end
 
+  def by_cat
+    id = params[:id]
+    @category = Category.find_by(id: id)
+    if @category
+      @products_by_cat = Product.category_list(id)
+    else
+      render :notfound, status: :not_found
+    end
+  end
+
   def by_merch
     id = params[:id]
     @merchant = Merchant.find_by(id: id)
@@ -41,13 +51,17 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @categories = Category.all
+    if (session[:user_id] != params[:merchant_id].to_i) || (@product.merchant_id != session[:user_id])
+      render "layouts/notfound", status: :not_found
+    end
   end
 
   def create
     if !session[:user_id].nil?
       params = product_params
       params[:merchant_id] = session[:user_id]
-      params[:photo_url] = "https://img.omdfarm.co.uk//images/1/5af9d353b2b83.jpg" if params[:photo_url].empty?
+      params[:photo_url] = "http://placekitten.com/200/300" if params[:photo_url].empty?
 
       @product = Product.new(params)
 
@@ -69,22 +83,18 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product.update(params)
-
-    result = @product.save
-
-    if result
+    @categories = Category.all
+    if @product.update(product_params)
+      @merchant_id = product_params[:merchant_id].to_i
       flash[:status] = :success
-      flash[:result_text] = "Successfully updated product #{@product.name}"
-      redirect_to product_path(@product.id)
+      flash[:result_text] = "Successfully updated #{@product.name}"
+      redirect_to merchant_path(@merchant_id)
     else
       flash[:status] = :failure
       flash[:result_text] = "Failed to update"
       flash[:messages] = @product.errors.messages
       render :edit, status: :bad_request
     end
-  else
-    redirect_back fallback_location: root_path, status: :bad_request
   end
 
   private
