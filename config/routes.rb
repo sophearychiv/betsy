@@ -14,6 +14,12 @@ Rails.application.routes.draw do
   get "/products/merchant/:id", to: "products#by_merch", as: "merch"
 
   get "/orders/confirmation", to: "orders#confirmation", as: "confirmation"
+  # get "/orders/:id/checkout", to: "orders#checkout", as: "checkout_order"
+
+  # get "/orders/:id/cancel", to: "orders#cancel", as: "cancel_order"
+  patch "/orders/:id/cancel", to: "orders#cancel", as: "cancel_order"
+  # patch "/orders/:id/cancel", to: "orders#cancel"
+  get "/orders/:id/review", to: "orders#review", as: "review_order"
   resources :orders
   get "/empty_cart", to: "orders#empty_cart", as: "empty_cart"
   # post "/orders/checkout", to: "orders#checkout"

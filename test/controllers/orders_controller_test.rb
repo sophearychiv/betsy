@@ -27,7 +27,6 @@ describe OrdersController do
       order: {
         address: nil,
         name: nil,
-        status: "pending",
         cc: 123,
         expiration_date: Date.today,
         csv: 123,
@@ -94,7 +93,7 @@ describe OrdersController do
 
       order.reload
       must_respond_with :redirect
-      expect(order.status).must_equal "pending"
+      expect(order.status).must_equal Order::PENDING
     end
 
     it "should respond with a bad request if the input is invalid" do
@@ -102,7 +101,6 @@ describe OrdersController do
         order: {
           address: nil,
           name: nil,
-          status: "complete",
           cc: 123,
           expiration_date: Date.today,
           csv: 123,
@@ -189,20 +187,7 @@ describe OrdersController do
       get confirmation_path
 
       order.reload
-      expect(order.status).must_equal "paid"
-    end
-
-    it "clears the orderitems in the cart" do
-      create_cart
-      order = Order.last
-      expect {
-        patch order_path(order.id), params: input_order
-      }.wont_change "Order.count"
-
-      get confirmation_path
-      order.reload
-
-      expect(order.orderitems.count).must_equal 0
+      expect(order.status).must_equal Order::PAID
     end
 
     it "redirects to root path if the order is not found" do
@@ -216,39 +201,41 @@ describe OrdersController do
     end
   end
 
-  describe "destroy" do
-    it "can delete the order" do
+  describe "cancel" do
+    it "can cancel the order" do
+      input_order = {
+        order: {
+          address: "12345 St SE bothell, wa",
+          name: "Sophie",
+          cc: 123,
+          expiration_date: Date.today,
+          csv: 123,
+          email: "sophie@ada.com",
+        },
+      }
       create_cart
 
       order = Order.last
+      patch order_path(order.id), params: input_order
 
       expect {
-        delete order_path(order.id)
-      }.must_change "Order.count", -1
+        patch cancel_order_path(order.id), params: input_order
+      }.wont_change "Order.count"
+
+      order.reload
 
       must_respond_with :redirect
       must_redirect_to root_path
       expect(flash[:status]).must_equal :success
-      expect(flash[:result_text]).must_equal "Order has been canceled!"
-    end
-
-    it "can delete the orderitems in the order" do
-      create_cart
-      order = Order.last
-      orderitem = order.orderitems.first
-      orderitem_id = orderitem.id
-      expect {
-        delete order_path(order.id)
-      }.must_change "Order.count", -1
-
-      must_respond_with :redirect
-      expect(Orderitem.find_by(id: orderitem_id)).must_be_nil
+      expect(flash[:result_text]).must_equal "Your order has been cancelled."
+      expect(session[:order_id]).must_be_nil
+      expect(order.status).must_equal Order::CANCELLED
     end
 
     it "gives flash notice when the order is not found" do
       order_id = Order.last.id + 1
       expect {
-        delete order_path(order_id)
+        patch cancel_order_path(order_id), params: input_order
       }.wont_change "Order.count"
 
       must_respond_with :redirect

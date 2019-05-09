@@ -11,12 +11,10 @@
         </tr>
     </thead>
     <tbody>
-        <% sub_total = 0%>
         <% @order.orderitems.each do |item|%>
             <tr>
                 <td><%= item.product.name %></td>
                 <td><%= item.product.price %></td>
-                <% sub_total += item.product.price%>
                  <td><%= form_with model: @orderitem, url: orderitem_path(item.id), method: :patch do |f|%>
                     <strong><%= f.label :quantity%></strong>
                     <% if item.product.stock < 1 %>
@@ -36,12 +34,12 @@
     <%# raise %>
 
     <section>
-        <p>Subtotal: <%= sub_total %></p>
-        <p>Tax: <%= tax = (sub_total * 0.09).round(2) %></p>
-        <p>Total: <%= sub_total + tax %></p>
+        <p>Subtotal: <%= @order.sub_total %></p>
+        <p>Tax: <%= @order.tax %></p>
+        <p>Total: <%= @order.total %></p>
     </section>
 
     <section>
-        <%= link_to "Check Out", edit_order_path(@order.id) , class: "btn btn-primary"%>
+        <%= link_to "Continue to Check Out", edit_order_path(@order.id) , class: "btn btn-primary"%>
     </section>
 </section>

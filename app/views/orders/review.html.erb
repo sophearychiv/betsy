@@ -1,22 +1,19 @@
 <h1> Almost done! Here is your order summary: </h1>
-<h4>You must confirm or cancel your oder below:</h4>
+<h4>You must confirm or cancel your order below:</h4>
 
 <section>
     <h2> Order Summary </h2>
     <table class="table">
     <thead>
         <tr>
-        <th scope="col">Order Total Amount</th>
         <th scope="col">Purchase Date</th>
         <th scope="col">Current Status</th>
         </tr>
     </thead>
     <tbody>
             <tr>
-                <td><%= sub_total %></td>
                 <td><%= Date.today %></td>
                  <td><%= @order.status %></td> 
-                 <%# <td><%= select_tag item.quantity, options_for_select((1..item.product.stock).map {|num| [num, item.id]})%>
             </tr>
     </tbody>
     </table>
@@ -31,7 +28,6 @@
         <th scope="col">Item Price</th>
         <th scope="col">Quantity</th>
         <th scope="col">Item Total</th>
-        <th scope="col">Remove from Cart</th>
         </tr>
     </thead>
     <tbody>
@@ -42,22 +38,21 @@
                 <td><%= item.product.price %></td>
                 <% sub_total += item.product.price%>
                  <td><%= item.quantity %></td> 
-                 <%# <td><%= select_tag item.quantity, options_for_select((1..item.product.stock).map {|num| [num, item.id]})%>
                 <td><%= item.quantity * item.product.price %></td>
-                <td><%= link_to "Cancel this order", order_path(@order.id), :data => {:confirm => 'Are you sure you want to cancel this order?'}, method: :delete %></td>
-                <td><%= link_to "Confirm this order", confirmation_path %></td>
+               
             </tr>
         <% end %>
     </tbody>
     </table>
 
-    <section>
-        <p>Subtotal: <%= sub_total %></p>
-        <p>Tax: <%= tax = (sub_total * 0.09).round(2) %></p>
-        <p>Total: <%= sub_total + tax %></p>
-    </section>
+    <%= link_to "Cancel this order", cancel_order_path(@order.id), method: :patch, class: "btn btn-primary"%>
+                <%# <td><%= link_to "Cancel this order", order_path(@order.id, order: {status: Order::CANCELLED}), :data => {:confirm => 'Are you sure you want to cancel this order?'}, method: :patch %>
+    <%= link_to "Confirm this order", confirmation_path, class: "btn btn-primary" %>
 
     <section>
-        <%= link_to "Check Out", edit_order_path(@order.id) , class: "btn btn-primary"%>
+        <p>Subtotal: <%= @order.sub_total %></p>
+        <p>Tax: <%= @order.tax %></p>
+        <p>Total: <%= @order.total %></p>
     </section>
+
 </section>
