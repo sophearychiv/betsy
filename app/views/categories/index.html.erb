@@ -1,8 +1,8 @@
 <div class="category-container">
-  <h2 class="category-heading">Itsy Categories</h2>
+  <h1 class="category-heading">Itsy Categories</h1>
   <% @categories.each do |category| %>
-    <ul class="list">
-      <li><%=link_to category.name, category_path(category.id) %></li>
+    <ul class="list-type4">
+      <li class="category-link"><%=link_to category.name, category_path(category.id) %></li>
     </ul>
   <% end %>
 </div>
