@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       flash[:success] = "Welcome #{merchant.username}"
     else
       merchant = Merchant.build_from_github(auth_hash)
-    
+
       if merchant.save
         flash[:success] = "Logged in as #{merchant.username}"
       else
