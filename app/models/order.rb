@@ -1,8 +1,6 @@
 class Order < ApplicationRecord
   has_many :orderitems
-  # validates :name, presence: true, allow_nil: true, if: :status_nil?
   validates :name, presence: true, allow_nil: false, unless: :status_nil?
-  # validates :email, presence: true, allow_nil: true, if: :status_nil?
   validates :email, presence: true, allow_nil: false, unless: :status_nil?
   validates :address, presence: true, allow_nil: false, unless: :status_nil?
   validates :cc, presence: true, allow_nil: false, unless: :status_nil?
@@ -19,13 +17,7 @@ class Order < ApplicationRecord
   end
 
   def sub_total
-    sum = 0
-    self.orderitems.each do |item|
-      total_item_price = item.product.price * item.quantity
-      sum += total_item_price
-    end
-
-    return sum
+    return self.orderitems.map.sum { |item| item.product.price }
   end
 
   def tax
