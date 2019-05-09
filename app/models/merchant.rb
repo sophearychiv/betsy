@@ -13,16 +13,16 @@ class Merchant < ApplicationRecord
     username: auth_hash["info"]["name"])
   end
 
-  def orders_by_status(status)
-    items = self.orders.group_by { |oid| oid.order.status }
+  def items_by_status(status)
+    items = self.orderitems.group_by { |oid| oid.order.status }
 
     available_statuses = items.keys
 
     if status == "all"
-      return orders
+      return items
     else
       if STATUSES.include?(status) && available_statuses.include?(status)
-        return order[status]
+        return orderitem[status]
       else
         return []
       end
