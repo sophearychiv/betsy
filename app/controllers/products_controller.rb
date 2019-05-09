@@ -11,7 +11,6 @@ class ProductsController < ApplicationController
     @review = Review.new
     @reviews = @product.reviews
     if @product.active == false || @product.nil?
-      # render :notfound, status: :not_found
       flash[:status] = :warning
       flash[:result_text] = "#{@product.name} is not active."
       redirect_to dashboard_path

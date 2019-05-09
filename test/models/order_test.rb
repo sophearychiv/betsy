@@ -139,7 +139,6 @@ describe Order do
       end
     end
   end
-<<<<<<< HEAD
 
   describe "status_nil?" do
     it "returns true if status is nil" do
@@ -180,6 +179,4 @@ describe Order do
       expect(order.total).must_equal expected_total
     end
   end
-=======
->>>>>>> parent of 93fce73... tests for order_model
 end
