@@ -24,6 +24,39 @@
   text-align: center;
 }
 
-.category-list {
-  background: blue;
+
+.category-link {
+  font-size: 20pt;
+}
+
+.list-type4{
+  width:410px;
+  margin:0 auto;
+}
+    
+.list-type4 ol{
+  counter-reset: li;
+  list-style: none;
+  *list-style: decimal;
+  font-size: 15px;
+  padding: 0;
+  margin-bottom: 4em;
+}
+    
+.list-type4 a{
+  position: relative;
+  display: block;
+  // padding: .4em .4em .4em 2em;
+  *padding: .4em;
+  margin: .5em 0;
+  background: #de99f5;
+  color: white;
+  text-decoration: none;
+  box-shadow:inset 0.5em 0 black;
+  -webkit-transition: box-shadow 1s; /* For Safari 3.1 to 6.0 */
+  transition: box-shadow 1s;
+}
+    
+.list-type4 a:hover{
+  box-shadow:inset 2em 0 black;
 }

@@ -24,7 +24,7 @@ background-color:transparent;
 #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
   color: #333;
   background-color: transparent;
-  border-color: transparent transparent #f3f3f3;
+border-color: transparent transparent #f3f3f3;
   border-bottom: 4px solid !important;
   font-size: 1.5em;
   font-weight: bold;
@@ -36,4 +36,19 @@ background-color:transparent;
   border-top-right-radius: .25rem;
   color: #333;
   font-size: 1.5em;
+}
+
+
+/* Merchant Index */
+
+.all-merchants-head {
+  padding-top: 5%;
+  padding-bottom: 3%;
+  text-align: center;
+}
+
+.merch-list-container {
+  padding-bottom: 3%;
+//   text-decoration: underline;
+  text-align: center;
 }

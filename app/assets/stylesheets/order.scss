@@ -1,3 +1,48 @@
-// Place all the styles related to the order controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+/* Filled cart */
+
+.cart-heading {
+    padding-top: 10%;
+    text-align: center;
+  }
+  
+  .cart-cost {
+    padding-right: 10%;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    background: #dfeee6;
+    text-align: right;
+  }
+  
+  .cart-cost-divider {
+    display: block; 
+    height: 1px;
+    border: 0;
+    border-top: 1px solid  #88ccaa;;
+    margin: 1em 0; padding: 0;
+  }
+  
+  .total-cost {
+    font-weight: bold;
+  }
+  
+  .checkout-btn {
+    padding-left: 75%;
+  }
+  /* Empty Cart */
+  .empty-head {
+    padding-top: 5%;
+  
+  .button-container {
+    text-align: center;
+  } 
+  }
+  
+  /* Checkout page */
+  
+  .checkout-heading {
+    padding-top: 10%;
+    text-align: center;
+  }
+  
