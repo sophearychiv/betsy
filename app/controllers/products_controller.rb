@@ -17,25 +17,25 @@ class ProductsController < ApplicationController
     end
   end
 
-  def by_cat
-    id = params[:id]
-    @category = Category.find_by(id: id)
-    if @category
-      @products_by_cat = Product.category_list(id)
-    else
-      render :notfound, status: :not_found
-    end
-  end
+  # def by_cat
+  #   id = params[:id]
+  #   @category = Category.find_by(id: id)
+  #   if @category
+  #     @products_by_cat = Product.category_list(id)
+  #   else
+  #     render :notfound, status: :not_found
+  #   end
+  # end
 
-  def by_merch
-    id = params[:id]
-    @merchant = Merchant.find_by(id: id)
-    if @merchant
-      @products_by_merch = Product.merchant_list(id)
-    else
-      render :notfound, status: :not_found
-    end
-  end
+  # def by_merch
+  #   id = params[:id]
+  #   @merchant = Merchant.find_by(id: id)
+  #   if @merchant
+  #     @products_by_merch = Product.merchant_list(id)
+  #   else
+  #     render :notfound, status: :not_found
+  #   end
+  # end
 
   def retire
     @product.active = false

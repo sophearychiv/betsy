@@ -43,6 +43,12 @@ describe ProductsController do
   describe "new" do
     it "can get the new product page" do
       get new_product_path
+      must_respond_with :success
+    end
+  end
+
+  describe "edit" do
+    it "can get edit page" do
     end
   end
 
