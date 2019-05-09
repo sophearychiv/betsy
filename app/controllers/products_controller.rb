@@ -7,17 +7,20 @@ class ProductsController < ApplicationController
   end
 
   def show
-      @orderitem = Orderitem.new
-      @review = Review.new
-      @reviews = @product.reviews
+    @orderitem = Orderitem.new
+    @review = Review.new
+    @reviews = @product.reviews
     if @product.active == false || @product.nil?
-      render :notfound, status: :not_found
+      # render :notfound, status: :not_found
+      flash[:status] = :warning
+      flash[:result_text] = "#{@product.name} is not active."
+      redirect_to dashboard_path
     end
   end
 
   def by_merch
     id = params[:id]
-    @merchant = Merchant.find_by(id:id)
+    @merchant = Merchant.find_by(id: id)
     if @merchant
       @products_by_merch = Product.merchant_list(id)
     else
@@ -26,19 +29,18 @@ class ProductsController < ApplicationController
   end
 
   def retire
-  @product.active = false
+    @product.active = false
     if @product.save
-       flash[:success] = "#{@product.name} has been retired."
-       redirect_to dashboard_path
+      flash[:success] = "#{@product.name} has been retired."
+      redirect_to dashboard_path
     end
   end
 
   def new
-  @product = Product.new
+    @product = Product.new
   end
 
   def edit
-  
   end
 
   def create
@@ -59,7 +61,6 @@ class ProductsController < ApplicationController
         flash[:messages] = @product.errors.messages
         render :new
       end
-
     elsif session[:user_id].nil
       flash[:status] = :error
       flash[:result_text] = "Could not create #{@product}. Please sign in if you are authorized."
@@ -68,28 +69,28 @@ class ProductsController < ApplicationController
   end
 
   def update
-      @product.update(params)
+    @product.update(params)
 
-      result = @product.save
+    result = @product.save
 
-      if result
-        flash[:status] = :success
-        flash[:result_text] = "Successfully updated product #{@product.name}"
-        redirect_to product_path(@product.id)
-      else
-        flash[:status] = :failure
-        flash[:result_text] = "Failed to update"
-        flash[:messages] = @product.errors.messages
-        render :edit, status: :bad_request
-      end
+    if result
+      flash[:status] = :success
+      flash[:result_text] = "Successfully updated product #{@product.name}"
+      redirect_to product_path(@product.id)
     else
-      redirect_back fallback_location: root_path, status: :bad_request
+      flash[:status] = :failure
+      flash[:result_text] = "Failed to update"
+      flash[:messages] = @product.errors.messages
+      render :edit, status: :bad_request
     end
+  else
+    redirect_back fallback_location: root_path, status: :bad_request
+  end
 
-private
+  private
 
   def find_product
-  @product = Product.find_by(id: params[:id].to_i)
+    @product = Product.find_by(id: params[:id].to_i)
 
     if @product.nil?
       flash.now[:warning] = "Cannot find the product #{params[:id]}"
