@@ -71,5 +71,15 @@ describe Orderitem do
         expect(quantity).must_equal product1.stock
       end
     end
+
+    describe "total_price" do
+      it "must return the total price of an order item" do
+        item_quantity = orderitem.quantity
+        product_price = orderitem.product.price
+        item_total = orderitem.total_price
+
+        expect(item_total).must_equal (item_quantity * product_price)
+      end
+    end
   end
 end

@@ -1,3 +1,29 @@
 // Place all the styles related to the Categories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// main {
+//     min-height: 500px;
+//     padding: 10%;
+//     margin-top: -5px;
+//     border-radius: 0px 0px 10px 10px;
+// }
+
+.list{
+  display: inline;
+
+}
+
+.category-heading{
+  padding-top: 10%;
+  padding-bottom: 3%;
+}
+.category-container {
+  display: block;
+  flex-direction: column;
+  text-align: center;
+}
+
+.category-list {
+  background: blue;
+}
