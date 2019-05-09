@@ -36,7 +36,7 @@ describe CategoriesController do
 
     describe "new" do
       it "should get new page" do
-        get categories_new_path
+        get new_category_path
 
         must_respond_with :success
       end
@@ -113,7 +113,7 @@ describe CategoriesController do
 
     describe "new" do
       it "will redirect when a logged out user tries to access the new category page" do
-        get categories_new_path
+        get new_category_path
 
         must_redirect_to root_path
         expect(flash[:status]).must_equal :warning
