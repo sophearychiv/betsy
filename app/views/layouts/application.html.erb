@@ -4,16 +4,16 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <title>Itsy</title>
   <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+  <%= csp_meta_tag %> 
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
-<div class="container">
+<div class="test">
   <body>
   <header class="header">
   <h1 class="logo"><%= link_to "Itsy", root_path %></h1>
-    <h3 class="motto">Itsy Bitsy Things For A Big Crowded World</h3>
+    <%# <h3 class="motto">Itsy Bitsy Things For A Big Crowded World</h3> %>
   <nav class="navigation">
     <ul class="nav-app-header">
       <li><%= link_to "Shop All Products", products_path, class: "nav-link" %></li>
@@ -43,8 +43,7 @@
             <% orderitems = Order.find_by(id: session[:order_id]).orderitems%>
             <% if !orderitems.empty?%>
               <%= link_to "Cart", order_path(session[:order_id]), class: "nav-link" %>
-            <% else %>
-                <%= link_to "Cart", empty_cart_path %>
+            <% else %> h %>
             <% end %>
           <% end %>
         </li>
@@ -55,14 +54,14 @@
               <%= link_to "Log out", logout_path, method: "get", id: "session", class: "btn btn-primary"  %></li>
         <% else %>
           <li class="nav-item app-header__nav_item">
-            <%= link_to "Login with Github", "/auth/github", id: "session", class: "btn btn-primary"  %>
+            <%= link_to "Login", "/auth/github", id: "session", class: "btn btn-primary"  %>
           </li>
         <% end %>
       </div>
     </ul>
   </nav>
-</header>
-    <% if flash[:result_text] or flash[:messages] %>
+  </header>
+    <% if flash[:result_text] || flash[:messages] %>
     <section class="alert__container">
       <div class="alert alert-<%= flash[:status].to_s == 'failure' ? 'warning' : flash[:status] %>">
         <span><%= flash[:status].to_s == "failure" ? "A problem occurred: " : "" %><%= flash[:result_text] %></span>
@@ -83,7 +82,49 @@
     </main>
   </body>
   </div>
-  <footer>
-     <%= link_to "Homepage", root_path %>
+  <footer id="itsy-foot">
+    
+<footer class="page-footer font-small blue pt-4">
+  <div class="container-fluid text-center text-md-left">
+    <div class="row">
+      <div class="col-md-6 mt-md-0 mt-3">
+        <h5 class="text-uppercase">Contact Us</h5>
+        <p>| 123 Itty Bitty Rd 98111 | Seattle, Washington |</p>
+      </div>
+      <hr class="clearfix w-100 d-md-none pb-3">
+      <div class="col-md-3 mb-md-0 mb-3">
+        <h5 class="text-uppercase">ITSY</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">ABOUT US</a>
+          </li>
+          <li>
+            <a href="#!">CAREERS</a>
+          </li>
+          <li>
+            <a href="#!">INVESTORS</a>
+          </li>
+          <li>
+            <a href="#!">PRESS</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 mb-md-0 mb-3">
+        <h5 class="text-uppercase">COMMUNITY</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">VOLUNTEER</a>
+          </li>
+          <li>
+            <a href="#!">SIGN THE PETITION</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">© 2019 Copyright: Itsy LLC</div>
+
   </footer>
 </html>

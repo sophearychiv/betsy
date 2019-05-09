@@ -1,6 +1,6 @@
 
 <% if @temp_orderitems.length == 0 %>
-            
+    <% return %> 
 <% else %>
 
     <h3>Your payment has been processed!</h3>
@@ -27,4 +27,11 @@
                 
         </tbody>
     </table>
+
+    <section>
+        <p>Subtotal: <%= @order.sub_total %></p>
+        <p>Tax: <%= @order.tax %></p>
+        <p>Total: <%= @order.total %></p>
+    </section>
+    
 <% end %>

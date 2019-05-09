@@ -1,0 +1,144 @@
+section {
+  padding-bottom: 0px;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 96%;               
+  background-color: gainsboro;
+  height: 1px;
+}
+
+/* Carousel */
+
+.carousel { 
+  display: block !important;
+  z-index: -1;  
+  max-width: 100%;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.container {
+  /*   width: 500px; */
+  /*   height: 700px; */
+  display: flex;  
+  flex-direction: row;  
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Featured Section */
+
+#featured-section {
+  display: flex;
+  flex-direction: row;  
+}
+
+.product-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #099a97;
+}
+
+.featured-products {
+  display: flex;
+  justify-content: space-evenly;
+  padding-right: 7rem;
+  padding-left: 7rem;
+  padding-bottom: 4rem;
+}
+
+.container img {
+  margin-right: 10px;
+  margin-left: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border: solid;
+  border-color: #95d9b3;
+  border-width: 1px;
+  border-radius: 6px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.container p {
+  padding-top: 10px;
+  text-align: center;
+}
+
+.featured-merchant {
+  margin: -20px;
+  font-size: 10pt;
+}
+
+/* Slogan Box */
+
+.slogan-box {
+  background-color: #e2f5ea ;
+  display: flex;
+  justify-content: space-evenly;
+  padding-right: 7rem;
+  padding-left: 7rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.slogan-box img {
+  object-fit: cover;
+  max-width: 500px;
+  max-height: 500px;
+}
+
+h2.whats-itsy {
+  border-bottom: 2px solid #000;
+  padding-bottom: 3px;
+}
+
+div.about-itsy {
+  display: flex;
+  flex-direction: column;
+  padding-left: 3rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Featured Categories */
+
+.featured-cat-title {
+  padding-bottom: 8px;
+  text-align: center;
+}
+.featured-categories {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-right: 7rem;
+  padding-left: 7rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.feat-cat {
+  width: 100%;
+  height: 80%;
+  // margin-right: 10px;
+  // margin-left: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.btn-primary {
+  color: white;
+  border: 1px #292F36 solid;
+}
+
+div.card-deck {
+  z-index: -1;
+}
+

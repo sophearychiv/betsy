@@ -1,101 +1,38 @@
 name,price,merchant_id,stock,description,active,photo_url
-Small Aluminum Chair,5225,97,0,Wua wyogg huewaa hnn-rowr kabukk.,true,lorempixel.com/200/200/animals
-Lightweight Leather Shirt,4139,49,3,Ooma hnn-rowr ruh muaa!,true,lorempixel.com/200/200/animals
-Mediocre Concrete Knife,2146,13,0,Ma roooarrgh wyogg roo wua ruh ma roooarrgh huewaa nng gwyaaaag?,true,lorempixel.com/200/200/animals
-Practical Rubber Knife,8626,73,0,Roo ur ahuma wyaaaaaa mumwa wyogg ooma muaa?,true,lorempixel.com/200/200/animals
-Rustic Rubber Computer,8026,63,2,Muaa muaa gwyaaaag wua nng hnn-rowr ooma ooma?,true,lorempixel.com/200/200/animals
-Small Cotton Hat,6645,12,0,Ur hnn-rowr mumwa gwyaaaag wyogg youw gwyaaaag gwyaaaag.,true,lorempixel.com/200/200/animals
-Enormous Wooden Plate,3109,58,4,Roo mumwa ahuma wyaaaaaa?,true,lorempixel.com/200/200/animals
-Lightweight Plastic Table,100,79,2,Ahuma yrroonn roooarrgh wua roo youw ruh kabukk.,true,lorempixel.com/200/200/animals
-Lightweight Leather Plate,4172,44,2,Ooma ru ahuma yrroonn huewaa muaa roo?,true,lorempixel.com/200/200/animals
-Ergonomic Leather Hat,3594,78,2,Rarr gwyaaaag ur muaa mumwa wua wua ru huewaa yrroonn.,true,lorempixel.com/200/200/animals
-Mediocre Cotton Computer,4066,50,0,Ga ga yrroonn.,true,lorempixel.com/200/200/animals
-Rustic Bronze Table,9882,36,2,Ru wyogg wua roooarrgh.,true,lorempixel.com/200/200/animals
-Enormous Granite Computer,3834,51,1,Ooma huewaa huewaa ruh kabukk.,true,lorempixel.com/200/200/animals
-Sleek Plastic Table,8179,33,1,Wua yrroonn wyogg roooarrgh muaa.,true,lorempixel.com/200/200/animals
-Incredible Steel Clock,508,18,1,Nng ruh ahuma.,true,lorempixel.com/200/200/animals
-Awesome Linen Clock,3975,46,1,Muaa wua roooarrgh hnn-rowr wyogg ooma kabukk rarr roo?,true,lorempixel.com/200/200/animals
-Gorgeous Aluminum Bottle,7335,10,3,Ur hnn-rowr ahuma rarr?,true,lorempixel.com/200/200/animals
-Practical Linen Keyboard,5719,14,2,Kabukk.,true,lorempixel.com/200/200/animals
-Synergistic Cotton Table,8496,50,4,Kabukk gwyaaaag ruh ahuma ur rarr ooma rarr muaa rarr mumwa.,true,lorempixel.com/200/200/animals
-Durable Granite Coat,6134,76,4,Yrroonn.,true,lorempixel.com/200/200/animals
-Heavy Duty Wool Keyboard,7224,38,1,Youw rarr ahuma ruh ooma wua wua!,true,lorempixel.com/200/200/animals
-Small Silk Hat,2010,46,0,Hnn-rowr roooarrgh!,true,lorempixel.com/200/200/animals
-Lightweight Aluminum Gloves,7748,86,0,Hnn-rowr huewaa gwyaaaag.,true,lorempixel.com/200/200/animals
-Fantastic Copper Lamp,4763,96,2,Gwyaaaag mumwa ga gwyaaaag gwyaaaag ur ga.,true,lorempixel.com/200/200/animals
-Sleek Cotton Gloves,1837,52,0,Ruh mumwa ahuma kabukk gwyaaaag!,true,lorempixel.com/200/200/animals
-Practical Plastic Bag,8991,58,4,Wyaaaaaa ooma wyogg ahuma wyaaaaaa youw roo mumwa?,true,lorempixel.com/200/200/animals
-Incredible Silk Plate,108,34,1,Roooarrgh huewaa huewaa.,true,lorempixel.com/200/200/animals
-Sleek Concrete Bench,805,38,1,Yrroonn ooma hnn-rowr muaa wyaaaaaa ahuma ru?,true,lorempixel.com/200/200/animals
-Synergistic Wooden Plate,698,61,4,Wyaaaaaa ahuma rarr youw roo huewaa?,true,lorempixel.com/200/200/animals
-Gorgeous Paper Bottle,9996,26,2,Huewaa wua mumwa?,true,lorempixel.com/200/200/animals
-Small Marble Bottle,9293,36,4,Roo hnn-rowr ooma ru ahuma muaa ma rarr rarr yrroonn roooarrgh?,true,lorempixel.com/200/200/animals
-Durable Rubber Shoes,7358,63,0,Ahuma youw ru ruh wua ru yrroonn ru ooma wyaaaaaa wua!,true,lorempixel.com/200/200/animals
-Fantastic Steel Table,8911,48,2,Wyaaaaaa.,true,lorempixel.com/200/200/animals
-Fantastic Aluminum Table,2960,25,3,Wua nng.,true,lorempixel.com/200/200/animals
-Heavy Duty Cotton Keyboard,1919,68,0,Wyaaaaaa hnn-rowr ru roooarrgh youw rarr ooma gwyaaaag yrroonn ma ooma?,true,lorempixel.com/200/200/animals
-Ergonomic Cotton Shirt,4835,15,4,Ru ur rarr gwyaaaag roo ru rarr huewaa!,true,lorempixel.com/200/200/animals
-Ergonomic Rubber Table,6120,38,1,Ahuma roooarrgh nng huewaa ooma wyogg rarr ma roooarrgh muaa?,true,lorempixel.com/200/200/animals
-Synergistic Aluminum Bench,3891,75,2,Huewaa nng roo roooarrgh wua kabukk roo yrroonn rarr.,true,lorempixel.com/200/200/animals
-Lightweight Linen Car,1135,89,2,Kabukk ruh ruh wyaaaaaa mumwa wyogg yrroonn?,true,lorempixel.com/200/200/animals
-Intelligent Linen Shoes,9099,56,1,Ga nng ahuma youw muaa ruh.,true,lorempixel.com/200/200/animals
-Sleek Iron Shoes,9541,18,2,Youw yrroonn rarr ga nng!,true,lorempixel.com/200/200/animals
-Practical Marble Pants,4715,49,4,Ur ma hnn-rowr ruh wyaaaaaa rarr ga ru wyogg ahuma.,true,lorempixel.com/200/200/animals
-Intelligent Silk Clock,168,40,0,Youw youw huewaa muaa hnn-rowr ooma muaa wyaaaaaa wua.,true,lorempixel.com/200/200/animals
-Sleek Steel Shoes,3325,91,3,Nng youw ru ooma rarr ooma!,true,lorempixel.com/200/200/animals
-Gorgeous Plastic Coat,4633,67,0,Gwyaaaag roooarrgh ga ru hnn-rowr yrroonn kabukk?,true,lorempixel.com/200/200/animals
-Heavy Duty Copper Bag,1432,40,2,Roooarrgh wua ga gwyaaaag wyogg yrroonn ru ga?,true,lorempixel.com/200/200/animals
-Mediocre Silk Watch,1590,64,1,Gwyaaaag youw roooarrgh ruh roooarrgh ma!,true,lorempixel.com/200/200/animals
-Aerodynamic Plastic Keyboard,3055,21,1,Yrroonn yrroonn ma nng hnn-rowr hnn-rowr ooma.,true,lorempixel.com/200/200/animals
-Fantastic Concrete Computer,7409,90,2,Huewaa wua wyogg youw hnn-rowr roooarrgh ruh ma yrroonn!,true,lorempixel.com/200/200/animals
-Lightweight Plastic Computer,4078,20,1,Ga yrroonn huewaa nng ooma nng nng gwyaaaag youw ahuma nng.,true,lorempixel.com/200/200/animals
-Heavy Duty Granite Table,697,12,4,Nng rarr nng roooarrgh roooarrgh youw roo ahuma yrroonn?,true,lorempixel.com/200/200/animals
-Enormous Silk Hat,9801,75,3,Roooarrgh ahuma hnn-rowr ma nng wua gwyaaaag wyaaaaaa yrroonn?,true,lorempixel.com/200/200/animals
-Gorgeous Bronze Car,6606,53,1,Wyaaaaaa ruh wyaaaaaa wyaaaaaa nng youw ur roooarrgh?,true,lorempixel.com/200/200/animals
-Enormous Concrete Wallet,7901,43,0,Ooma nng.,true,lorempixel.com/200/200/animals
-Incredible Leather Gloves,3691,74,1,Yrroonn wyogg gwyaaaag hnn-rowr!,true,lorempixel.com/200/200/animals
-Mediocre Marble Pants,251,93,3,Ga!,true,lorempixel.com/200/200/animals
-Rustic Cotton Knife,3639,17,1,Gwyaaaag mumwa!,true,lorempixel.com/200/200/animals
-Fantastic Wooden Gloves,4197,18,4,Wyaaaaaa ru yrroonn hnn-rowr ga huewaa wua nng.,true,lorempixel.com/200/200/animals
-Awesome Linen Bag,9424,65,4,Ga ga rarr wyaaaaaa yrroonn ur wyogg?,true,lorempixel.com/200/200/animals
-Intelligent Steel Keyboard,3158,12,4,Ur.,true,lorempixel.com/200/200/animals
-Synergistic Granite Shoes,5693,87,4,Nng roo roooarrgh ma ga wua gwyaaaag wua hnn-rowr.,true,lorempixel.com/200/200/animals
-Rustic Bronze Wallet,6318,87,1,Gwyaaaag ru youw wua yrroonn?,true,lorempixel.com/200/200/animals
-Lightweight Bronze Bottle,3202,32,2,Mumwa huewaa yrroonn ma nng?,true,lorempixel.com/200/200/animals
-Intelligent Cotton Pants,3580,11,2,Gwyaaaag wyaaaaaa roooarrgh ur rarr roo nng nng yrroonn ooma!,true,lorempixel.com/200/200/animals
-Ergonomic Concrete Coat,1423,53,2,Yrroonn ru ahuma ur wyaaaaaa ru youw wyaaaaaa ma rarr!,true,lorempixel.com/200/200/animals
-Fantastic Bronze Bag,9306,64,3,Rarr wyogg nng wyogg ruh ur ga ahuma.,true,lorempixel.com/200/200/animals
-Intelligent Granite Gloves,2624,79,2,Roooarrgh rarr wua ga huewaa!,true,lorempixel.com/200/200/animals
-Sleek Cotton Car,3545,63,1,Huewaa gwyaaaag nng ga muaa ma huewaa ur wyaaaaaa!,true,lorempixel.com/200/200/animals
-Rustic Leather Shoes,8231,82,4,Nng ahuma gwyaaaag wyaaaaaa ooma rarr ahuma mumwa?,true,lorempixel.com/200/200/animals
-Aerodynamic Aluminum Coat,4205,60,4,Gwyaaaag youw muaa ur.,true,lorempixel.com/200/200/animals
-Sleek Wool Shirt,4587,73,0,Youw ma wyaaaaaa ma ru hnn-rowr gwyaaaag!,true,lorempixel.com/200/200/animals
-Heavy Duty Iron Coat,6120,61,3,Kabukk wua mumwa ma ru kabukk ur ahuma youw?,true,lorempixel.com/200/200/animals
-Synergistic Marble Wallet,6700,21,4,Hnn-rowr nng gwyaaaag ruh wyaaaaaa mumwa wyogg ma huewaa youw roooarrgh!,true,lorempixel.com/200/200/animals
-Lightweight Granite Shoes,3835,18,1,Ga wyogg hnn-rowr mumwa ahuma.,true,lorempixel.com/200/200/animals
-Sleek Aluminum Table,4706,19,3,Roo ooma ahuma wyogg wyaaaaaa ur?,true,lorempixel.com/200/200/animals
-Enormous Aluminum Keyboard,7227,53,1,Mumwa ahuma ruh muaa rarr wua!,true,lorempixel.com/200/200/animals
-Fantastic Copper Lamp,984,87,0,Nng ooma wyaaaaaa rarr ga youw gwyaaaag ru rarr nng.,true,lorempixel.com/200/200/animals
-Aerodynamic Leather Pants,7918,42,0,Ahuma ga gwyaaaag ma youw wyogg roooarrgh.,true,lorempixel.com/200/200/animals
-Ergonomic Rubber Clock,3779,26,1,Wyogg ur huewaa roo!,true,lorempixel.com/200/200/animals
-Fantastic Iron Hat,9276,22,4,Nng huewaa yrroonn ahuma roo!,true,lorempixel.com/200/200/animals
-Intelligent Marble Clock,1697,21,4,Wyaaaaaa mumwa ma ruh nng rarr muaa nng roooarrgh ma rarr!,true,lorempixel.com/200/200/animals
-Awesome Concrete Keyboard,9901,81,0,Nng wyaaaaaa kabukk ahuma ru hnn-rowr roooarrgh kabukk ur wyaaaaaa.,true,lorempixel.com/200/200/animals
-Durable Rubber Chair,6273,46,3,Roooarrgh muaa ma mumwa roooarrgh yrroonn wyaaaaaa.,true,lorempixel.com/200/200/animals
-Heavy Duty Plastic Knife,6706,62,4,Yrroonn ga wyaaaaaa.,true,lorempixel.com/200/200/animals
-Awesome Granite Shirt,8506,38,2,Ru ooma muaa!,true,lorempixel.com/200/200/animals
-Incredible Leather Table,688,62,3,Ru!,true,lorempixel.com/200/200/animals
-Ergonomic Aluminum Shirt,6096,71,1,Ur kabukk mumwa ruh wua mumwa?,true,lorempixel.com/200/200/animals
-Small Aluminum Bench,4969,75,0,Hnn-rowr ur roooarrgh ma wua ur!,true,lorempixel.com/200/200/animals
-Durable Concrete Keyboard,8289,89,3,Gwyaaaag ahuma kabukk ahuma roooarrgh kabukk gwyaaaag nng huewaa roo.,true,lorempixel.com/200/200/animals
-Enormous Wooden Pants,869,90,3,Roooarrgh roooarrgh.,true,lorempixel.com/200/200/animals
-Gorgeous Steel Table,4115,42,4,Ahuma wua muaa nng wyogg rarr hnn-rowr!,true,lorempixel.com/200/200/animals
-Sleek Cotton Coat,9202,87,2,Muaa yrroonn rarr ma?,true,lorempixel.com/200/200/animals
-Intelligent Paper Computer,5395,32,3,Rarr ma huewaa ma?,true,lorempixel.com/200/200/animals
-Ergonomic Marble Coat,2227,85,1,Ur roooarrgh rarr wyaaaaaa wua nng wyogg ga huewaa nng nng.,true,lorempixel.com/200/200/animals
-Small Silk Chair,1992,63,3,Ma ur.,true,lorempixel.com/200/200/animals
-Sleek Bronze Shirt,5665,75,3,Wua hnn-rowr rarr.,true,lorempixel.com/200/200/animals
-Intelligent Cotton Watch,2485,37,2,Rarr gwyaaaag gwyaaaag?,true,lorempixel.com/200/200/animals
-Incredible Marble Knife,6497,59,1,Roooarrgh ruh ur!,true,lorempixel.com/200/200/animals
-Durable Silk Pants,535,51,2,Nng kabukk wyaaaaaa ruh.,true,lorempixel.com/200/200/animals
-Lightweight Iron Plate,6813,61,1,Wyogg ma hnn-rowr wyogg ruh muaa ma muaa ru nng yrroonn.,true,lorempixel.com/200/200/animals
+Barely Booze,2100,1,30,"One glass might not get you drunk, but watch out after 100!",true,https://katekatekate.net/itsy/itsy6.jpg
+Small-Scale Starbucks,1000,1,99,Super concentrated caffeine content. One cup will do you!,true,https://katekatekate.net/itsy/itsy5.jpg
+Charmante Champs,9999,1,30,Pop Fizz! Perfect for anyone who has a debilitating fear of flying corks!,true,https://katekatekate.net/itsy/itsy4.jpg
+Super Small Sangria,799,2,10,"Small fruit, big buzz!",true,https://katekatekate.net/itsy/itsy18.jpg
+Itsy Iced Tea,1201,2,3,"Straight from our own line of custom products, stay SLIGHTly cool this summer!",true,https://katekatekate.net/itsy/itsy24.jpg
+Mini Muffins,5225,3,10,"We know they're really cupcakes, but at this calorie count who cares?!",true,https://katekatekate.net/itsy/itsy33.jpg
+Puny Pops,500,3,21,Stay SLIGHTly cool this summer with these poppin' treats!,true,https://katekatekate.net/itsy/itsy10.jpg
+Delicate Donuts,1300,4,44,"Donut holes, donut schmoles! The smaller the better!",true,https://katekatekate.net/itsy/itsy1.jpg
+Pretty Patriotic Cake,1550,4,5,Fireworks won't be the only thing making a big bang at your next Fourth of July party!,true,https://katekatekate.net/itsy/itsy19.jpg
+Itty Ice Cream,899,5,80,Sticky hands? Not likely at this size!,true,https://katekatekate.net/itsy/itsy17.jpg
+Pocket-Sized Pink Cake,2200,5,30,Let them eat cake,true,https://katekatekate.net/itsy/itsy35.jpg
+Scanty Rainbow Pancakes,3000,6,60,"Just like your miniature mom used to make.",true,https://katekatekate.net/itsy/itsy31.jpg
+Miniscule Rainbow Cake,4500,7,12,Perfect for a small birthday party.,true,https://katekatekate.net/itsy/itsy21.jpg
+Toy Pocky,7000,8,57,"It may be named Toy Pocky, but it's definitly not playing around.",true,https://katekatekate.net/itsy/itsy25.jpg
+Dainty Dim Sum,2222,9,15,"Seriously, 10/10 on the adorable scale",true,https://katekatekate.net/itsy/itsy23.jpg
+Eggy in a Basket,899,9,74,"Small egg, big flavor!",true,https://katekatekate.net/itsy/itsy28.jpg
+Piccolo Pizza,3399,10,26,"Ever wanted to sneak a whole pizza into the movie theater? Now you can!",true,https://katekatekate.net/itsy/itsy12.jpg
+PB&J,1099,10,30,"I don't think you're ready for this jelly, seriously though.",true,https://katekatekate.net/itsy/itsy29.jpg
+Bitty Burger,4139,11,3,"In and Out? Whataburger? Forget 'em! Say hello to the new trend setter hitting the burger scene.",true,https://katekatekate.net/itsy/itsy2.jpg
+Piggies in a Blanket,4200,11,3,"With piggies this little, you barely even need a blanket.",true,https://katekatekate.net/itsy/itsy32.jpg
+Tiny Tupperware,5002,12,50,"Keep you finger foods and tiny treats fresh with this fab new storage solution.",true,https://katekatekate.net/itsy/itsy11.jpg
+Mini Macaron Earrings,8200,13,38,Your friends are going to be straight up nibbling on those earlobes!,true,https://katekatekate.net/itsy/itsy14.jpg
+Raw Steak Earrings,7500,14,62,"When eating a steak isn't quite enough, you can also hang them from your ears!",true,https://katekatekate.net/itsy/itsy13.jpg
+Avacodo Studs,3300,14,72,"Yes, those are tiny avocados. You can die happy now, and then wear these to your own funeral.",true,https://katekatekate.net/itsy/itsy37.jpg
+Perfectly Bitty Planter,1000,15,9,Does this planter even work out bro? It is proud to say that it does not!,true,https://katekatekate.net/itsy/itsy16.jpg
+Posh Paper Plant,1200,15,5,You don't need a very big green thumb to keep this beauty alive.,true,https://katekatekate.net/itsy/itsy9.jpg
+Not Big Bouquet,999,16,99,Impress your partner with this intentionally small bouquet!,true,https://katekatekate.net/itsy/itsy34.jpg
+Old School 2002 Dainty Desktop,60000,17,100,Comes pre-loaded with Itty Bitty AIM and Wee Windows 2000.,true,https://katekatekate.net/itsy/itsy15.jpg
+Itty Bitty iPad,12099,17,33,"Small size, big BYTES",true,https://katekatekate.net/itsy/itsy22.jpg
+Humble Headphones,3000,17,15,"Big size doesn't alway mean big sound. Stay humble.",true,https://katekatekate.net/itsy/itsy36.jpg
+Mini Mac,200099,18,10,"Small size, big BYTES!",true,https://katekatekate.net/itsy/itsy3.jpg
+Assorted Bitsy Books,4239,18,15,Don't judge a book by the size of its cover!,true,https://katekatekate.net/itsy/itsy8.jpg
+Petite Daily Prophet,1099,18,25,Even the smallest Potter fan will get large amounts of joy out of these.,true,https://katekatekate.net/itsy/itsy7.jpg
+Teensy Teeth Display,2000,19,20,Have anything so tiny and adorable that you could just eat it right up? Display it they way it was meant to be displayed!,true,https://katekatekate.net/itsy/itsy20.jpg
+Modest Floral Pillow,2600,19,99,Perfect for a light sleep.,true,https://katekatekate.net/itsy/itsy30.jpg
+Unpretentious Uno,1500,19,120,Do not recommend playing this in high winds...,true,https://katekatekate.net/itsy/itsy27.jpg
+Little Leather Backpack,5600,19,20,"Think of all the Itsy items you could fit in this little bag!",true,https://katekatekate.net/itsy/itsy26.jpg
