@@ -1,24 +1,65 @@
-<article class="main-content container-fluid">
+
+  <h2 class="display-4 text-center"><%= link_to @product.name, product_path(@product.id) %></h2>
+  <br />
   <div class="row">
-    <section class="col-sm-8 product-show">
-      <h2><%= @product.name %></h2>
-      <p>
-        <%= image_tag(@product.photo_url, height: "300", alt: @product.name) %>
-      </p>
-      <p><%= @product.description%></p>
-      <p><h4><strong>Price: <%= @product.price %></strong></h4></p>
-      <% if @product.stock < 1 %>
-        <strong>Out of Stock</strong>
-        <% else %>
-        <div>
-          <%= form_with model: @orderitem, url: product_orderitems_path(@product.id) do |f|%>
-          <%#= form_with model: @orderitem, url: product_orderitems_path(@product.id), method: :post do |f|%>
-            <strong><%= f.label :quantity%></strong>
-            <%= f.select :quantity, (1..@product.stock)  %><br>
-            <%= f.submit "Add Item to Cart", class: "btn btn-primary to-cart", method: :post %>
+    <div class="col-lg-6">
+      <img src="<%= @product.photo_url %>" alt="<%= @product.name %>" class="two-hundred mb-5">
+    </div>
+    <div class="col-lg-6 pl-5">
+      <h3 class="mb-5 mt-3"><%= @product.name %></h3>
+      <p><strong>Sold By: </strong><%= link_to @product.merchant.username, merchant_path(@product.merchant.id) %></p>
+      <p><strong>Description:</strong> <%= @product.description %></p>
+      <p><strong>Current price:</strong> <%= display_price(@product.price) %></p>
+      <% if @product.reviews.count == 0 %>
+        <p><strong>Item not yet rated.</strong></p>
+      <% else %>
+        <p><strong>Average User Rating:</strong> <%= @product.average_rating %></p>
+      <% end %>
+      <% if @product.active %>
+        <div class="mt-5">
+          <% if @product.stock == 0 %>
+            <p>Out of Stock</p>
+          <% end %>
+        </div>
+
+        <% if @product.stock > 0 %>
+          <%= form_with model: @orderitem, url: orderitem_path, class: "product-form" do |f|%>
+
+            <%= f.label :quantity, 'Quantity' %>
+            <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: @product.stock, maxlength: 3 %>
+
+            <%= f.submit "Add To Cart", class: "product-button btn btn-primary", role: "button" %>
           <% end %>
         <% end %>
+      <% else %>
+        <div class="card-footer text-muted">
+          Product No Longer Available
+        </div>
+      <% end %>
     </div>
-    </section>
   </div>
-</article>
+  <hr />
+  <div class="col-sm-12">
+     <h4 class="text-center mb-5 mt-5">Reviews</h4>
+     <% if @product.reviews.count == 0 %>
+       <% if @product.merchant_id == @current_user&.id %>
+        <p class="text-center mb-5">No reviews yet.</p>
+      <% else %>
+        <p class="text-center mb-5">No reviews yet. Be the first!</p>
+      <% end %>
+     <% end %>
+     <% @reviews.each do |review| %>
+       <blockquote class="blockquote bg-light mb-5 text-center pt-4 pb-4">
+         <p><%= review.body %></p>
+          <footer class="blockquote-footer">
+            Rated on <%= display_date(review.created_at) %><br />
+            Rating: <%= review.rating %> stars
+          </footer>
+       </blockquote>
+     <% end %>
+     <% if @product.reviews.count != 0 %>
+       <h6 class="text-center mt-5">Leave a review.</h6>
+     <% elsif @product.merchant_id != session[:user_id] %>
+       <%= link_to "Review Product", new_product_review_path(@product.id) %>
+     <% end %>
+  </div>
