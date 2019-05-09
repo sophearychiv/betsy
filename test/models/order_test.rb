@@ -94,7 +94,7 @@ describe Order do
         expect(order.errors.messages[:address]).must_equal ["can't be blank"]
       end
 
-      it "requires cc if status is not nil" do
+      it "requires cc if status is not pending" do
         order.cc = nil
         # order.status == "complete"
         valid_order = order.valid?
@@ -103,7 +103,7 @@ describe Order do
         expect(order.errors.messages[:cc]).must_equal ["can't be blank"]
       end
 
-      it "requires csv if status is not nil" do
+      it "requires csv if status is not pending" do
         order.csv = nil
         # order.status == "complete"
         valid_order = order.valid?
@@ -112,7 +112,7 @@ describe Order do
         expect(order.errors.messages[:csv]).must_equal ["can't be blank"]
       end
 
-      it "requires expiration_date if status is not nil" do
+      it "requires expiration_date if status is not pending" do
         order.expiration_date = nil
         # order.status == "complete"
         valid_order = order.valid?
@@ -139,6 +139,7 @@ describe Order do
       end
     end
   end
+<<<<<<< HEAD
 
   describe "status_nil?" do
     it "returns true if status is nil" do
@@ -179,4 +180,6 @@ describe Order do
       expect(order.total).must_equal expected_total
     end
   end
+=======
+>>>>>>> parent of 93fce73... tests for order_model
 end
