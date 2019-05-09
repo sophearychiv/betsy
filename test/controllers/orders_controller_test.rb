@@ -162,6 +162,29 @@ describe OrdersController do
       expect(flash.now[:status]).must_equal :warning
       expect(flash.now[:result_text]).must_equal "Some item quantities in your cart have changed due to availability: #{orderitem.product.name}"
     end
+
+    it "should flash a message to the user if multiple item quantities have changed in their cart" do
+      orderitem = create_cart
+      orderitem.quantity = 2
+      orderitem.save
+      orderitem.reload
+      orderitem.product.stock = 1
+      orderitem.product.save
+      orderitem.product.reload
+
+      orderitem2 = orderitems(:item2)
+      order = orderitem.order
+      order.orderitems << orderitem2
+      orderitem2.product.stock = 0
+      orderitem2.product.save
+      orderitem2.reload
+      orderitem2.product.reload
+
+      get order_path(session[:order_id])
+
+      expect(flash.now[:status]).must_equal :warning
+      expect(flash.now[:result_text]).must_equal "Some item quantities in your cart have changed due to availability: #{orderitem.product.name}, #{orderitem2.product.name}"
+    end
   end
 
   describe "confirmation" do
