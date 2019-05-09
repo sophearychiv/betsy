@@ -42,7 +42,7 @@
           <% else %>
             <% orderitems = Order.find_by(id: session[:order_id]).orderitems%>
             <% if !orderitems.empty?%>
-              <%= link_zto "Cart", order_path(session[:order_id]), class: "nav-link" %>
+              <%= link_to "Cart", order_path(session[:order_id]), class: "nav-link" %>
             <% else %> h %>
             <% end %>
           <% end %>
