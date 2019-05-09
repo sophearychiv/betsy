@@ -94,7 +94,7 @@ describe Order do
         expect(order.errors.messages[:address]).must_equal ["can't be blank"]
       end
 
-      it "requires cc if status is not pending" do
+      it "requires cc if status is not nil" do
         order.cc = nil
         # order.status == "complete"
         valid_order = order.valid?
@@ -103,7 +103,7 @@ describe Order do
         expect(order.errors.messages[:cc]).must_equal ["can't be blank"]
       end
 
-      it "requires csv if status is not pending" do
+      it "requires csv if status is not nil" do
         order.csv = nil
         # order.status == "complete"
         valid_order = order.valid?
@@ -112,7 +112,7 @@ describe Order do
         expect(order.errors.messages[:csv]).must_equal ["can't be blank"]
       end
 
-      it "requires expiration_date if status is not pending" do
+      it "requires expiration_date if status is not nil" do
         order.expiration_date = nil
         # order.status == "complete"
         valid_order = order.valid?
@@ -137,6 +137,14 @@ describe Order do
       order.orderitems.each do |orderitem|
         expect(orderitem).must_be_instance_of Orderitem
       end
+    end
+  end
+
+  describe "status_nil?" do
+    it "returns true if status is nil" do
+      order = orders(:one)
+      order.status = nil
+      expect(order.status_nil?).must_equal true
     end
   end
 end
