@@ -2,7 +2,7 @@
 @import "bootstrap";
 /* Import scss content */
 @import "**/*";
-// @import url('https://fonts.googleapis.com/css?family=Lilita+One|Itim|Fredonka+One');
+@import url('https://fonts.googleapis.com/css?family=Lilita+One|Itim|Fredonka+One');
 
 html{
   height:100%;
@@ -165,6 +165,7 @@ a:hover {
 }
 
 .btn-primary {
+  background-color: white;
   color: var(--primary);
   border: 1px #292F36 solid;
 }
@@ -213,3 +214,22 @@ a:hover {
   margin-left: auto;
   padding-bottom: 10px;
 }
+
+/* Footer */
+
+#itsy-foot {
+  background-color: #95d9b3 ;
+  height: 220px;
+  font-size: 15px;
+}
+
+
+.text-uppercase, .copyright {
+  color: white;
+}
+
+#itsy-foot p {
+  color: #ffffff;
+  font-size: 17px;
+}
+

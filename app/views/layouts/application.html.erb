@@ -60,7 +60,7 @@
       </div>
     </ul>
   </nav>
-</header>
+  </header>
     <% if flash[:result_text] || flash[:messages] %>
     <section class="alert__container">
       <div class="alert alert-<%= flash[:status].to_s == 'failure' ? 'warning' : flash[:status] %>">
@@ -82,7 +82,49 @@
     </main>
   </body>
   </div>
-  <footer>
-     <%= link_to "Homepage", root_path %>
+  <footer id="itsy-foot">
+    
+<footer class="page-footer font-small blue pt-4">
+  <div class="container-fluid text-center text-md-left">
+    <div class="row">
+      <div class="col-md-6 mt-md-0 mt-3">
+        <h5 class="text-uppercase">Contact Us</h5>
+        <p>| 123 Itty Bitty Rd 98111 | Seattle, Washington |</p>
+      </div>
+      <hr class="clearfix w-100 d-md-none pb-3">
+      <div class="col-md-3 mb-md-0 mb-3">
+        <h5 class="text-uppercase">ITSY</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">ABOUT US</a>
+          </li>
+          <li>
+            <a href="#!">CAREERS</a>
+          </li>
+          <li>
+            <a href="#!">INVESTORS</a>
+          </li>
+          <li>
+            <a href="#!">PRESS</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 mb-md-0 mb-3">
+        <h5 class="text-uppercase">COMMUNITY</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">VOLUNTEER</a>
+          </li>
+          <li>
+            <a href="#!">SIGN THE PETITION</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">© 2019 Copyright: Itsy LLC</div>
+
   </footer>
 </html>
