@@ -5,9 +5,7 @@ class OrderitemsController < ApplicationController
 
     if @product
       @orderitem = Orderitem.new(orderitem_params)
-      # needs to be updated when the product logic for in_stock? is updated
-      # currently this isn't changing the stock count, which is good,
-      # but is misleading as far as readability
+      # not actually changing stock, just using this as a device to generate errors
       @product.stock -= params[:orderitem][:quantity].to_i
 
       if !@product.valid?
@@ -51,9 +49,8 @@ class OrderitemsController < ApplicationController
       flash[:result_text] = "An itsy problem occurred: Could not find item"
       redirect_to root_path
     else
-      # talk to team... shouldn't be checking stock at this point in the proccess...
       @product = @orderitem.product
-      # # can be positive or negative depending on orderitem quantity change being made
+      # not actually changing stock, just using this as a device to generate errors
       @product.stock -= params[:quantity].to_i
 
       if !@product.valid?
