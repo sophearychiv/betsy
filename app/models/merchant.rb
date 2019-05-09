@@ -3,27 +3,26 @@ class Merchant < ApplicationRecord
 
   has_many :products
   has_many :orderitems, through: :products
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 
-  def new
+  def self.build_from_github(auth_hash)
   return Merchant.new(uid: auth_hash[:uid],
     provider: "github",
     email: auth_hash["info"]["email"],
     username: auth_hash["info"]["name"])
   end
 
-  validates :name, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true
-
-  def items_by_status(status)
-    items = self.orderitems.group_by { |oi| oi.order.status }
+  def orders_by_status(status)
+    items = self.orders.group_by { |oid| oid.order.status }
 
     available_statuses = items.keys
 
     if status == "all"
-      return items
+      return orders
     else
       if STATUSES.include?(status) && available_statuses.include?(status)
-        return items[status]
+        return order[status]
       else
         return []
       end
