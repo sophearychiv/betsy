@@ -151,11 +151,32 @@ describe Order do
   describe "sub_total" do
     it "gets the sub total" do
       product = products(:product1)
-      expected_sub_total = (product.price * 0.09) + product.price
       order = Order.create(status: nil)
       orderitem = Orderitem.create(order_id: order.id, product_id: product.id, quantity: 1)
-      order << orderitem
+      expected_sub_total = product.price
       expect(order.sub_total).must_equal expected_sub_total
+    end
+  end
+
+  describe "tax" do
+    it "calculates the tax correctly" do
+      product = products(:product1)
+      order = Order.create(status: nil)
+      orderitem = Orderitem.create(order_id: order.id, product_id: product.id, quantity: 1)
+      expected_tax = product.price * 0.09
+
+      expect(order.tax).must_equal expected_tax
+    end
+  end
+
+  describe "total" do
+    it "calculates the total price correctly" do
+      product = products(:product1)
+      order = Order.create(status: nil)
+      orderitem = Orderitem.create(order_id: order.id, product_id: product.id, quantity: 1)
+      expected_total = (product.price * 0.09) + product.price
+
+      expect(order.total).must_equal expected_total
     end
   end
 end
