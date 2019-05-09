@@ -7,17 +7,20 @@ class ProductsController < ApplicationController
   end
 
   def show
-      @orderitem = Orderitem.new
-      @review = Review.new
-      @reviews = @product.reviews
+    @orderitem = Orderitem.new
+    @review = Review.new
+    @reviews = @product.reviews
     if @product.active == false || @product.nil?
-      render :notfound, status: :not_found
+      # render :notfound, status: :not_found
+      flash[:status] = :warning
+      flash[:result_text] = "#{@product.name} is not active."
+      redirect_to dashboard_path
     end
   end
 
   def by_cat
     id = params[:id]
-    @category = Category.find_by(id:id)
+    @category = Category.find_by(id: id)
     if @category
       @products_by_cat = Product.category_list(id)
     else
@@ -27,7 +30,7 @@ class ProductsController < ApplicationController
 
   def by_merch
     id = params[:id]
-    @merchant = Merchant.find_by(id:id)
+    @merchant = Merchant.find_by(id: id)
     if @merchant
       @products_by_merch = Product.merchant_list(id)
     else
@@ -39,7 +42,7 @@ class ProductsController < ApplicationController
     @product.active = false
     if @product.save
       flash[:success] = "#{@product.name} has been retired."
-      redirect_to merchant_path(@merchant_id)
+      redirect_to dashboard_path
     end
   end
 
@@ -50,7 +53,7 @@ class ProductsController < ApplicationController
   def edit
     @categories = Category.all
     if (session[:user_id] != params[:merchant_id].to_i) || (@product.merchant_id != session[:user_id])
-    render "layouts/notfound", status: :not_found
+      render "layouts/notfound", status: :not_found
     end
   end
 
@@ -72,7 +75,6 @@ class ProductsController < ApplicationController
         flash[:messages] = @product.errors.messages
         render :new
       end
-
     elsif session[:user_id].nil
       flash[:status] = :error
       flash[:result_text] = "Could not create #{@product}. Please sign in if you are authorized."
@@ -81,7 +83,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-  @categories = Category.all
+    @categories = Category.all
     if @product.update(product_params)
       @merchant_id = product_params[:merchant_id].to_i
       flash[:status] = :success
@@ -95,10 +97,10 @@ class ProductsController < ApplicationController
     end
   end
 
-private
+  private
 
   def find_product
-  @product = Product.find_by(id: params[:id].to_i)
+    @product = Product.find_by(id: params[:id].to_i)
 
     if @product.nil?
       flash.now[:warning] = "Cannot find the product #{params[:id]}"

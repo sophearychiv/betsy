@@ -17,7 +17,7 @@ class Order < ApplicationRecord
   end
 
   def sub_total
-    return self.orderitems.map.sum { |item| item.product.price }
+    return self.orderitems.map.sum { |item| item.product.price * item.quantity }
   end
 
   def tax
