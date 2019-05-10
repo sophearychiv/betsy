@@ -2,7 +2,7 @@
 @import "bootstrap";
 /* Import scss content */
 @import "**/*";
-@import url('https://fonts.googleapis.com/css?family=Lilita+One|Itim|Fredonka+One');
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 html{
   height:100%;
@@ -34,7 +34,7 @@ html{
 
 body {
   // background-image: url("doodles.png");
-  font-family: 'Itim', sans-serif;
+  font-family: 'Nunito', sans-serif;
   display: block;
   margin-left: auto;
   margin-right: auto;
