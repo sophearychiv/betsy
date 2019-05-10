@@ -29,16 +29,16 @@ describe ProductsController do
     end
   end
 
-  describe "by_cat" do
-    it "gets products by category" do
-      category = categories(:food)
-      get category_path(category.id)
-      must_respond_with :success
+  # describe "by_cat" do
+  #   it "gets products by category" do
+  #     category = categories(:food)
+  #     get category_path(category.id)
+  #     must_respond_with :success
 
-      get products_path
-      must_respond_with :success
-    end
-  end
+  #     get products_path
+  #     must_respond_with :success
+  #   end
+  # end
 
   describe "new" do
     it "can get the new product page" do
