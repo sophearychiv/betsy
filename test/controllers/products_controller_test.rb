@@ -29,10 +29,16 @@ describe ProductsController do
     end
 
     it "gives flash notice when the product is not found" do
-      product_id = Product.last.id + 1
-      get product_path(product_id)
+      merch = perform_login
+      product_id = -1
+      puts merch
+      puts session[:user_id]
+      expect {
+        get product_path(product_id)
+      }.wont_change "Product.count"
+
       must_respond_with :redirect
-      expect(flash[:status]).must_equal :error
+      expect(flash[:status]).must_equal :warning
       expect(flash[:result_text]).must_equal "Product does not exist."
     end
   end
