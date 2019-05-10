@@ -20,31 +20,33 @@
       <table class="table table-striped">
         <thead class="thead-light">
           <tr>
-            <th>Order #</th>
-            <th>Purchase Date</th>
-            <th>Order Status</th>
+            <th colspan="1">Order #</th>
+            <th colspan="2">Last Updated</th>
+            <th colspan="3">Order Status</th>
           </tr>
         </thead>
         <tbody>
-        <% all_products = @merchant.products %>
-        <% sold_products = [] %>
-        <% all_products.each do |product| %>
-          <% if !product.orderitems.empty? %>
-            <% sold_products << product %>
+          <% all_products = @merchant.products %>
+          <% sold_products = [] %>
+          <% all_products.each do |product| %>
+            <% if !product.orderitems.empty? %>
+              <% sold_products << product %>
+            <% end %>
           <% end %>
-        <% end %>
-        <% sold_products.each do |product| %>
-          
+          <% sold_products.each do |product| %>      
           <tr>
-            <td><%= product.orderitems.first.order.id %></td>
-            <td><%= product.orderitems.first.order.updated_at.to_date %></td>
-            <td><%= product.orderitems.first.order.status %>
-            <td><%= product.name %></td>
+            <td colspan="1"><%= product.orderitems.first.order.id %></td>
+            <td colspan="2"><%= product.orderitems.first.order.updated_at.to_date %></td>
+            <td colspan="3"><%= product.orderitems.first.order.status %></td>
+          </tr>
 
+          <tr>
             <% product.orderitems.each do |item| %>
-              <%= item.product.name %>
-              <%= item.product.price %>
-              <%= item.quantity %>
+             <td><%= item.product.name %></td>
+             <td><%= item.product.price %></td>
+             <td><%= item.quantity %></td>
+             <td>SHIP</td>
+             <td>CANCEL</td>
             <% end %>
           </tr>
         <% end %>
