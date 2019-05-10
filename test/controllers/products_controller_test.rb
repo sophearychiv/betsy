@@ -27,6 +27,14 @@ describe ProductsController do
       expect(flash[:result_text]).must_equal "#{product.name} is not active."
       must_respond_with :redirect
     end
+
+    it "gives flash notice when the product is not found" do
+      product_id = Product.last.id + 1
+      get product_path(product_id)
+      must_respond_with :redirect
+      expect(flash[:status]).must_equal :error
+      expect(flash[:result_text]).must_equal "Product does not exist."
+    end
   end
 
   # describe "by_cat" do
@@ -49,6 +57,17 @@ describe ProductsController do
 
   describe "edit" do
     it "can get edit page" do
+      product = products(:product1)
+      get edit_product_path(product.id)
+      must_respond_with :success
+    end
+
+    it "gives flash notice when the product does not exist" do
+      product_id = Product.last.id + 1
+      get edit_product_path(product_id)
+      must_respond_with :redirect
+      expect(flash[:status]).must_equal :success
+      expect(flash[:result_text]).must_equal "Product not found."
     end
   end
 

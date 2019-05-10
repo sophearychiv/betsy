@@ -7,13 +7,19 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @orderitem = Orderitem.new
-    @review = Review.new
-    @reviews = @product.reviews
-    if @product.active == false || @product.nil?
+    @orderitem = Orderitem.new # should be removed?
+    @review = Review.new # should be removed?
+
+    if @product.nil?
+      flash[:status] = :error
+      flash[:result_text] = "Product does not exist."
+      redirect_to dashboard_path
+    elsif @product.active == false
       flash[:status] = :warning
       flash[:result_text] = "#{@product.name} is not active."
       redirect_to dashboard_path
+    else
+      @reviews = @product.reviews
     end
   end
 
@@ -86,15 +92,16 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @categories = Category.all
+    # @categories = Category.all
     if @product.update(product_params)
       merchant_id = session[:user_id]
       # @merchant_id = product_params[:merchant_id].to_i
       flash[:status] = :success
       flash[:result_text] = "Successfully updated #{@product.name}"
+      # redirect_to product_path(@product.id)
       redirect_to merchant_path(merchant_id)
     else
-      flash[:status] = :failure
+      flash[:status] = :error
       flash[:result_text] = "Failed to update"
       flash[:messages] = @product.errors.messages
       render :edit, status: :bad_request
