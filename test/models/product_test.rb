@@ -21,7 +21,7 @@ describe Product do
   end
 
   it "returns not yet rated if there are no ratings" do
-    expect(products(:product3).average_rating).must_equal 'Not yet rated'
+    expect(products(:product3).average_rating).must_equal 0
   end
 
   it "can list just the active products" do
