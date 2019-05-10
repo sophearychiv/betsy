@@ -2,7 +2,7 @@ require "test_helper"
 
 describe Merchant do
   before do
-    @merch =  merchants(:kim)
+    @merch = merchants(:kim)
     @merch2 = merchants(:stephanie)
   end
 
@@ -21,10 +21,10 @@ describe Merchant do
   describe "validations" do
     let(:new_merch) {
       Merchant.new(
-        username: 'testuser',
-        email: 'testemail@itsy.com',
+        username: "testuser",
+        email: "testemail@itsy.com",
         uid: 1010,
-        provider: 'github'
+        provider: "github",
       )
     }
     it "is a valid with unique email and username" do
@@ -64,62 +64,62 @@ describe Merchant do
         expect(@merch.total_revenue).must_equal 1598
       end
     end
+  end
+
+  describe "paid orders sum" do
+    before do
+      order1 = orderitems(:item5)
     end
 
-    describe "paid orders sum" do
-      before do
-        order1 = orderitems(:item5)
-      end
-
-      it "returns correct number of orders for current merchant" do
-        @merch2.orderitems.length.must_equal 3
-      end
+    it "returns correct number of orders for current merchant" do
+      @merch2.orderitems.length.must_equal 3
     end
+  end
 
   describe "items_by_status" do
     it "if arg is 'all', returns a collection of orderitems as a hash" do
-    orderitems = merchant.items_by_status("all")
+      orderitems = @merch.items_by_status("all")
 
-    orderitems.each do |key, value|
-      expect(STATUSES).must_include key
-      value.each do |item|
-        expect(item).must_be_kind_of Orderitem
-          end
-        end
-
-        expect(orderitems).must_be_kind_of Hash
-       end
-    end
-
-      it "if arg is valid status, returns a collection of orderitems as an array" do
-        orderitems = @merch.items_by_status("complete")
-
-        expect(orderitems).must_be_kind_of Array
-        orderitems.each do |item|
+      orderitems.each do |key, value|
+        expect(STATUSES).must_include key
+        value.each do |item|
           expect(item).must_be_kind_of Orderitem
         end
       end
+
+      expect(orderitems).must_be_kind_of Hash
+    end
+  end
+
+  it "if arg is valid status, returns a collection of orderitems as an array" do
+    orderitems = @merch.items_by_status("complete")
+
+    expect(orderitems).must_be_kind_of Array
+    orderitems.each do |item|
+      expect(item).must_be_kind_of Orderitem
+    end
+  end
+end
+
+describe "self.items_by_orderid(items)" do
+  it "takes in an array of orderitems and returns items as a hash grouped by orderid" do
+    item1 = orderitems(:item1)
+    item2 = orderitems(:item2)
+    item3 = orderitems(:item3)
+    items = []
+    items << item1
+    items << item2
+    items << item3
+    order_ids = []
+
+    orderitems = Merchant.items_by_orderid(items)
+    orderitems.each do |key, value|
+      order_ids << key
+      value.each do |item|
+        expect(item).must_be_kind_of Orderitem
+      end
     end
 
-    describe "self.items_by_orderid(items)" do
-      it "takes in an array of orderitems and returns items as a hash grouped by orderid" do
-        item1 = orderitems(:itemone)
-        item2 = orderitems(:itemtwo)
-        item3 = orderitems(:itemthree)
-        items = []
-        items << item1
-        items << item2
-        items << item3
-        order_ids = []
-
-        orderitems = Merchant.items_by_orderid(items)
-        orderitems.each do |key, value|
-          order_ids << key
-          value.each do |item|
-            expect(item).must_be_kind_of Orderitem
-          end
-        end
-
-        expect(order_ids.uniq.length).must_equal 3
-      end
+    expect(order_ids.uniq.length).must_equal 3
   end
+end
