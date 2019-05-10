@@ -4,6 +4,7 @@ describe Merchant do
   before do
     @merch = merchants(:kim)
     @merch2 = merchants(:stephanie)
+    @merch3 = merchants(:sopheary)
   end
 
   describe "relations" do
@@ -58,10 +59,20 @@ describe Merchant do
     describe "total revenue" do
       before do
         @merch = merchants(:sopheary)
+        @merch2 = merchants(:kim)
       end
 
       it "returns total revenue for that user" do
-        expect(@merch.total_revenue).must_equal 1598
+        product = products(:product4)
+        orderitem = orderitems(:item1)
+        orderitem.order.status = "Complete"
+        orderitem.order.save
+        product.orderitems << orderitem
+        @merch3.products << product
+
+        puts @merch3.items_by_status("Paid")
+        puts @merch3.items_by_status("Complete")
+        expect(@merch3.total_revenue).must_equal orderitem.total_price
       end
     end
 
@@ -119,14 +130,18 @@ describe Merchant do
         end
       end
 
-      expect(order_ids.uniq.length).must_equal 3
+      expect(order_ids.uniq.length).must_equal 2
     end
 
     describe "orders_by_status" do
-      # it "should return all orders of a given status for a merchant" do
-      #   puts @merch.products
-      #   expect(@merch.orders_by_status("Paid").length).must_equal 2
-      # end
+      it "should return all orders of a given status for a merchant" do
+        product = products(:product4)
+        orderitem = orderitems(:item1)
+        product.orderitems << orderitem
+        @merch3.products << product
+
+        expect(@merch3.orders_by_status("Pending").length).must_equal 1
+      end
     end
   end
 end
