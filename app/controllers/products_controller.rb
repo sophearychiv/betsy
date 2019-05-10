@@ -35,7 +35,7 @@ class ProductsController < ApplicationController
 
   def edit
     if @product.nil?
-      flash[:status] = :success
+      flash[:status] = :error
       flash[:result_text] = "Product not found."
       redirect_to dashboard_path
     end

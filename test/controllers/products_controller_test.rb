@@ -55,10 +55,11 @@ describe ProductsController do
     end
 
     it "gives flash notice when the product does not exist" do
+      perform_login
       product_id = Product.last.id + 1
       get edit_product_path(product_id)
       must_respond_with :redirect
-      expect(flash[:status]).must_equal :success
+      expect(flash[:status]).must_equal :error
       expect(flash[:result_text]).must_equal "Product not found."
     end
   end
