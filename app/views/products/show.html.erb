@@ -1,9 +1,9 @@
-<article class="container main-article">
+<article class="product-main-article">
   <h2 class="display-4 text-center"><%= link_to @product.name, product_path(@product.id) %></h2>
   <br />
   <div class="row">
     <div class="col-lg-6">
-      <img src="<%= @product.photo_url %>" alt="<%= @product.name %>" class="two-hundred mb-5">
+      <img src="<%= @product.photo_url %>" alt="<%= @product.name %>" class="product-show-img">
     </div>
     <div class="col-lg-6 pl-5">
       <h3 class="mb-5 mt-3"><%= @product.name %></h3>
