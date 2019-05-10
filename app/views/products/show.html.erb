@@ -58,7 +58,7 @@
        </blockquote>
      <% end %>
      <% if @product.reviews.count != 0 %>
-       <h6 class="text-center mt-5">Leave a review.</h6>
+       <h6 class="text-center mt-5"><%= link_to "Leave a review.", new_product_review_path(@product.id) %></h6>
      <% elsif @product.merchant_id != session[:user_id] %>
        <%= link_to "Review Product", new_product_review_path(@product.id) %>
      <% end %>
