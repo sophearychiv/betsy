@@ -22,6 +22,7 @@
   display: block;
   flex-direction: column;
   text-align: center;
+  padding-top: 10%
 }
 
 
@@ -34,7 +35,7 @@
   margin:0 auto;
 }
     
-.list-type4 ol{
+.list-type4 ul{
   counter-reset: li;
   list-style: none;
   *list-style: decimal;
