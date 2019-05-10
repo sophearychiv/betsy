@@ -8,17 +8,25 @@ class ProductsController < ApplicationController
   end
 
   def show
-    if @product.nil?
-      flash[:status] = :error
-      flash[:result_text] = "Product does not exist."
-      redirect_to dashboard_path
-    elsif @product.active == false
+    @orderitem = Orderitem.new
+    @review = Review.new
+    @reviews = @product.reviews
+    if @product.active == false || @product.nil?
       flash[:status] = :warning
       flash[:result_text] = "#{@product.name} is not active."
       redirect_to dashboard_path
-    else
-      @reviews = @product.reviews
     end
+    # if @product.nil?
+    #   flash[:status] = :error
+    #   flash[:result_text] = "Product does not exist."
+    #   redirect_to dashboard_path
+    # elsif @product.active == false
+    #   flash[:status] = :warning
+    #   flash[:result_text] = "#{@product.name} is not active."
+    #   redirect_to dashboard_path
+    # else
+    #   @reviews = @product.reviews
+    # end
   end
 
   def retire
