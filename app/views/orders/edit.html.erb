@@ -8,23 +8,41 @@
   </ul>
 <% end %>
 
-<h1 class="checkout-heading">Checkout</h1>
-<section class="form-control">
-  <%= form_with model: @order do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-    <%= f.label :cc, 'Credit Card Number' %>
-    <%= f.text_field :cc %>
-    <%= f.label :csv, 'Cvv' %>
-    <%= f.text_field :csv %>
-    <%= f.label :expiration_date, 'Expiration Date' %>
-    <%= f.text_field :expiration_date %>
 
-    <%= f.submit "Review the Order", class: "submit-btn" %>
+<h1 class="checkout-heading">Checkout</h1>
+<%# <section class="form-control"> %>
+  <%= form_with model: @order do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :address %>
+      <%= f.text_field :address, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.text_field :email, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :cc, 'Credit Card Number' %>
+      <%= f.text_field :cc, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :csv, 'Cvv' %>
+      <%= f.text_field :csv, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :expiration_date, 'Expiration Date' %>
+      <%= f.text_field :expiration_date, class: "form-control" %>
+    </div>
+
+      <%= f.submit "Review the Order", class: "btn btn-primary" %>
 
   <% end %>
-</section>
+<%# </section> %>
