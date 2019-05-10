@@ -8,18 +8,28 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
 
     if @product
+      if @product.merchant_id == session[:user_id]
+        flash[:status] = :error
+        flash[:result_text] = "An itsy problem occurred: You can't rate your own products"
+        redirect_to dashboard_path(session[:user_id])
+        return
+      end
+
       if @product.reviews << @review
-        flash[:success] = "Thank you for your feedback"
+        flash[:status] = :success
+        flash[:result_text] = "Thank you for your feedback"
         redirect_to product_path(params[:product_id])
       else
-        flash[:error] = "An itsy problem occurred: Could not process feedback"
+        flash[:status] = :error
+        flash[:result_text] = "An itsy problem occurred: Could not process feedback"
         @review.errors.messages.each do |field, messages|
           flash.now[field] = messages
         end
         render :new, status: :bad_request
       end
     else
-      flash[:error] = "An itsy problem occurred: Product not found"
+      flash[:status] = :error
+      flash[:result_text] = "An itsy problem occurred: Product not found"
       redirect_to products_path
     end
   end
