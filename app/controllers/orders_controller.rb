@@ -88,6 +88,20 @@ class OrdersController < ApplicationController
     end
   end
 
+  def shipped
+    @order = Order.find_by(id: params[:id])
+
+    if @order
+      @order.update(status: Order::SHIPPED)
+      flash[:status] = :success
+      flash[:result_text] = "Little order ##{@order.id} marked shipped!"
+    else
+      flash[:status] = :warning
+      flash[:result_text] = "An itsy problem occurred: Could not find order"
+    end
+    redirect_to dashboard_path(session[:user_id])
+  end
+
   private
 
   def find_order

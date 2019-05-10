@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   # get "/orders/:id/cancel", to: "orders#cancel", as: "cancel_order"
   patch "/orders/:id/cancel", to: "orders#cancel", as: "cancel_order"
+  patch "/orders/:id/shipped", to: "orders#shipped", as: "shipped"
   # patch "/orders/:id/cancel", to: "orders#cancel"
   get "/orders/:id/review", to: "orders#review", as: "review_order"
   resources :orders
