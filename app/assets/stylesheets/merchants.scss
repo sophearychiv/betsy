@@ -68,3 +68,37 @@ border-color: transparent transparent #f3f3f3;
   width: 100%;
 }
 
+.merch-container {
+  padding: 5%;
+  /* width: 500px; */
+  height: 700px;
+  align-items: center;
+}
+
+.username-heading {
+  text-align: center;
+}
+
+.merch-header {
+  padding-top: 5%;
+  background:#c3e9d6;
+}
+
+.merch-header {
+  padding-left: 5%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  margin-bottom: 3%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  color: white;
+  text-shadow: 2px 2px #77be9b;
+}
+
+.dashboard-title {
+  padding-top: 5%;
+  text-align: center;
+}
+
+.merchant-content {
+  padding: 5%;
+}
