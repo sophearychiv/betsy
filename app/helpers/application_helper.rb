@@ -18,18 +18,6 @@ module ApplicationHelper
     '<i class="fa fa-shopping-cart"><span class="badge badge-danger d-flex justify-content-around">'.html_safe + "#{count}" '</span></i>'.html_safe
   end
 
-  def new_orders_badge_header_menu
-    unless @orders_count == 0
-      ('<span class="badge badge-danger badge-new-orders-header-menu ml-3">'+ "#{@orders_count}" + '</span>').html_safe
-    end
-  end
-
-  def new_orders_badge_sidebar
-    unless @orders_count == 0
-      ('<span class="badge badge-danger badge-new-orders-sidebar d-flex justify-content-around">'+ "#{@orders_count}" + '</span>').html_safe
-    end
-  end
-
   def orderitems_total_quantity(orderitems)
     if orderitems.nil?
       return 0

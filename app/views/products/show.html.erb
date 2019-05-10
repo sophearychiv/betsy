@@ -1,4 +1,4 @@
-
+<article class="container main-article">
   <h2 class="display-4 text-center"><%= link_to @product.name, product_path(@product.id) %></h2>
   <br />
   <div class="row">
@@ -23,7 +23,7 @@
         </div>
 
         <% if @product.stock > 0 %>
-          <%= form_with model: @orderitem, url: orderitem_path, class: "product-form" do |f|%>
+          <%= form_with model: @orderitem, url: product_orderitems_path(@product.id), class: "product-form" do |f|%>
 
             <%= f.label :quantity, 'Quantity' %>
             <%= f.text_field :quantity, type: :number, value: 1, required: true, min: 1, max: @product.stock, maxlength: 3 %>
@@ -63,3 +63,4 @@
        <%= link_to "Review Product", new_product_review_path(@product.id) %>
      <% end %>
   </div>
+</article>
