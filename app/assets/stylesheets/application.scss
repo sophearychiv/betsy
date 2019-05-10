@@ -2,7 +2,7 @@
 @import "bootstrap";
 /* Import scss content */
 @import "**/*";
-@import url('https://fonts.googleapis.com/css?family=Lilita+One|Itim|Fredonka+One');
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 html{
   height:100%;
@@ -34,7 +34,7 @@ html{
 
 body {
   // background-image: url("doodles.png");
-  font-family: 'Itim', sans-serif;
+  font-family: 'Nunito', sans-serif;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -52,10 +52,7 @@ footer {
 }
 
 main {
-  // background: #9fe6bdb4;
   min-height: 1000px;
-  // padding: 2rem;
-  // margin-top: -5px;
   border-radius: 0px 0px 10px 10px;
 }
 
@@ -65,7 +62,6 @@ li {
 
 .header {
   width: 100%;
-  // min-width: 990px;
   position: fixed;
   padding-bottom: 10px;
   left: 1px;
@@ -74,30 +70,20 @@ li {
   border-bottom: solid;
   border-bottom-color: #c9c9c9; 
   border-width: thin;
+  z-index: 400;
 }
 
 .logo {
   display: inline-block; 
   padding-left: 20px;
-  // width: 350px;
-  // margin-left: auto;
-  // margin-right: auto;
-  // font-weight: 600;
-  // font-size: 6em;
-  // letter-spacing: .3em;
-  // transform: rotate(-7deg);
 }
 
 .logo a:visited {
   color: #099a97;
-  // transition: .8s;
 }
 
 .logo a:hover {
   color: #7a0abb;
-  // font-size: 5rem;
-  // letter-spacing: .8rem;
-  // transition: .8s;
 }
 
 
@@ -139,7 +125,6 @@ li {
 .main-container {
   display: flex;
   flex-direction: column;
-  // padding-top: 120px;
 }
 
 a:visited {
