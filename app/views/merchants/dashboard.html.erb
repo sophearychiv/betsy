@@ -10,6 +10,9 @@
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#products-tab">Manage Products</a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#add-prod-cat-tab">Add Products/Categories</a>
+  </li>
 </ul>
 <div class="tab-content" id="merchant-content">
   <div class="tab-pane fade show active" id="stats-tab" role="tabpanel"><%= render partial: 'stats' %></div>
@@ -36,5 +39,10 @@
           <% end %>
         </tbody>
     </table>
+  </div>
+  <div class="tab-pane fade" id="add-prod-cat-tab" role="tabpanel">
+    <p> <%= link_to "Add an Itsy Product", new_product_path %> </p>
+    <p> <%= link_to "Add an Itsy Category", new_category_path %> </p>
+  </div>
 </div>
 </section>
