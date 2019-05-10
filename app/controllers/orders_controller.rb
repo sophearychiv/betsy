@@ -92,7 +92,7 @@ class OrdersController < ApplicationController
     @order = Order.find_by(id: params[:id])
 
     if @order
-      @order.update(status: Order::SHIPPED)
+      @order.update(status: Order::COMPLETE)
       flash[:status] = :success
       flash[:result_text] = "Little order ##{@order.id} marked shipped!"
     else

@@ -277,7 +277,7 @@ describe OrdersController do
 
       order.reload
 
-      expect(order.status).must_equal "Shipped"
+      expect(order.status).must_equal Order::COMPLETE
       must_respond_with :redirect
       must_redirect_to dashboard_path(session[:user_id])
       expect(flash[:status]).must_equal :success

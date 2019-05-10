@@ -45,7 +45,7 @@
              <td><%= item.product.name %></td>
              <td><%= item.product.price %></td>
              <td><%= item.quantity %></td>
-             <td>SHIP</td>
+             <td><%= link_to "SHIP", shipped_path(item.order.id), method: :patch %></td>
              <td>CANCEL</td>
             <% end %>
           </tr>
