@@ -1,9 +1,27 @@
 
-<% if @temp_orderitems.length == 0 %>
+<% if @order.orderitems.length == 0 %>
     <% return %> 
 <% else %>
 
     <h3>Your payment has been processed!</h3>
+
+    <section>
+    <h2> Order Summary </h2>
+        <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Purchase Date</th>
+            <th scope="col">Current Status</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td><%= Date.today %></td>
+                    <td><%= @order.status %></td> 
+                </tr>
+        </tbody>
+        </table>
+    </section>
 
     <table class="table">
         <thead>
@@ -16,12 +34,12 @@
         </thead>
         <tbody>
             
-            <% @temp_orderitems.each do |item| %>
+            <% @order.orderitems.each do |item| %>
                 <tr>
-                    <td><%= item[:product_name] %></td>
-                    <td><%= item[:product_price] %></td>
-                    <td><%= item[:quantity] %></td> 
-                    <td><%= item[:item_total] %></td>
+                    <td><%= item.product.name %></td>
+                    <td><%= item.product.price %></td>
+                    <td><%= item.quantity %></td> 
+                    <td><%= item.quantity * item.product.price %></td>
                 </tr>
             <% end %>
                 

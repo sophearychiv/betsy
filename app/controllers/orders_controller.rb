@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_order, only: [:edit, :update, :show, :review, :confirmation, :destroy]
+  before_action :find_order, only: [:edit, :update, :show, :review, :confirmation]
 
   def index
     @orders = Order.all
@@ -56,18 +56,18 @@ class OrdersController < ApplicationController
     else
       @order.update(status: Order::PAID)
       session[:order_id] = nil
-      @temp_orderitems = []
-      @order.orderitems.each do |item|
-        hash = {
-          orderitem_id: item.id,
-          product_name: item.product.name,
-          product_price: item.product.price,
-          quantity: item.quantity,
-          item_total: item.quantity * item.product.price,
-        }
+      # @temp_orderitems = []
+      # @order.orderitems.each do |item|
+      #   hash = {
+      #     orderitem_id: item.id,
+      #     product_name: item.product.name,
+      #     product_price: item.product.price,
+      #     quantity: item.quantity,
+      #     item_total: item.quantity * item.product.price,
+      #   }
 
-        @temp_orderitems << hash
-      end
+      #   @temp_orderitems << hash
+      # end
     end
   end
 
