@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   # post "/orders/checkout", to: "orders#checkout"
   resources :sessions, only: [:new, :create]
   resources :merchants, except: [:new, :create]
+  resources :merchants do
+    resources :orders, only: [:index]
+  end
   get "/merchants/:id/dashboard", to: "merchants#dashboard", as: "dashboard"
 
   resources :categories, only: [:index, :show, :new, :create]
