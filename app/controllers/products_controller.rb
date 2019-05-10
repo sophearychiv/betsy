@@ -8,9 +8,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @orderitem = Orderitem.new # should be removed?
-    @review = Review.new # should be removed?
-
     if @product.nil?
       flash[:status] = :error
       flash[:result_text] = "Product does not exist."
@@ -24,26 +21,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # def by_cat
-  #   id = params[:id]
-  #   @category = Category.find_by(id: id)
-  #   if @category
-  #     @products_by_cat = Product.category_list(id)
-  #   else
-  #     render :notfound, status: :not_found
-  #   end
-  # end
-
-  # def by_merch
-  #   id = params[:id]
-  #   @merchant = Merchant.find_by(id: id)
-  #   if @merchant
-  #     @products_by_merch = Product.merchant_list(id)
-  #   else
-  #     render :notfound, status: :not_found
-  #   end
-  # end
-
   def retire
     @product.active = false
     if @product.save
@@ -53,19 +30,10 @@ class ProductsController < ApplicationController
   end
 
   def new
-    # if !session[:user_id].nil?
     @product = Product.new
-    # else
-    #   flash[:status] = :error
-    #   flash[:result_text] = "You must log in to perform this action."
-    #   redirect_to root_path
-    # end
   end
 
   def edit
-    # @categories = Category.all
-    # if (session[:user_id] != params[:merchant_id].to_i) || (@product.merchant_id != session[:user_id])
-    # render "layouts/notfound", status: :not_found
     if @product.nil?
       flash[:status] = :success
       flash[:result_text] = "Product not found."
@@ -74,7 +42,6 @@ class ProductsController < ApplicationController
   end
 
   def create
-    # if !session[:user_id].nil?
     params = product_params
     params[:merchant_id] = session[:user_id]
     params[:photo_url] = "http://placekitten.com/200/300" if params[:photo_url].nil?
@@ -91,22 +58,14 @@ class ProductsController < ApplicationController
       flash[:messages] = @product.errors.messages
       render :new, status: :bad_request
     end
-    # else
-    #   flash[:status] = :error
-    #   flash[:result_text] = "Please sign in first to create the product."
-    #   redirect_to root_path
-    # end
   end
 
   def update
-    # @categories = Category.all
     if @product.update(product_params)
       merchant_id = session[:user_id]
-      # @merchant_id = product_params[:merchant_id].to_i
       flash[:status] = :success
       flash[:result_text] = "Successfully updated #{@product.name}"
       redirect_to product_path(@product.id)
-      # redirect_to merchant_path(merchant_id)
     else
       flash[:status] = :error
       flash[:result_text] = "Failed to update"
@@ -122,7 +81,6 @@ class ProductsController < ApplicationController
 
     if @product.nil?
       flash.now[:warning] = "Cannot find the product #{params[:id]}"
-      # render :notfound, status: :not_found
     end
   end
 
