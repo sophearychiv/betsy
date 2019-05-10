@@ -31,12 +31,10 @@
         </tr>
     </thead>
     <tbody>
-        <% sub_total = 0%>
         <% @order.orderitems.each do |item|%>
             <tr>
                 <td><%= item.product.name %></td>
                 <td><%= item.product.price %></td>
-                <% sub_total += item.product.price%>
                  <td><%= item.quantity %></td> 
                 <td><%= item.quantity * item.product.price %></td>
                

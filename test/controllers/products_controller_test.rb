@@ -2,15 +2,9 @@ require "test_helper"
 
 describe ProductsController do
   let(:product) { products(:product1) }
-  describe "new" do
-    it "can get the new product page" do
-      get new_product_path
-      must_respond_with :success
-    end
-  end
 
   describe "index" do
-    it "can get the index page" do
+    it "can show index page" do
       get products_path
       must_respond_with :success
     end
@@ -18,6 +12,43 @@ describe ProductsController do
 
   describe "show" do
     it "can show the product page" do
+      product = products(:product1)
+      get product_path(product.id)
+      must_respond_with :success
+    end
+
+    it "gives flash warning if the product is not active" do
+      product = products(:product1)
+      product.active = false
+      product.save
+      get product_path(product.id)
+
+      expect(flash[:status]).must_equal :warning
+      expect(flash[:result_text]).must_equal "#{product.name} is not active."
+      must_respond_with :redirect
+    end
+  end
+
+  # describe "by_cat" do
+  #   it "gets products by category" do
+  #     category = categories(:food)
+  #     get category_path(category.id)
+  #     must_respond_with :success
+
+  #     get products_path
+  #     must_respond_with :success
+  #   end
+  # end
+
+  describe "new" do
+    it "can get the new product page" do
+      get new_product_path
+      must_respond_with :success
+    end
+  end
+
+  describe "edit" do
+    it "can get edit page" do
     end
   end
 
