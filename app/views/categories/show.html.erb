@@ -1,8 +1,8 @@
 
-<article class="container main-article">
+<article class="category-container">
 <div>
   <h2><%= @category.name %></h2>
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th>Photo</th>
@@ -13,7 +13,7 @@
     <tbody>
     <% @category.products.each do |product| %>
       <tr>
-        <td><img src="<%=product.photo_url%>" alt="Image of <%=product.name%>"></td>
+        <td><img class="category-img" src="<%=product.photo_url%>" alt="Image of <%=product.name%>"></td>
         <td><%= link_to product.name, product_path(product.id) %></td>
         <td><%= product.price %></td>
       </tr>
