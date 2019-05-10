@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :status, :retire]
   before_action :find_merchant, only: [:new, :edit, :create]
+  before_action :require_login, only: [:new, :edit, :update, :create, :retire]
 
   def index
     @products = Product.active_products
@@ -52,7 +53,13 @@ class ProductsController < ApplicationController
   end
 
   def new
+    # if !session[:user_id].nil?
     @product = Product.new
+    # else
+    #   flash[:status] = :error
+    #   flash[:result_text] = "You must log in to perform this action."
+    #   redirect_to root_path
+    # end
   end
 
   def edit
@@ -67,28 +74,28 @@ class ProductsController < ApplicationController
   end
 
   def create
-    if !session[:user_id].nil?
-      params = product_params
-      params[:merchant_id] = session[:user_id]
-      params[:photo_url] = "http://placekitten.com/200/300" if params[:photo_url].empty?
+    # if !session[:user_id].nil?
+    params = product_params
+    params[:merchant_id] = session[:user_id]
+    params[:photo_url] = "http://placekitten.com/200/300" if params[:photo_url].nil?
 
-      @product = Product.new(params)
+    @product = Product.new(params)
 
-      if @product.save
-        flash[:status] = :success
-        flash[:result_text] = "Successfully created #{@product.name}"
-        redirect_to product_path(@product)
-      else
-        flash[:status] = :error
-        flash[:result_text] = "Experiencing an issue with creating #{@product.id}."
-        flash[:messages] = @product.errors.messages
-        render :new
-      end
-    elsif session[:user_id].nil
+    if @product.save
+      flash[:status] = :success
+      flash[:result_text] = "Successfully created #{@product.name}"
+      redirect_to product_path(@product)
+    else
       flash[:status] = :error
-      flash[:result_text] = "Could not create #{@product}. Please sign in if you are authorized."
-      redirect_to root_path
+      flash[:result_text] = "Experiencing an issue with creating the product."
+      flash[:messages] = @product.errors.messages
+      render :new, status: :bad_request
     end
+    # else
+    #   flash[:status] = :error
+    #   flash[:result_text] = "Please sign in first to create the product."
+    #   redirect_to root_path
+    # end
   end
 
   def update
@@ -98,8 +105,8 @@ class ProductsController < ApplicationController
       # @merchant_id = product_params[:merchant_id].to_i
       flash[:status] = :success
       flash[:result_text] = "Successfully updated #{@product.name}"
-      # redirect_to product_path(@product.id)
-      redirect_to merchant_path(merchant_id)
+      redirect_to product_path(@product.id)
+      # redirect_to merchant_path(merchant_id)
     else
       flash[:status] = :error
       flash[:result_text] = "Failed to update"

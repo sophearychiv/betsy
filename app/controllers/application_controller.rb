@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
   def require_login
     current_merchant = find_merchant
     if current_merchant.nil?
-      flash[:error] = "You must be logged in to do this action."
+      flash[:status] = :error
+      flash[:result_text] = "You must be logged in to perform this action."
       redirect_to root_path
     end
   end

@@ -50,6 +50,7 @@ describe ProductsController do
 
   describe "new" do
     it "can get the new product page" do
+      perform_login
       get new_product_path
       must_respond_with :success
     end
@@ -57,6 +58,8 @@ describe ProductsController do
 
   describe "edit" do
     it "can get edit page" do
+      perform_login
+
       product = products(:product1)
       get edit_product_path(product.id)
       must_respond_with :success
@@ -73,6 +76,8 @@ describe ProductsController do
 
   describe "retire" do
     it "can retire a product" do
+      perform_login
+
       id = product.id
       expect { patch retire_path(id) }.wont_change "Product.count"
       product.reload
@@ -80,6 +85,109 @@ describe ProductsController do
       must_redirect_to dashboard_path
       expect(flash[:success]).must_equal "#{product.name} has been retired."
       expect(product.active).must_equal false
+    end
+  end
+
+  describe "create" do
+    it "can create a new product" do
+      perform_login
+      input_product = {
+        product: {
+          name: "test name",
+          price: 100,
+          stock: 10,
+        },
+      }
+      expect {
+        post products_path, params: input_product
+      }.must_change "Product.count", 1
+
+      product = Product.find_by(name: input_product[:product][:name])
+
+      must_respond_with :redirect
+      expect(flash[:status]).must_equal :success
+      expect(flash[:result_text]).must_equal "Successfully created #{product.name}"
+    end
+
+    it "gives notice when the product cannot be created" do
+      perform_login
+      input_product = {
+        product: {
+          name: nil,
+          price: 100,
+          stock: 10,
+        },
+      }
+
+      expect {
+        post products_path, params: input_product
+      }.wont_change "Product.count"
+
+      expect(flash[:status]).must_equal :error
+      expect(flash[:result_text]).must_equal "Experiencing an issue with creating the product."
+      must_respond_with :bad_request
+    end
+
+    it "gives flash notice when user is not signed in" do
+      input_product = {
+        product: {
+          name: "test name",
+          price: 100,
+          stock: 10,
+        },
+      }
+      expect {
+        post products_path, params: input_product
+      }.wont_change "Product.count"
+
+      expect(flash[:status]).must_equal :error
+      expect(flash[:result_text]).must_equal "You must be logged in to perform this action."
+      must_respond_with :redirect
+    end
+  end
+
+  describe "update" do
+    it "can update the product" do
+      perform_login
+
+      input_product = {
+        product: {
+          name: "test name",
+          price: 100,
+          stock: 10,
+        },
+      }
+
+      product = products(:product1)
+
+      expect {
+        patch product_path(product.id), params: input_product
+      }.wont_change "Product.count"
+
+      product.reload
+      expect(flash[:status]).must_equal :success
+      expect(flash[:result_text]).must_equal "Successfully updated #{product.name}"
+      must_respond_with :redirect
+    end
+
+    it "gives flash error if the product cannot be updated" do
+      perform_login
+      input_product = {
+        product: {
+          name: nil,
+          price: 100,
+          stock: 10,
+        },
+      }
+      product = products(:product1)
+
+      expect {
+        patch product_path(product.id), params: input_product
+      }.wont_change "Product.count"
+
+      expect(flash[:status]).must_equal :error
+      expect(flash[:result_text]).must_equal "Failed to update"
+      must_respond_with :bad_request
     end
   end
 end
