@@ -3,7 +3,7 @@
 one:
   address: 123 123St SE
   name: Sophie
-  status: pending
+  status: Pending
   cc: 20
   expiration_date: 2012-04-12
   csv: 234
@@ -12,7 +12,7 @@ one:
 two:
   address: 456 123St SE
   name: Steph
-  status: pending
+  status: Pending
   cc: 10
   expiration_date: 2012-05-12
   csv: 123
@@ -21,7 +21,7 @@ two:
 three:
   address: 780 123St SE
   name: Kate
-  status: paid
+  status: Paid
   cc: 11
   expiration_date: 2012-06-12
   csv: 123
@@ -30,7 +30,7 @@ three:
 four:
   address: 780 123St SE
   name: Kim
-  status: paid
+  status: Paid
   cc: 11
   expiration_date: 2012-06-12
   csv: 123
