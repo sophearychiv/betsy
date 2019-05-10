@@ -13,6 +13,7 @@ class Order < ApplicationRecord
   PAID = "Paid"
   COMPLETE = "Complete"
   CANCELLED = "Cancelled"
+  SHIPPED = "Shipped"
 
   def status_nil?
     return true if self.status == nil

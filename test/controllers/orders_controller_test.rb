@@ -266,4 +266,36 @@ describe OrdersController do
       expect(flash[:result_text]).must_equal "Order does not exist."
     end
   end
+
+  describe "shipped" do
+    it "can change an order status to shipped" do
+      user = perform_login
+
+      expect {
+        patch shipped_path(order.id)
+      }.wont_change "Order.count"
+
+      order.reload
+
+      expect(order.status).must_equal "Shipped"
+      must_respond_with :redirect
+      must_redirect_to dashboard_path(session[:user_id])
+      expect(flash[:status]).must_equal :success
+      expect(flash[:result_text]).must_equal "Little order ##{order.id} marked shipped!"
+    end
+
+    it "will redirect given an invalid order" do
+      user = perform_login
+      invalid_id = -1
+
+      expect {
+        patch shipped_path(-1)
+      }.wont_change "Order.count"
+
+      must_respond_with :redirect
+      must_redirect_to dashboard_path(session[:user_id])
+      expect(flash[:status]).must_equal :warning
+      expect(flash[:result_text]).must_equal "An itsy problem occurred: Could not find order"
+    end
+  end
 end
