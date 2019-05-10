@@ -10,11 +10,11 @@ class ProductsController < ApplicationController
   def show
     @orderitem = Orderitem.new
     @review = Review.new
-    @reviews = @product.reviews
-    if @product.active == false || @product.nil?
+    @reviews = @product.reviews if @product
+    if @product.nil? || @product.active == false
       flash[:status] = :warning
       flash[:result_text] = "#{@product.name} is not active."
-      redirect_to dashboard_path
+      redirect_to dashboard_path(session[:user_id])
     end
     # if @product.nil?
     #   flash[:status] = :error
@@ -30,10 +30,11 @@ class ProductsController < ApplicationController
   end
 
   def retire
-    @product.active = false
+    @product.active = false if @product
     if @product.save
-      flash[:success] = "#{@product.name} has been retired."
-      redirect_to dashboard_path
+      flash[:status] = :success
+      flash[:result_text] = "#{@product.name} has been retired."
+      redirect_to dashboard_path(session[:user_id])
     end
   end
 
@@ -45,7 +46,7 @@ class ProductsController < ApplicationController
     if @product.nil?
       flash[:status] = :error
       flash[:result_text] = "Product not found."
-      redirect_to dashboard_path
+      redirect_to dashboard_path(session[:user_id])
     end
   end
 
